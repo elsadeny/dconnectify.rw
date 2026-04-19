@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $title ?? 'Connectify Marketplace' }}</title>
-        <meta name="description" content="Connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
+        <title>{{ $title ?? 'connectify Marketplace' }}</title>
+        <meta name="description" content="connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=space-grotesk:400,500,700|plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])

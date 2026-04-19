@@ -26,7 +26,7 @@ class SellerPanelProvider extends PanelProvider
         return $panel
             ->id('seller')
             ->path('seller')
-            ->brandName('Connectify Seller')
+            ->brandName('connectify Seller')
             ->login()
             ->registration()
             ->passwordReset()

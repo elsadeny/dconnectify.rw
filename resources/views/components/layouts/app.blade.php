@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $title ?? 'Connectify Marketplace' }}</title>
-        <meta name="description" content="Connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
+        <title>{{ $title ?? 'connectify Marketplace' }}</title>
+        <meta name="description" content="connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=space-grotesk:400,500,700|plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -220,7 +220,7 @@
                         </a>
                         <a href="https://wa.me/250788881400?text=Hello%2C%20I%27m%20interested" target="_blank" rel="noreferrer" class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4 transition hover:-translate-y-0.5 hover:bg-white/8">
                             <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sand)]">Seller onboarding</p>
-                            <p class="mt-2 text-lg font-bold text-white">List with Connectify</p>
+                            <p class="mt-2 text-lg font-bold text-white">List with connectify</p>
                             <p class="mt-1 text-sm text-white/58">+250 788 881 400</p>
                         </a>
                     </div>
@@ -230,11 +230,11 @@
                             <div class="flex items-center gap-3">
                                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)] shadow-[0_14px_35px_-16px_rgba(29,143,255,0.8)]">C</div>
                                 <div>
-                                    <p class="font-display text-xl font-bold text-white">Connectify</p>
+                                    <p class="font-display text-xl font-bold text-white">connectify</p>
                                     <p class="text-xs uppercase tracking-[0.24em] text-white/50">East Africa marketplace</p>
                                 </div>
                             </div>
-                            <p class="mt-5 max-w-sm text-sm leading-7 text-white/60">Connectify is a modern East African marketplace for vehicles, property, jobs, rentals and services, helping people discover trusted listings and connect with sellers faster.</p>
+                            <p class="mt-5 max-w-sm text-sm leading-7 text-white/60">connectify is a modern East African marketplace for vehicles, property, jobs, rentals and services, helping people discover trusted listings and connect with sellers faster.</p>
                             <div class="mt-5 flex flex-wrap gap-3 text-sm">
                                 <a href="https://wa.me/250788881400" target="_blank" rel="noreferrer" class="footer-link">WhatsApp</a>
                                 <a href="https://www.facebook.com/haruna.nyamushanja/" target="_blank" rel="noreferrer" class="footer-link">Facebook</a>
@@ -246,7 +246,7 @@
                         <div>
                             <p class="footer-title">Company</p>
                             <div class="mt-4 space-y-3">
-                                <a href="{{ route('home') }}#why-connectify" class="footer-link block">About Connectify</a>
+                                <a href="{{ route('home') }}#why-connectify" class="footer-link block">About connectify</a>
                                 <a href="{{ route('home') }}#featured" class="footer-link block">Featured listings</a>
                                 <a href="{{ route('home') }}#latest" class="footer-link block">Latest listings</a>
                                 <a href="/seller" class="footer-link block">Seller Panel</a>
@@ -283,17 +283,17 @@
                             <p class="footer-title">Marketplace help</p>
                             <div class="mt-4 space-y-3">
                                 <a href="{{ route('home') }}#categories" class="footer-link block">Browse categories</a>
-                                <a href="{{ route('home') }}#why-connectify" class="footer-link block">Why Connectify?</a>
+                                <a href="{{ route('home') }}#why-connectify" class="footer-link block">Why connectify?</a>
                                 <a href="{{ route('home') }}#featured" class="footer-link block">Featured picks</a>
                                 <a href="{{ route('home') }}#latest" class="footer-link block">Fresh listings</a>
-                                <a href="https://wa.me/250788572481?text=Hi%2C%20I%20need%20help%20using%20Connectify" target="_blank" rel="noreferrer" class="footer-link block">Using the platform</a>
-                                <a href="https://wa.me/250788881400?text=Hello%2C%20I%20want%20to%20list%20on%20Connectify" target="_blank" rel="noreferrer" class="footer-link block">Listing assistance</a>
+                                <a href="https://wa.me/250788572481?text=Hi%2C%20I%20need%20help%20using%20connectify" target="_blank" rel="noreferrer" class="footer-link block">Using the platform</a>
+                                <a href="https://wa.me/250788881400?text=Hello%2C%20I%20want%20to%20list%20on%20connectify" target="_blank" rel="noreferrer" class="footer-link block">Listing assistance</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-3 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-                        <p>&copy; {{ now()->year }} Connectify marketplace. All rights reserved.</p>
+                        <p>&copy; {{ now()->year }} connectify marketplace. All rights reserved.</p>
                         <div class="flex flex-wrap gap-4">
                             <a href="/seller" class="footer-link">Seller Sign In</a>
                             <a href="/seller/register" class="footer-link">Seller Sign Up</a>

@@ -98,6 +98,6 @@ class Listing extends Model
     {
         $number = preg_replace('/[^0-9]/', '', (string) $this->whatsapp_number);
 
-        return 'https://wa.me/'.$number.'?text='.urlencode('Hello, I am interested in '.$this->title.' on Connectify.');
+        return 'https://wa.me/'.$number.'?text='.urlencode('Hello, I am interested in '.$this->title.' on connectify.');
     }
 }

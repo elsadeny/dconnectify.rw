@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         User::query()->updateOrCreate([
             'email' => 'admin@connectify.rw',
         ], [
-            'name' => 'Connectify Admin',
+            'name' => 'connectify Admin',
             'role' => UserRole::Admin,
             'country' => 'Rwanda',
             'city' => 'Kigali',

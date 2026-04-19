@@ -1,4 +1,4 @@
-<x-layouts.app :title="$listing->title.' | Connectify'">
+<x-layouts.app :title="$listing->title.' | connectify'">
     <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
         <a href="{{ route('home') }}" class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/85 backdrop-blur">Back to marketplace</a>
 
@@ -66,7 +66,7 @@
 
                 <div class="rounded-[2rem] bg-white p-6 text-[var(--color-ink)] shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)] md:p-8">
                     <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-clay)]">Seller tools</p>
-                    <h2 class="mt-2 font-display text-2xl font-bold">List and manage inventory through Connectify</h2>
+                    <h2 class="mt-2 font-display text-2xl font-bold">List and manage inventory through connectify</h2>
                     <p class="mt-3 text-sm leading-6 text-slate-600">Dealers, agents, recruiters and service providers can manage listings, update availability, and keep enquiries flowing through dedicated seller and admin panels.</p>
                     <div class="mt-6 space-y-3 text-sm text-slate-600">
                         <p>Seller panel for listing management and edits</p>

@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Connectify | East Africa Marketplace'">
+<x-layouts.app :title="'connectify | East Africa Marketplace'">
     @php
         $heroListing = $featured->first();
         $heroSideListings = $featured->slice(1);
@@ -10,13 +10,13 @@
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)]">C</div>
                 <div>
-                    <p class="font-display text-lg font-bold tracking-tight">Connectify</p>
+                    <p class="font-display text-lg font-bold tracking-tight">connectify</p>
                     <p class="text-xs uppercase tracking-[0.24em] text-white/60">Premium marketplace across East Africa</p>
                 </div>
             </a>
             <nav class="hidden items-center gap-6 text-sm font-medium text-white/80 md:flex">
                 <a href="#categories" class="transition hover:text-white">Categories</a>
-                <a href="#why-connectify" class="transition hover:text-white">Why Connectify</a>
+                <a href="#why-connectify" class="transition hover:text-white">Why connectify</a>
                 <a href="#featured" class="transition hover:text-white">Featured</a>
                 <a href="#latest" class="transition hover:text-white">Latest</a>
                 <a href="/seller" class="rounded-full border border-white/15 bg-white/95 px-4 py-2 text-[var(--color-ink)] transition hover:-translate-y-0.5">Seller Panel</a>
@@ -30,8 +30,8 @@
         <section class="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10 lg:px-8 lg:py-16">
             <div class="hidden lg:block">
                 <span class="gold-chip shadow-[0_18px_40px_-26px_rgba(0,0,0,0.7)]">Cars, homes, jobs and services</span>
-                <h1 class="mt-6 max-w-4xl font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">Connectify helps East Africa buy, rent, hire and sell with speed.</h1>
-                <p class="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg">From vehicles and homes to jobs and everyday services, Connectify brings trusted local listings, location-first discovery and direct WhatsApp conversations into one modern regional marketplace.</p>
+                <h1 class="mt-6 max-w-4xl font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">connectify helps East Africa buy, rent, hire and sell with speed.</h1>
+                <p class="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg">From vehicles and homes to jobs and everyday services, connectify brings trusted local listings, location-first discovery and direct WhatsApp conversations into one modern regional marketplace.</p>
 
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="#latest" class="primary-cta">Browse listings</a>
@@ -71,7 +71,7 @@
 
                 <form method="GET" action="{{ route('home') }}" class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter data-country-city-map='@json($countryCityMap)'>
                     <div class="border-b border-white/8 pb-4">
-                        <p class="section-heading">Explore Connectify</p>
+                        <p class="section-heading">Explore connectify</p>
                         <h2 class="mt-2 font-display text-2xl font-bold text-white">Find your next move</h2>
                         <p class="mt-2 text-sm text-white/60">Premium browsing, verified sellers, faster WhatsApp conversations.</p>
                     </div>
@@ -223,9 +223,9 @@
             <div class="hero-panel rounded-[2rem] px-6 py-8 md:px-8">
                 <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                     <div>
-                        <p class="gold-chip">Why Connectify?</p>
+                        <p class="gold-chip">Why connectify?</p>
                         <h2 class="mt-4 max-w-xl font-display text-3xl font-bold text-white md:text-4xl">One marketplace for trusted cars, homes, jobs and business services across East Africa.</h2>
-                        <p class="mt-4 max-w-lg text-sm leading-7 text-white/65">Connectify helps buyers and renters move faster with verified listings, clear location filters, direct WhatsApp contact, and a regional inventory that starts in Rwanda and extends into Uganda, Burundi, DRC, Kenya, Tanzania, and South Sudan.</p>
+                        <p class="mt-4 max-w-lg text-sm leading-7 text-white/65">connectify helps buyers and renters move faster with verified listings, clear location filters, direct WhatsApp contact, and a regional inventory that starts in Rwanda and extends into Uganda, Burundi, DRC, Kenya, Tanzania, and South Sudan.</p>
                     </div>
                     <div class="grid gap-4 md:grid-cols-3">
                         <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5">
@@ -241,7 +241,7 @@
                         <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5">
                             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">03</p>
                             <h3 class="mt-4 font-display text-xl font-bold text-white">WhatsApp conversion</h3>
-                            <p class="mt-3 text-sm leading-6 text-white/60">Instead of losing buyers in long forms, Connectify pushes serious enquiries straight into WhatsApp for viewings, negotiations, tenancy questions and hiring follow-up.</p>
+                            <p class="mt-3 text-sm leading-6 text-white/60">Instead of losing buyers in long forms, connectify pushes serious enquiries straight into WhatsApp for viewings, negotiations, tenancy questions and hiring follow-up.</p>
                         </div>
                     </div>
                 </div>

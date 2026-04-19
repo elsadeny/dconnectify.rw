@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('Connectify Admin')
+            ->brandName('connectify Admin')
             ->login()
             ->passwordReset()
             ->colors([

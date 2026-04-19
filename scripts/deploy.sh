@@ -10,17 +10,19 @@ fi
 APP_HOST="${1:-}"
 APP_DIR="${2:-/var/www/connectify}"
 APP_USER="www-data"
-PHP_VERSION="8.3"
+PHP_VERSION="${PHP_VERSION:-8.4}"
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="${APP_DIR}/.env"
 SQLITE_FILE="${APP_DIR}/database/database.sqlite"
+NPM_CACHE_DIR="${APP_DIR}/storage/.npm-cache"
 QUEUE_SERVICE="connectify-queue"
 SCHEDULE_SERVICE="connectify-schedule"
 SCHEDULE_TIMER="${SCHEDULE_SERVICE}.timer"
 NGINX_SITE="connectify"
+PHP_BIN="/usr/bin/php${PHP_VERSION}"
 
 if [[ -z "${APP_HOST}" ]]; then
-    echo "Usage: sudo bash scripts/fresh-vps-deploy.sh <domain-or-ip> [app-dir]"
+    echo "Usage: sudo bash scripts/deploy.sh <domain-or-ip> [app-dir]"
     exit 1
 fi
 
@@ -135,6 +137,11 @@ echo "Installing system packages..."
 apt-get update
 apt-get install -y software-properties-common ca-certificates curl gnupg unzip git rsync nginx sqlite3 acl
 
+if [[ "${PHP_VERSION}" == "8.4" ]]; then
+    add-apt-repository -y ppa:ondrej/php
+    apt-get update
+fi
+
 echo "Installing Node.js 22..."
 mkdir -p /etc/apt/keyrings
 if [[ ! -f /etc/apt/keyrings/nodesource.gpg ]]; then
@@ -163,7 +170,7 @@ apt-get install -y \
 
 require_command composer
 require_command npm
-require_command php
+require_command "php${PHP_VERSION}"
 require_command rsync
 
 mkdir -p "${APP_DIR}"
@@ -172,6 +179,7 @@ echo "Syncing application into ${APP_DIR}..."
 rsync -a --delete \
     --exclude='.env' \
     --exclude='.git/' \
+    --exclude='database/*.sqlite*' \
     --exclude='node_modules/' \
     --exclude='vendor/' \
     --exclude='storage/framework/cache/*' \
@@ -182,6 +190,7 @@ rsync -a --delete \
     "${SOURCE_DIR}/" "${APP_DIR}/"
 
 mkdir -p \
+    "${NPM_CACHE_DIR}" \
     "${APP_DIR}/storage/app/public" \
     "${APP_DIR}/storage/framework/cache/data" \
     "${APP_DIR}/storage/framework/sessions" \
@@ -213,7 +222,7 @@ set_env_var CACHE_STORE file "${ENV_FILE}"
 set_env_var QUEUE_CONNECTION database "${ENV_FILE}"
 
 echo "Installing PHP dependencies..."
-sudo -u ${APP_USER} composer install \
+sudo -u ${APP_USER} ${PHP_BIN} /usr/bin/composer install \
     --working-dir="${APP_DIR}" \
     --no-dev \
     --optimize-autoloader \
@@ -221,21 +230,21 @@ sudo -u ${APP_USER} composer install \
 
 echo "Installing Node dependencies and building assets..."
 if [[ -f "${APP_DIR}/package-lock.json" ]]; then
-    sudo -u ${APP_USER} npm ci --prefix "${APP_DIR}"
+    sudo -u ${APP_USER} npm ci --cache "${NPM_CACHE_DIR}" --prefix "${APP_DIR}"
 else
-    sudo -u ${APP_USER} npm install --prefix "${APP_DIR}"
+    sudo -u ${APP_USER} npm install --cache "${NPM_CACHE_DIR}" --prefix "${APP_DIR}"
 fi
-sudo -u ${APP_USER} npm run build --prefix "${APP_DIR}"
+sudo -u ${APP_USER} npm run build --cache "${NPM_CACHE_DIR}" --prefix "${APP_DIR}"
 
 echo "Running Laravel production tasks..."
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" key:generate --force
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" storage:link || true
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" migrate --force
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" optimize:clear
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" config:cache
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" route:cache
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" view:cache
-sudo -u ${APP_USER} php "${APP_DIR}/artisan" event:cache
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" key:generate --force
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" storage:link || true
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" migrate --force
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" optimize:clear
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" config:cache
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" route:cache
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" view:cache
+sudo -u ${APP_USER} ${PHP_BIN} "${APP_DIR}/artisan" event:cache
 
 write_systemd_units
 write_nginx_site

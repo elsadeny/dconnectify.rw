@@ -8,7 +8,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class SellerOverview extends StatsOverviewWidget
 {
-    protected ?string $heading = 'Your Connectify Performance';
+    protected ?string $heading = 'Your connectify Performance';
 
     protected function getStats(): array
     {

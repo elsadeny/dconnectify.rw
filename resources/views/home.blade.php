@@ -286,7 +286,7 @@
 
             <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
                 @foreach ($types as $type)
-                <a href="{{ route('home', ['type' => $type->value]) }}"
+                <a href="{{ route('category.show', $type->value) }}"
                     class="surface-card group rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6">
                     <p class="section-heading">{{ $type->value }}</p>
                     <h3 class="mt-3 font-display text-xl font-bold sm:text-2xl">{{ $type->label() }}</h3>

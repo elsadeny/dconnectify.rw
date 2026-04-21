@@ -1,8 +1,25 @@
 <x-layouts.app :title="$listing->title.' | connectify'">
-    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-        <a href="{{ route('home') }}"
-            class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/85 backdrop-blur">Back
-            to marketplace</a>
+    <div class="premium-hero-bg pt-24 pb-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <a href="{{ route('home') }}"
+                class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20">
+                <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to marketplace
+            </a>
+
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+                <span class="gold-chip">Premium listing</span>
+                <span class="text-sm font-medium tracking-wide text-white/60">Listed {{ $listing->created_at->format('M
+                    d, Y') }}</span>
+            </div>
+            <h1 class="mt-4 font-display text-4xl font-bold text-white md:text-6xl lg:max-w-4xl">{{ $listing->title }}
+            </h1>
+        </div>
+    </div>
+
+    <main class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 
         <div class="mt-6 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
             <section class="space-y-6">
@@ -20,31 +37,40 @@
                 </div>
 
                 <div
-                    class="rounded-[2rem] bg-white p-6 text-[var(--color-ink)] shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)] md:p-8">
+                    class="rounded-[2.5rem] bg-white p-6 text-[var(--color-ink)] shadow-[0_32px_90px_-30px_rgba(8,20,33,0.3)] md:p-8">
                     <div class="flex flex-wrap items-center gap-3">
                         <span
-                            class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)]">{{
+                            class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)]">{{
                             $listing->type->label() }}</span>
                         <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{{
+                            class="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">{{
                             ucfirst($listing->transaction_type) }}</span>
-                        @if ($listing->is_verified)
-                        <span
-                            class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Verified
-                            seller</span>
-                        @endif
                     </div>
 
-                    <h1 class="mt-4 font-display text-3xl font-bold sm:text-5xl">{{ $listing->title }}</h1>
-                    <p class="mt-3 text-base text-slate-600">{{ $listing->area ? $listing->area.', ' : '' }}{{
-                        $listing->city }}, {{ $listing->country }}</p>
-                    <p class="mt-4 text-3xl font-extrabold text-[var(--color-ink)]">{{ $listing->formattedPrimaryValue()
-                        }}</p>
+                    <div class="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                        <div>
+                            <p class="text-sm font-medium text-slate-500">{{ $listing->area ? $listing->area.', ' : ''
+                                }}{{
+                                $listing->city }}, {{ $listing->country }}</p>
+                            <p class="mt-2 text-4xl font-extrabold tracking-tight text-[var(--color-ink)]">{{
+                                $listing->formattedPrimaryValue() }}</p>
+                        </div>
+                        @if ($listing->is_verified)
+                        <div class="flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-emerald-700">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-xs font-bold uppercase tracking-wider">Verified Seller</span>
+                        </div>
+                        @endif
+                    </div>
 
                     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                         @foreach (($listing->details ?? []) as $label => $value)
                         <div class="rounded-2xl bg-[var(--color-mist)] p-4">
-                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)]">{{
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)]">{{
                                 str_replace('_', ' ', $label) }}</p>
                             <p class="mt-2 text-base font-bold capitalize text-[var(--color-ink)]">{{ $value }}</p>
                         </div>
@@ -74,7 +100,7 @@
             <aside class="space-y-6">
                 <div
                     class="rounded-[2rem] bg-white p-6 text-[var(--color-ink)] shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)] md:p-8">
-                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-clay)]">Contact seller
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)]">Contact seller
                     </p>
                     <h2 class="mt-2 font-display text-2xl font-bold">{{ $listing->contact_name ??
                         $listing->seller?->name }}</h2>
@@ -108,7 +134,7 @@
 
                 <div
                     class="rounded-[2rem] bg-white p-6 text-[var(--color-ink)] shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)] md:p-8">
-                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-clay)]">Seller tools
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)]">Seller tools
                     </p>
                     <h2 class="mt-2 font-display text-2xl font-bold">List and manage inventory through connectify</h2>
                     <p class="mt-3 text-sm leading-6 text-slate-600">Dealers, agents, recruiters and service providers

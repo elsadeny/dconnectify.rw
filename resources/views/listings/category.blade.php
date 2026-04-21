@@ -1,8 +1,7 @@
 <x-layouts.app :title="$type->label() . ' | Connectify Marketplace'">
     <div class="relative min-h-screen bg-[var(--color-mist)]">
         <!-- Vertical Header -->
-        <header class="relative overflow-hidden bg-[var(--color-ink)] py-20 text-white">
-            <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(9,11,15,0.9),rgba(29,143,255,0.1))]"></div>
+        <header class="premium-hero-bg relative overflow-hidden py-16 text-white md:py-24">
             <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
                     <div>
@@ -10,7 +9,7 @@
                         <h1 class="mt-4 font-display text-4xl font-bold md:text-6xl">{{ $type->label() }}</h1>
                         <p class="mt-6 max-w-2xl text-lg text-white/70">
                             {{ match($type->value) {
-                            'vehicle' => 'Discovery the best certified and locally used vehicles across East Africa.',
+                            'vehicle' => 'Discover the best certified and locally used vehicles across East Africa.',
                             'property' => 'Premium real estate listings including residential homes, rentals, and
                             commercial land.',
                             'job' => 'Professional career opportunities and specialist roles in growing industries.',
@@ -34,24 +33,24 @@
             <div class="grid gap-10 lg:grid-cols-[300px_1fr]">
                 <!-- Filter Sidebar -->
                 <aside class="space-y-8">
-                    <div class="surface-card rounded-[2rem] p-6 shadow-sm">
+                    <div class="surface-card rounded-[2.5rem] p-6 shadow-[0_32px_90px_-30px_rgba(8,20,33,0.15)]">
                         <h2 class="font-display text-xl font-bold">Refine Results</h2>
 
                         <form method="GET" action="{{ route('category.show', $type->value) }}" class="mt-8 space-y-6">
-                            <div class="space-y-4">
+                            <div class="space-y-5">
                                 <label class="block">
                                     <span
-                                        class="text-xs font-bold uppercase tracking-wider text-slate-500">Keyword</span>
+                                        class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Keyword</span>
                                     <input type="text" name="q" value="{{ $filters['q'] ?? '' }}"
                                         placeholder="Search {{ strtolower($type->label()) }}..."
-                                        class="mt-2 w-full rounded-2xl border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
+                                        class="mt-2 w-full rounded-2xl border-slate-100 bg-slate-50/50 px-4 py-3.5 text-sm transition focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
                                 </label>
 
                                 <label class="block">
                                     <span
-                                        class="text-xs font-bold uppercase tracking-wider text-slate-500">Country</span>
+                                        class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Country</span>
                                     <select name="country"
-                                        class="mt-2 w-full rounded-2xl border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
+                                        class="mt-2 w-full rounded-2xl border-slate-100 bg-slate-50/50 px-4 py-3.5 text-sm transition focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
                                         <option value="">All Regions</option>
                                         @foreach($countries as $country)
                                         <option value="{{ $country }}" {{ ($filters['country'] ?? '' )===$country
@@ -62,24 +61,24 @@
 
                                 <div class="grid grid-cols-2 gap-3">
                                     <label class="block">
-                                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Min
+                                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Min
                                             Price</span>
                                         <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
                                             placeholder="0"
-                                            class="mt-2 w-full rounded-2xl border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
+                                            class="mt-2 w-full rounded-2xl border-slate-100 bg-slate-50/50 px-4 py-3.5 text-sm transition focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
                                     </label>
                                     <label class="block">
-                                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Max
+                                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Max
                                             Price</span>
                                         <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
                                             placeholder="Any"
-                                            class="mt-2 w-full rounded-2xl border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
+                                            class="mt-2 w-full rounded-2xl border-slate-100 bg-slate-50/50 px-4 py-3.5 text-sm transition focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)]">
                                     </label>
                                 </div>
                             </div>
 
                             <button type="submit"
-                                class="w-full rounded-2xl bg-[var(--color-ink)] py-4 text-sm font-bold text-white shadow-lg transition hover:scale-[1.02] active:scale-95">
+                                class="w-full rounded-2xl bg-[var(--color-ink)] py-4 text-sm font-bold text-white shadow-[0_18px_32px_-12px_rgba(8,20,33,0.4)] transition hover:-translate-y-0.5 active:scale-95">
                                 Apply Filters
                             </button>
 

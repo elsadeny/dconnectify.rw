@@ -4,277 +4,283 @@
     $heroSideListings = $featured->slice(1);
     @endphp
 
-    <header class="fixed inset-x-0 top-0 z-50 px-4 pt-6 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-            <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6">
-                <a href="{{ route('home') }}" class="flex items-center gap-3">
-                    <div
-                        class="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)]">
-                        C</div>
-                    <div>
-                        <p class="font-display text-lg font-bold tracking-tight">connectify</p>
-                        <p class="text-xs uppercase tracking-[0.24em] text-white/60">Premium marketplace across East
-                            Africa</p>
-                    </div>
-                </a>
-                <nav class="hidden items-center gap-6 text-sm font-medium text-white/80 md:flex">
-                    <a href="#categories" class="transition hover:text-white">Categories</a>
-                    <a href="#why-connectify" class="transition hover:text-white">Why connectify</a>
-                    <a href="#featured" class="transition hover:text-white">Featured</a>
-                    <a href="#latest" class="transition hover:opacity-75 relative">Latest</a>
-                    @auth
-                    <a href="{{ route('saved.index') }}" :class="scrolled ? 'text-[var(--color-ocean)]' : 'text-white'"
-                        class="transition hover:opacity-75 relative font-bold tracking-wide">Saved Ads</a>
-                    @endauth
-                    <a href="/seller"
-                        :class="scrolled ? 'bg-[var(--color-ink)] text-white border-transparent' : 'border-white/15 bg-white/95 text-[var(--color-ink)]'"
-                        class="rounded-full border px-4 py-2 transition hover:-translate-y-0.5">Seller Panel</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="pt-28 lg:pt-32">
-
-        <section
-            class="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10 lg:px-8 lg:py-16">
-            <div class="hidden lg:block">
-                <span class="gold-chip shadow-[0_18px_40px_-26px_rgba(0,0,0,0.7)]">Cars, homes, jobs and services</span>
-                <h1
-                    class="mt-6 max-w-4xl font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">
-                    connectify helps East Africa buy, rent, hire and sell with speed.</h1>
-                <p class="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg">From vehicles and homes to jobs
-                    and everyday services, connectify brings trusted local listings, location-first discovery and direct
-                    WhatsApp conversations into one modern regional marketplace.</p>
-
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="#latest" class="primary-cta">Browse listings</a>
-                    <a href="/seller/register" class="secondary-cta">Start selling</a>
-                </div>
-
-                <div class="mt-8 grid gap-4 sm:grid-cols-3">
-                    <div class="dark-stat">
-                        <p class="text-3xl font-extrabold text-white">{{ $stats['liveListings'] }}</p>
-                        <p class="mt-2 text-sm text-white/65">Live listings across cars, jobs, property and services.
-                        </p>
-                    </div>
-                    <div class="dark-stat">
-                        <p class="text-3xl font-extrabold text-white">{{ $stats['verifiedSellers'] }}</p>
-                        <p class="mt-2 text-sm text-white/65">Verified sellers ready to close on WhatsApp.</p>
-                    </div>
-                    <div class="dark-stat">
-                        <p class="text-3xl font-extrabold text-white">{{ $stats['countries'] }}</p>
-                        <p class="mt-2 text-sm text-white/65">East African markets covered from launch.</p>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex flex-wrap gap-3 text-sm text-white/70">
-                    <span class="rounded-full border border-white/10 px-4 py-2">Kigali</span>
-                    <span class="rounded-full border border-white/10 px-4 py-2">Nairobi</span>
-                    <span class="rounded-full border border-white/10 px-4 py-2">Kampala</span>
-                    <span class="rounded-full border border-white/10 px-4 py-2">Dar es Salaam</span>
-                    <span class="rounded-full border border-white/10 px-4 py-2">Bujumbura</span>
-                </div>
-            </div>
-
-            <div class="space-y-4 lg:space-y-5">
-                <div class="lg:hidden">
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-sand)]">
-                        Marketplace</p>
-                    <h1 class="mt-2 font-display text-3xl font-bold tracking-tight text-white">Find, post, chat, move.
-                    </h1>
-                    <p class="mt-2 text-sm leading-6 text-white/62">Search first, browse fast, and act without getting
-                        lost in extra content.</p>
-                </div>
-
-                <form method="GET" action="{{ route('home') }}"
-                    class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter
-                    data-country-city-map='@json($countryCityMap)'>
-                    <div class="border-b border-white/8 pb-4">
-                        <p class="section-heading">Explore connectify</p>
-                        <h2 class="mt-2 font-display text-2xl font-bold text-white">Find your next move</h2>
-                        <p class="mt-2 text-sm text-white/60">Premium browsing, verified sellers, faster WhatsApp
-                            conversations.</p>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="space-y-2">
-                            <span
-                                class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Keyword
-                                Search</span>
-                            <input type="text" name="q" value="{{ $filters['q'] ?? '' }}"
-                                placeholder="Search cars, homes, jobs..."
-                                class="connectify-input placeholder:text-white/40">
-                        </label>
-                    </div>
-
-                    <div class="mb-4 grid gap-3 sm:grid-cols-2">
-                        <label class="space-y-2">
-                            <span class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Min
-                                Price</span>
-                            <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
-                                placeholder="No minimum" class="connectify-input placeholder:text-white/40">
-                        </label>
-                        <label class="space-y-2">
-                            <span class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Max
-                                Price</span>
-                            <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
-                                placeholder="No max" class="connectify-input placeholder:text-white/40">
-                        </label>
-                    </div>
-
-                    <div class="grid gap-3 sm:grid-cols-2">
-                        <label class="space-y-2">
-                            <span
-                                class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Country</span>
-                            <select name="country" class="connectify-input" data-country-select>
-                                <option value="">All countries</option>
-                                @foreach ($countries as $country)
-                                <option value="{{ $country }}" {{ ($filters['country'] ?? '' )===$country ? 'selected'
-                                    : '' }}>{{ $country }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </label>
-                        <label class="space-y-2 sm:col-span-2">
-                            <span
-                                class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">City</span>
-                            <select name="city" class="connectify-input" data-city-select
-                                @disabled(blank($filters['country'] ?? '' ))>
-                                <option value="">{{ ($filters['country'] ?? '') ? 'All cities' : 'Choose country first'
-                                    }}
-                                </option>
-                                @foreach ($cities as $city)
-                                <option value="{{ $city }}" {{ ($filters['city'] ?? '' )===$city ? 'selected' : '' }}>{{
-                                    $city }}</option>
-                                @endforeach
-                            </select>
-                        </label>
-                        <label class="space-y-2 sm:col-span-2">
-                            <span
-                                class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Category</span>
-                            <select name="type" class="connectify-input">
-                                <option value="">All categories</option>
-                                @foreach ($types as $type)
-                                <option value="{{ $type->value }}" {{ ($filters['type'] ?? '' )===$type->value ?
-                                    'selected' : '' }}>{{
-                                    $type->label() }}</option>
-                                @endforeach
-                            </select>
-                        </label>
-                    </div>
-
-                    <div>
-                        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/55">Choose intent
-                        </p>
-                        <div class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3 sm:text-center">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="transaction_type" value="rent" class="peer sr-only" {{
-                                    ($filters['transaction_type'] ?? '' )==='rent' ? 'checked' : '' }}>
-                                <span
-                                    class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
-                                    <span class="font-bold text-white">Rent</span>
-                                    <span class="mt-1 block text-xs text-white/55">Homes and cars</span>
-                                </span>
-                            </label>
-                            <label class="cursor-pointer">
-                                <input type="radio" name="transaction_type" value="sale" class="peer sr-only" {{
-                                    ($filters['transaction_type'] ?? '' )==='sale' ? 'checked' : '' }}>
-                                <span
-                                    class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
-                                    <span class="font-bold text-white">Buy</span>
-                                    <span class="mt-1 block text-xs text-white/55">Vehicles and property</span>
-                                </span>
-                            </label>
-                            <label class="cursor-pointer">
-                                <input type="radio" name="transaction_type" value="hire" class="peer sr-only" {{
-                                    ($filters['transaction_type'] ?? '' )==='hire' ? 'checked' : '' }}>
-                                <span
-                                    class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
-                                    <span class="font-bold text-white">Hire</span>
-                                    <span class="mt-1 block text-xs text-white/55">Jobs and talent</span>
-                                </span>
-                            </label>
-                        </div>
-                        @if ($filters['transaction_type'] ?? '')
-                        <div class="mt-3">
-                            <a href="{{ route('home', collect($filters ?? [])->except('transaction_type')->filter()->all()) }}"
-                                class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60 transition hover:text-white">Clear
-                                intent</a>
-                        </div>
-                        @endif
-                    </div>
-
-                    <button type="submit" class="primary-cta w-full">Search marketplace</button>
-                </form>
-
-                <section id="mobile-utility" class="hero-panel rounded-[2rem] p-4 text-white lg:hidden">
-                    <div class="mb-3 flex items-end justify-between gap-3 border-b border-white/8 pb-3">
-                        <div>
-                            <p class="section-heading !text-[var(--color-sand)]">Quick actions</p>
-                            <h2 class="mt-2 font-display text-xl font-bold text-white">Move faster</h2>
-                        </div>
-                        <p class="max-w-[8rem] text-right text-xs leading-5 text-white/58">Jump straight into the work
-                            that matters.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <a href="{{ route('home', ['type' => 'vehicle']) }}"
-                            class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
-                            <span
-                                class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">01</span>
-                            <span class="mt-2 block text-sm font-bold text-white">Vehicles</span>
-                        </a>
-                        <a href="{{ route('home', ['type' => 'property']) }}"
-                            class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
-                            <span
-                                class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">02</span>
-                            <span class="mt-2 block text-sm font-bold text-white">Homes</span>
-                        </a>
-                        <a href="{{ route('home', ['type' => 'job']) }}"
-                            class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
-                            <span
-                                class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">03</span>
-                            <span class="mt-2 block text-sm font-bold text-white">Jobs</span>
-                        </a>
-                        <a href="/seller/register"
-                            class="rounded-[1.5rem] border border-[rgba(29,143,255,0.35)] bg-[linear-gradient(180deg,rgba(29,143,255,0.24),rgba(29,143,255,0.12))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(29,143,255,0.28),rgba(29,143,255,0.14))]">
-                            <span
-                                class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">04</span>
-                            <span class="mt-2 block text-sm font-bold text-white">Post ad</span>
-                        </a>
-                    </div>
-                </section>
-
-                @if ($heroListing)
-                <a href="{{ route('listings.show', $heroListing) }}"
-                    class="hero-panel hidden overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
-                    <div class="relative overflow-hidden rounded-[1.5rem]">
-                        <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
-                            class="h-64 w-full object-cover">
+    <div class="premium-hero-bg pb-12">
+        <header class="fixed inset-x-0 top-0 z-50 px-4 pt-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6">
+                    <a href="{{ route('home') }}" class="flex items-center gap-3">
                         <div
-                            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.82))]">
+                            class="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)]">
+                            C</div>
+                        <div>
+                            <p class="font-display text-lg font-bold tracking-tight text-white">connectify</p>
+                            <p class="text-xs uppercase tracking-[0.24em] text-white/60">Premium marketplace across East
+                                Africa</p>
                         </div>
-                        <div class="absolute inset-x-0 bottom-0 p-5">
-                            <span class="gold-chip">Featured</span>
-                            <h3 class="mt-3 font-display text-2xl font-bold text-white">{{ $heroListing->title }}</h3>
-                            <div class="mt-3 flex items-end justify-between gap-4">
-                                <div>
-                                    <p class="text-xl font-extrabold text-white">{{
-                                        $heroListing->formattedPrimaryValue() }}</p>
-                                    <p class="text-sm text-white/65">{{ $heroListing->city }}, {{ $heroListing->country
-                                        }}</p>
-                                </div>
+                    </a>
+                    <nav class="hidden items-center gap-6 text-sm font-medium text-white/80 md:flex">
+                        <a href="#categories" class="transition hover:text-white">Categories</a>
+                        <a href="#why-connectify" class="transition hover:text-white">Why connectify</a>
+                        <a href="#featured" class="transition hover:text-white">Featured</a>
+                        <a href="#latest" class="transition hover:opacity-75 relative">Latest</a>
+                        @auth
+                        <a href="{{ route('saved.index') }}"
+                            :class="scrolled ? 'text-[var(--color-ocean)]' : 'text-white'"
+                            class="transition hover:opacity-75 relative font-bold tracking-wide">Saved Ads</a>
+                        @endauth
+                        <a href="/seller"
+                            :class="scrolled ? 'bg-[var(--color-ink)] text-white border-transparent' : 'border-white/15 bg-white/95 text-[var(--color-ink)]'"
+                            class="rounded-full border px-4 py-2 transition hover:-translate-y-0.5">Seller Panel</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="pt-28 lg:pt-32">
+            <section
+                class="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10 lg:px-8 lg:py-16">
+                <div class="hidden lg:block">
+                    <span class="gold-chip shadow-[0_18px_40px_-26px_rgba(0,0,0,0.7)]">Cars, homes, jobs and
+                        services</span>
+                    <h1
+                        class="mt-6 max-w-4xl font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">
+                        connectify helps East Africa buy, rent, hire and sell with speed.</h1>
+                    <p class="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg">From vehicles and homes to
+                        jobs
+                        and everyday services, connectify brings trusted local listings, location-first discovery and
+                        direct
+                        WhatsApp conversations into one modern regional marketplace.</p>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#latest" class="primary-cta">Browse listings</a>
+                        <a href="/seller/register" class="secondary-cta">Start selling</a>
+                    </div>
+
+                    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                        <div class="dark-stat">
+                            <p class="text-3xl font-extrabold text-white">{{ $stats['liveListings'] }}</p>
+                            <p class="mt-2 text-sm text-white/65">Live listings across cars, jobs, property and
+                                services.
+                            </p>
+                        </div>
+                        <div class="dark-stat">
+                            <p class="text-3xl font-extrabold text-white">{{ $stats['verifiedSellers'] }}</p>
+                            <p class="mt-2 text-sm text-white/65">Verified sellers ready to close on WhatsApp.</p>
+                        </div>
+                        <div class="dark-stat">
+                            <p class="text-3xl font-extrabold text-white">{{ $stats['countries'] }}</p>
+                            <p class="mt-2 text-sm text-white/65">East African markets covered from launch.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-3 text-sm text-white/70">
+                        <span class="rounded-full border border-white/10 px-4 py-2">Kigali</span>
+                        <span class="rounded-full border border-white/10 px-4 py-2">Nairobi</span>
+                        <span class="rounded-full border border-white/10 px-4 py-2">Kampala</span>
+                        <span class="rounded-full border border-white/10 px-4 py-2">Dar es Salaam</span>
+                        <span class="rounded-full border border-white/10 px-4 py-2">Bujumbura</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 lg:space-y-5">
+                    <div class="lg:hidden">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-sand)]">
+                            Marketplace</p>
+                        <h1 class="mt-2 font-display text-3xl font-bold tracking-tight text-white">Find, post, chat,
+                            move.
+                        </h1>
+                        <p class="mt-2 text-sm leading-6 text-white/62">Search first, browse fast, and act without
+                            getting
+                            lost in extra content.</p>
+                    </div>
+
+                    <form method="GET" action="{{ route('home') }}"
+                        class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter
+                        data-country-city-map='@json($countryCityMap)'>
+                        <div class="border-b border-white/8 pb-4">
+                            <p class="section-heading">Explore connectify</p>
+                            <h2 class="mt-2 font-display text-2xl font-bold text-white">Find your next move</h2>
+                            <p class="mt-2 text-sm text-white/60">Premium browsing, verified sellers, faster WhatsApp
+                                conversations.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="space-y-2">
                                 <span
-                                    class="rounded-full border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white">View
-                                    deal</span>
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Keyword
+                                    Search</span>
+                                <input type="text" name="q" value="{{ $filters['q'] ?? '' }}"
+                                    placeholder="Search cars, homes, jobs..."
+                                    class="connectify-input placeholder:text-white/40">
+                            </label>
+                        </div>
+
+                        <div class="mb-4 grid gap-3 sm:grid-cols-2">
+                            <label class="space-y-2">
+                                <span
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Min
+                                    Price</span>
+                                <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
+                                    placeholder="No minimum" class="connectify-input placeholder:text-white/40">
+                            </label>
+                            <label class="space-y-2">
+                                <span
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Max
+                                    Price</span>
+                                <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
+                                    placeholder="No max" class="connectify-input placeholder:text-white/40">
+                            </label>
+                        </div>
+
+                        <div class="grid gap-3 sm:grid-cols-2">
+                            <label class="space-y-2">
+                                <span
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Country</span>
+                                <select name="country" class="connectify-input text-slate-800" data-country-select>
+                                    <option value="">All countries</option>
+                                    @foreach ($countries as $country)
+                                    <option value="{{ $country }}" {{ ($filters['country'] ?? '') === $country ? 'selected' : '' }}>{{ $country }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            <label class="space-y-2 sm:col-span-2">
+                                <span
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">City</span>
+                                <select name="city" class="connectify-input text-slate-800" data-city-select
+                                    @disabled(blank($filters['country'] ?? ''))>
+                                    <option value="">{{ ($filters['country'] ?? '') ? 'All cities' : 'Choose country first' }}</option>
+                                    @foreach ($cities as $city)
+                                    <option value="{{ $city }}" {{ ($filters['city'] ?? '') === $city ? 'selected' : '' }}>{{ $city }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            <label class="space-y-2 sm:col-span-2">
+                                <span
+                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Category</span>
+                                <select name="type" class="connectify-input text-slate-800">
+                                    <option value="">All categories</option>
+                                    @foreach ($types as $type)
+                                    <option value="{{ $type->value }}" {{ ($filters['type'] ?? '') === $type->value ? 'selected' : '' }}>{{ $type->label() }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+
+                        <div>
+                            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/55">Choose
+                                intent
+                            </p>
+                            <div class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3 sm:text-center">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="transaction_type" value="rent" class="peer sr-only" {{ ($filters['transaction_type'] ?? '') === 'rent' ? 'checked' : '' }}>
+                                    <span
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        <span class="font-bold text-white">Rent</span>
+                                        <span class="mt-1 block text-xs text-white/55">Homes and cars</span>
+                                    </span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="transaction_type" value="sale" class="peer sr-only" {{ ($filters['transaction_type'] ?? '') === 'sale' ? 'checked' : '' }}>
+                                    <span
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        <span class="font-bold text-white">Buy</span>
+                                        <span class="mt-1 block text-xs text-white/55">Vehicles and property</span>
+                                    </span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="transaction_type" value="hire" class="peer sr-only" {{ ($filters['transaction_type'] ?? '') === 'hire' ? 'checked' : '' }}>
+                                    <span
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        <span class="font-bold text-white">Hire</span>
+                                        <span class="mt-1 block text-xs text-white/55">Jobs and talent</span>
+                                    </span>
+                                </label>
+                            </div>
+                            @if ($filters['transaction_type'] ?? '')
+                            <div class="mt-3">
+                                <a href="{{ route('home', collect($filters ?? [])->except('transaction_type')->filter()->all()) }}"
+                                    class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60 transition hover:text-white">Clear
+                                    intent</a>
+                            </div>
+                            @endif
+                        </div>
+
+                        <button type="submit" class="primary-cta w-full">Search marketplace</button>
+                    </form>
+
+                    <section id="mobile-utility" class="hero-panel rounded-[2rem] p-4 text-white lg:hidden">
+                        <div class="mb-3 flex items-end justify-between gap-3 border-b border-white/8 pb-3">
+                            <div>
+                                <p class="section-heading !text-[var(--color-sand)]">Quick actions</p>
+                                <h2 class="mt-2 font-display text-xl font-bold text-white">Move faster</h2>
+                            </div>
+                            <p class="max-w-[8rem] text-right text-xs leading-5 text-white/58">Jump straight into the
+                                work
+                                that matters.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="{{ route('home', ['type' => 'vehicle']) }}"
+                                class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
+                                <span
+                                    class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">01</span>
+                                <span class="mt-2 block text-sm font-bold text-white">Vehicles</span>
+                            </a>
+                            <a href="{{ route('home', ['type' => 'property']) }}"
+                                class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
+                                <span
+                                    class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">02</span>
+                                <span class="mt-2 block text-sm font-bold text-white">Homes</span>
+                            </a>
+                            <a href="{{ route('home', ['type' => 'job']) }}"
+                                class="rounded-[1.5rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.08))]">
+                                <span
+                                    class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">03</span>
+                                <span class="mt-2 block text-sm font-bold text-white">Jobs</span>
+                            </a>
+                            <a href="/seller/register"
+                                class="rounded-[1.5rem] border border-[rgba(29,143,255,0.35)] bg-[linear-gradient(180deg,rgba(29,143,255,0.24),rgba(29,143,255,0.12))] px-3 py-4 text-center text-white transition hover:bg-[linear-gradient(180deg,rgba(29,143,255,0.28),rgba(29,143,255,0.14))]">
+                                <span
+                                    class="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">04</span>
+                                <span class="mt-2 block text-sm font-bold text-white">Post ad</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    @if ($heroListing)
+                    <a href="{{ route('listings.show', $heroListing) }}"
+                        class="hero-panel hidden overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
+                        <div class="relative overflow-hidden rounded-[1.5rem]">
+                            <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
+                                class="h-64 w-full object-cover">
+                            <div
+                                class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.82))]">
+                            </div>
+                            <div class="absolute inset-x-0 bottom-0 p-5">
+                                <span class="gold-chip">Featured</span>
+                                <h3 class="mt-3 font-display text-2xl font-bold text-white">{{ $heroListing->title }}
+                                </h3>
+                                <div class="mt-3 flex items-end justify-between gap-4">
+                                    <div>
+                                        <p class="text-xl font-extrabold text-white">{{
+                                            $heroListing->formattedPrimaryValue() }}</p>
+                                        <p class="text-sm text-white/65">{{ $heroListing->city }}, {{
+                                            $heroListing->country
+                                            }}</p>
+                                    </div>
+                                    <span
+                                        class="rounded-full border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white">View
+                                        deal</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                @endif
-            </div>
-        </section>
+                    </a>
+                    @endif
+                </div>
+            </section>
+        </main>
+    </div>
 
+    <main>
         <section id="categories" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <div class="mb-5 flex items-end justify-between gap-4">
                 <div>

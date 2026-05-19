@@ -42,7 +42,6 @@ class SellerPanelProvider extends PanelProvider
             ->widgets([
                 \App\Filament\Seller\Widgets\SellerOverview::class,
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

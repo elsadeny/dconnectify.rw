@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
 
 #[Fillable([
+    'legacy_id',
     'user_id',
     'title',
     'slug',
     'type',
     'transaction_type',
     'status',
+    'availability',
     'country',
     'city',
     'area',
@@ -72,6 +76,11 @@ class Listing extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     public function savedByUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'listing_user')->withTimestamps();
@@ -84,26 +93,30 @@ class Listing extends Model
             ->whereNotNull('published_at');
     }
 
-    public function formattedPrimaryValue(): string
+    protected function formattedPrimaryValue(): Attribute
     {
-        if ($this->type === ListingType::Job && ($this->salary_min || $this->salary_max)) {
-            return trim(collect([$this->salary_min, $this->salary_max])
-                ->filter()
-                ->map(fn ($value) => number_format((float) $value))
-                ->implode(' - ')).' '.$this->currency;
-        }
+        return Attribute::get(function (): string {
+            if ($this->type === ListingType::Job && ($this->salary_min || $this->salary_max)) {
+                return trim(collect([$this->salary_min, $this->salary_max])
+                    ->filter()
+                    ->map(fn ($value) => number_format((float) $value))
+                    ->implode(' - ')).' '.$this->currency;
+            }
 
-        if ($this->price) {
-            return number_format((float) $this->price).' '.$this->currency;
-        }
+            if ($this->price) {
+                return number_format((float) $this->price).' '.$this->currency;
+            }
 
-        return 'Contact for price';
+            return 'Contact for price';
+        });
     }
 
-    public function whatsappUrl(): string
+    protected function whatsappUrl(): Attribute
     {
-        $number = preg_replace('/[^0-9]/', '', (string) $this->whatsapp_number);
+        return Attribute::get(function (): string {
+            $number = preg_replace('/[^0-9]/', '', (string) $this->whatsapp_number);
 
-        return 'https://wa.me/'.$number.'?text='.urlencode('Hello, I am interested in '.$this->title.' on connectify.');
+            return 'https://wa.me/'.$number.'?text='.urlencode('Hello, I am interested in '.$this->title.' on connectify.');
+        });
     }
 }

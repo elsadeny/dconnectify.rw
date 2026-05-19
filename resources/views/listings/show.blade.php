@@ -45,6 +45,11 @@
                         <span
                             class="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">{{
                             ucfirst($listing->transaction_type) }}</span>
+                        @if (filled($listing->availability))
+                        <span
+                            class="rounded-full bg-amber-50 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-700">{{
+                            ucfirst($listing->availability) }}</span>
+                        @endif
                     </div>
 
                     <div class="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -53,7 +58,7 @@
                                 }}{{
                                 $listing->city }}, {{ $listing->country }}</p>
                             <p class="mt-2 text-4xl font-extrabold tracking-tight text-[var(--color-ink)]">{{
-                                $listing->formattedPrimaryValue() }}</p>
+                                $listing->formattedPrimaryValue }}</p>
                         </div>
                         @if ($listing->is_verified)
                         <div class="flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-emerald-700">
@@ -108,7 +113,7 @@
                         seller' }}</p>
                     <p class="mt-4 text-sm text-slate-500">Use WhatsApp for viewing requests, price confirmation, salary
                         clarifications, application follow-up, or tenancy questions before you commit.</p>
-                    <a href="{{ $listing->whatsappUrl() }}" target="_blank"
+                    <a href="{{ $listing->whatsappUrl }}" target="_blank"
                         class="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[var(--color-leaf)] px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white">Chat
                         on WhatsApp</a>
 
@@ -159,7 +164,7 @@
                             <div>
                                 <p class="font-semibold">{{ $similar->title }}</p>
                                 <p class="mt-1 text-sm text-slate-500">{{ $similar->city }}, {{ $similar->country }}</p>
-                                <p class="mt-2 text-sm font-bold">{{ $similar->formattedPrimaryValue() }}</p>
+                                <p class="mt-2 text-sm font-bold">{{ $similar->formattedPrimaryValue }}</p>
                             </div>
                         </a>
                         @endforeach

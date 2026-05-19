@@ -13,13 +13,15 @@ APP_USER="www-data"
 PHP_VERSION="${PHP_VERSION:-8.4}"
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="${APP_DIR}/.env"
-SQLITE_FILE="${APP_DIR}/database/database.sqlite"
 NPM_CACHE_DIR="${APP_DIR}/storage/.npm-cache"
 QUEUE_SERVICE="connectify-queue"
 SCHEDULE_SERVICE="connectify-schedule"
 SCHEDULE_TIMER="${SCHEDULE_SERVICE}.timer"
 NGINX_SITE="connectify"
 PHP_BIN="/usr/bin/php${PHP_VERSION}"
+MYSQL_DATABASE="${MYSQL_DATABASE:-connectify}"
+MYSQL_USER="${MYSQL_USER:-connectify}"
+MYSQL_PASSWORD="${MYSQL_PASSWORD:-connectify-password}"
 
 if [[ -z "${APP_HOST}" ]]; then
     echo "Usage: sudo bash scripts/deploy.sh <domain-or-ip> [app-dir]"
@@ -135,7 +137,7 @@ EOF
 
 echo "Installing system packages..."
 apt-get update
-apt-get install -y software-properties-common ca-certificates curl gnupg unzip git rsync nginx sqlite3 acl
+apt-get install -y software-properties-common ca-certificates curl gnupg unzip git rsync nginx mysql-server acl
 
 if [[ "${PHP_VERSION}" == "8.4" ]]; then
     add-apt-repository -y ppa:ondrej/php
@@ -164,7 +166,7 @@ apt-get install -y \
     php${PHP_VERSION}-fpm \
     php${PHP_VERSION}-intl \
     php${PHP_VERSION}-mbstring \
-    php${PHP_VERSION}-sqlite3 \
+    php${PHP_VERSION}-mysql \
     php${PHP_VERSION}-xml \
     php${PHP_VERSION}-zip
 
@@ -199,8 +201,6 @@ mkdir -p \
     "${APP_DIR}/bootstrap/cache" \
     "${APP_DIR}/database"
 
-touch "${SQLITE_FILE}"
-
 if ! id -u "${APP_USER}" >/dev/null 2>&1; then
     echo "Expected application user ${APP_USER} to exist."
     exit 1
@@ -213,10 +213,22 @@ if [[ ! -f "${ENV_FILE}" ]]; then
     cp "${APP_DIR}/.env.example" "${ENV_FILE}"
 fi
 
+echo "Configuring MySQL..."
+systemctl enable --now mysql
+mysql -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+mysql -e "ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+mysql -e "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'localhost'; FLUSH PRIVILEGES;"
+
 set_env_var APP_ENV production "${ENV_FILE}"
 set_env_var APP_DEBUG false "${ENV_FILE}"
 set_env_var APP_URL http://${APP_HOST} "${ENV_FILE}"
-set_env_var DB_CONNECTION sqlite "${ENV_FILE}"
+set_env_var DB_CONNECTION mysql "${ENV_FILE}"
+set_env_var DB_HOST 127.0.0.1 "${ENV_FILE}"
+set_env_var DB_PORT 3306 "${ENV_FILE}"
+set_env_var DB_DATABASE "${MYSQL_DATABASE}" "${ENV_FILE}"
+set_env_var DB_USERNAME "${MYSQL_USER}" "${ENV_FILE}"
+set_env_var DB_PASSWORD "${MYSQL_PASSWORD}" "${ENV_FILE}"
 set_env_var SESSION_DRIVER file "${ENV_FILE}"
 set_env_var CACHE_STORE file "${ENV_FILE}"
 set_env_var QUEUE_CONNECTION database "${ENV_FILE}"

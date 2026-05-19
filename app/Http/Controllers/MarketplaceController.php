@@ -12,10 +12,32 @@ class MarketplaceController extends Controller
 {
     public function index(Request $request): View
     {
+        $countryOptions = Listing::query()
+            ->published()
+            ->whereNotNull('country')
+            ->where('country', '!=', '')
+            ->distinct()
+            ->orderBy('country')
+            ->pluck('country', 'country')
+            ->all();
+
+        if ($countryOptions === []) {
+            $countryOptions = MarketplaceOptions::countryOptions();
+        }
+
         $selectedCountry = $request->string('country')->value();
-        $countryOptions = MarketplaceOptions::countryOptions();
         $selectedCountry = array_key_exists($selectedCountry, $countryOptions) ? $selectedCountry : null;
-        $cityOptions = $selectedCountry ?MarketplaceOptions::cityOptions($selectedCountry) : [];
+        $cityOptions = $selectedCountry
+            ? Listing::query()
+                ->published()
+                ->where('country', $selectedCountry)
+                ->whereNotNull('city')
+                ->where('city', '!=', '')
+                ->distinct()
+                ->orderBy('city')
+                ->pluck('city', 'city')
+                ->all()
+            : [];
         $selectedCity = $request->string('city')->value();
 
         $filters = [
@@ -53,7 +75,18 @@ class MarketplaceController extends Controller
             'featured' => $featured,
             'countries' => collect($countryOptions),
             'cities' => collect($cityOptions),
-            'countryCityMap' => MarketplaceOptions::cityOptions(),
+            'countryCityMap' => Listing::query()
+                ->published()
+                ->whereNotNull('country')
+                ->where('country', '!=', '')
+                ->whereNotNull('city')
+                ->where('city', '!=', '')
+                ->select('country', 'city')
+                ->distinct()
+                ->get()
+                ->groupBy('country')
+                ->map(fn ($group) => $group->pluck('city')->unique()->values())
+                ->all(),
             'types' => ListingType::cases(),
             'stats' => [
                 'liveListings' => Listing::query()->published()->count(),
@@ -90,7 +123,11 @@ class MarketplaceController extends Controller
         $filters = $request->only(['city', 'country', 'q', 'min_price', 'max_price', 'transaction_type']);
         $filters['type'] = $type;
 
-        $query = Listing::query()->with('seller')->where('type', $type)->latest();
+        $query = Listing::query()
+            ->with('seller')
+            ->published()
+            ->where('type', $type)
+            ->latest('published_at');
 
         if ($request->filled('q')) {
             $query->where(function ($q) use ($request) {

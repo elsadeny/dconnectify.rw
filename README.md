@@ -57,19 +57,58 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Legacy data import
+
+This app now includes an importer that treats `data.sql` as the legacy source of truth and maps it into the Laravel schema used by the current platform.
+
+Run it after your database is migrated:
+
+```bash
+php artisan migrate
+php artisan legacy:import-data-sql data.sql --fresh
+```
+
+What gets imported:
+
+- legacy `users` into the current `users` table
+- legacy `cars` into current `listings` as published `vehicle` listings
+- legacy `car_images` into listing galleries
+- legacy `bookings` into the current `bookings` table
+- legacy `wishlists` and `wishlist_cars` into `listing_user`
+
+The importer stores `legacy_id` values on imported users, listings, and bookings so it can be re-run without losing the mapping.
+
+## MySQL setup
+
+The application defaults now target MySQL instead of SQLite.
+
+Example `.env` values:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=connectify
+DB_USERNAME=connectify
+DB_PASSWORD=connectify-password
+```
+
+You also need the PHP MySQL extension enabled locally or on the server (`pdo_mysql` / `php-mysql`).
+
 ## Fresh VPS deployment
 
 This repository includes a provisioning script for a fresh Ubuntu VPS:
 
 ```bash
-sudo bash scripts/deploy.sh your-domain-or-server-ip
+sudo MYSQL_DATABASE=connectify MYSQL_USER=connectify MYSQL_PASSWORD='change-me' bash scripts/deploy.sh your-domain-or-server-ip
 ```
 
 What it does:
 
-- installs Nginx, PHP 8.3, Composer, Node.js 22, SQLite, and required PHP extensions
+- installs Nginx, PHP, Composer, Node.js 22, MySQL Server, and required PHP extensions
 - syncs the current repository into `/var/www/connectify`
-- creates a production `.env`, keeps SQLite as the database, and switches sessions/cache to the file driver
+- creates a production `.env` configured for MySQL
+- creates the MySQL database and application user
 - installs Composer and npm dependencies, builds Vite assets, and runs migrations
 - configures Nginx plus systemd services for the queue worker and Laravel scheduler
 
@@ -78,3 +117,24 @@ Notes:
 - run the script from this repository after the code is present on the VPS
 - the generated `APP_URL` is `http://...`; update it to `https://...` after you add TLS
 - if you want to deploy into a different path, pass it as the second argument
+
+## GitHub Actions deployment
+
+Pushes to the `main` branch deploy automatically through `.github/workflows/deploy.yml`.
+
+Required GitHub repository secret:
+
+- `PRODUCTION_SSH_PRIVATE_KEY`: private SSH key that can connect to the production server
+
+Optional GitHub repository secrets if production changes:
+
+- `PRODUCTION_SSH_HOST`: production server host or IP, defaults to `41.186.186.162`
+- `PRODUCTION_SSH_PORT`: SSH port, currently `222`
+- `PRODUCTION_SSH_USER`: SSH user, currently `root`
+
+Recommended GitHub environment variables for the `production` environment:
+
+- `PRODUCTION_APP_DIR`: app path on the server, currently `/var/www/connectify`
+- `PRODUCTION_APP_URL`: public URL, currently `https://dev.connectify.rw`
+
+The workflow syncs code to production, preserves `.env`, `storage`, `vendor`, `node_modules`, SQLite files, and Laravel cache files, then runs `scripts/deploy-ci.sh` on the server. The CI deploy script installs PHP dependencies, builds Vite assets, runs migrations, rebuilds Laravel caches, and restarts the queue worker without rewriting Nginx or rotating `APP_KEY`.

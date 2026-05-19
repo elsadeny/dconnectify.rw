@@ -46,7 +46,7 @@
                     <p class="mt-2 text-sm text-slate-500">{{ $listing->city }}, {{ $listing->country }}</p>
                     <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <p class="text-lg font-extrabold">{{ $listing->formattedPrimaryValue() }}</p>
+                            <p class="text-lg font-extrabold">{{ $listing->formattedPrimaryValue }}</p>
                         </div>
                         <a href="{{ route('listings.show', $listing) }}"
                             class="rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] transition hover:bg-slate-50">View

@@ -21,9 +21,9 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-users';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'People';
+    protected static string|\UnitEnum|null $navigationGroup = 'People';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -31,24 +31,24 @@ class UserResource extends Resource
     {
         return $schema->components([
             Section::make('User profile')
-                ->columns(2)
-                ->schema([
-                    TextInput::make('name')->required()->maxLength(255),
-                    TextInput::make('email')->email()->required()->maxLength(255),
-                    TextInput::make('password')
-                        ->password()
-                        ->dehydrated(fn (?string $state): bool => filled($state))
-                        ->required(fn (string $operation): bool => $operation === 'create'),
-                    Select::make('role')
-                        ->options(MarketplaceOptions::userRoleOptions())
-                        ->required(),
-                    TextInput::make('company_name'),
-                    TextInput::make('phone'),
-                    TextInput::make('whatsapp_number'),
-                    TextInput::make('country'),
-                    TextInput::make('city'),
-                    Textarea::make('bio')->columnSpanFull(),
-                ]),
+            ->columns(2)
+            ->schema([
+                TextInput::make('name')->required()->maxLength(255),
+                TextInput::make('email')->email()->required()->maxLength(255),
+                TextInput::make('password')
+                ->password()
+                ->dehydrated(fn(?string $state): bool => filled($state))
+                ->required(fn(string $operation): bool => $operation === 'create'),
+                Select::make('role')
+                ->options(MarketplaceOptions::userRoleOptions())
+                ->required(),
+                TextInput::make('company_name'),
+                TextInput::make('phone'),
+                TextInput::make('whatsapp_number'),
+                TextInput::make('country'),
+                TextInput::make('city'),
+                Textarea::make('bio')->columnSpanFull(),
+            ]),
         ]);
     }
 
@@ -57,22 +57,22 @@ class UserResource extends Resource
         return $table
             ->defaultSort('created_at', 'desc')
             ->columns([
-                TextColumn::make('name')->searchable()->sortable(),
-                TextColumn::make('email')->searchable(),
-                TextColumn::make('role')
-                    ->badge()
-                    ->formatStateUsing(fn ($state): string => MarketplaceOptions::userRoleOptions()[$state instanceof \BackedEnum ? $state->value : $state] ?? (string) ($state instanceof \BackedEnum ? $state->value : $state)),
-                TextColumn::make('company_name')->label('Company'),
-                TextColumn::make('city')->searchable(),
-                TextColumn::make('country')->searchable(),
-            ])
+            TextColumn::make('name')->searchable()->sortable(),
+            TextColumn::make('email')->searchable(),
+            TextColumn::make('role')
+            ->badge()
+            ->formatStateUsing(fn($state): string => MarketplaceOptions::userRoleOptions()[$state instanceof \BackedEnum ? $state->value : $state] ?? (string)($state instanceof \BackedEnum ? $state->value : $state)),
+            TextColumn::make('company_name')->label('Company'),
+            TextColumn::make('city')->searchable(),
+            TextColumn::make('country')->searchable(),
+        ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
+            \Filament\Actions\EditAction::make(),
+            \Filament\Actions\DeleteAction::make(),
+        ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            \Filament\Actions\DeleteBulkAction::make(),
+        ]);
     }
 
     public static function getPages(): array

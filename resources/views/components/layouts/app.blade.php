@@ -94,10 +94,10 @@
         }
 
         .glass-panel {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(7, 17, 31, 0.90), rgba(4, 9, 20, 0.86));
+            border: 1px solid rgba(255, 255, 255, 0.10);
             box-shadow: 0 24px 80px -40px rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
         }
 
         .hero-panel {

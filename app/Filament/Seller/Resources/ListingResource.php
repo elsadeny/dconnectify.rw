@@ -56,16 +56,23 @@ class ListingResource extends Resource
                             'published' => 'Published',
                         ])
                         ->required(),
+                    Select::make('availability')
+                        ->options([
+                            'available' => 'Available',
+                            'sold' => 'Sold',
+                        ])
+                        ->default('available')
+                        ->required(),
                     Select::make('country')
                         ->options(MarketplaceOptions::countryOptions())
                         ->searchable()
                         ->live()
-                        ->afterStateUpdated(fn (Set $set) => $set('city', null))
+                        ->afterStateUpdated(fn ($set) => $set('city', null))
                         ->required(),
                     Select::make('city')
-                        ->options(fn (Get $get): array => MarketplaceOptions::cityOptions($get('country')))
+                        ->options(fn ($get): array => MarketplaceOptions::cityOptions($get('country')))
                         ->searchable()
-                        ->disabled(fn (Get $get): bool => blank($get('country')))
+                        ->disabled(fn ($get): bool => blank($get('country')))
                         ->required(),
                     TextInput::make('area'),
                     TextInput::make('currency')->required()->default('USD')->maxLength(8),
@@ -75,8 +82,31 @@ class ListingResource extends Resource
                     Textarea::make('description')->rows(6)->required()->columnSpanFull(),
                     TextInput::make('contact_name')->default(fn (): ?string => auth()->user()?->name),
                     TextInput::make('whatsapp_number')->default(fn (): ?string => auth()->user()?->whatsapp_number),
-                    TextInput::make('cover_image')->url()->columnSpanFull(),
-                    TagsInput::make('gallery')->separator(',')->columnSpanFull(),
+                    TextInput::make('cover_image')->url()->columnSpanFull()->live(onBlur: true),
+                    \Filament\Forms\Components\Placeholder::make('cover_image_preview')
+                        ->label('Cover Image Preview')
+                        ->content(fn ($get) => $get('cover_image') ? new \Illuminate\Support\HtmlString('<img src="' . htmlspecialchars($get('cover_image')) . '" style="max-height: 150px; border-radius: 8px; object-fit: contain;" />') : null)
+                        ->visible(fn ($get) => filled($get('cover_image')))
+                        ->columnSpanFull(),
+                    TagsInput::make('gallery')->separator(',')->columnSpanFull()->live(onBlur: true),
+                    \Filament\Forms\Components\Placeholder::make('gallery_preview')
+                        ->label('Gallery Preview')
+                        ->content(function ($get) {
+                            $gallery = $get('gallery') ?? [];
+                            if (is_string($gallery)) {
+                                $gallery = explode(',', $gallery);
+                            }
+                            $html = '<div style="display: flex; gap: 10px; flex-wrap: wrap;">';
+                            foreach ($gallery as $url) {
+                                if (filled($url)) {
+                                    $html .= '<img src="' . htmlspecialchars(trim($url)) . '" style="max-height: 100px; border-radius: 8px; object-fit: contain;" />';
+                                }
+                            }
+                            $html .= '</div>';
+                            return new \Illuminate\Support\HtmlString($html);
+                        })
+                        ->visible(fn ($get) => filled($get('gallery')))
+                        ->columnSpanFull(),
                     TagsInput::make('highlights')->separator(',')->columnSpanFull(),
                     KeyValue::make('details')->columnSpanFull(),
                     DateTimePicker::make('published_at'),
@@ -98,12 +128,18 @@ class ListingResource extends Resource
                 TextColumn::make('status')
                     ->badge()
                     ->formatStateUsing(fn ($state): string => MarketplaceOptions::listingStatusOptions()[$state instanceof \BackedEnum ? $state->value : $state] ?? (string) ($state instanceof \BackedEnum ? $state->value : $state)),
+                TextColumn::make('availability')
+                    ->badge()
+                    ->colors([
+                        'success' => 'available',
+                        'danger' => 'sold',
+                    ]),
                 TextColumn::make('city'),
                 TextColumn::make('formattedPrimaryValue')->label('Price / Salary'),
                 TextColumn::make('updated_at')->since()->label('Updated'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                \Filament\Actions\EditAction::make(),
             ]);
     }
 
@@ -116,6 +152,13 @@ class ListingResource extends Resource
         }
 
         return $query->where('user_id', auth()->id());
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            ListingResource\RelationManagers\BookingsRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

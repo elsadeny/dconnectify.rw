@@ -5,12 +5,14 @@ namespace App\Support;
 use App\Enums\ListingStatus;
 use App\Enums\ListingType;
 use App\Enums\UserRole;
+use App\Models\Listing;
+use Illuminate\Support\Facades\Schema;
 
 class MarketplaceOptions
 {
     public static function countryOptions(): array
     {
-        return [
+        $countries = [
             'Rwanda' => 'Rwanda',
             'Uganda' => 'Uganda',
             'Burundi' => 'Burundi',
@@ -18,7 +20,23 @@ class MarketplaceOptions
             'Kenya' => 'Kenya',
             'Tanzania' => 'Tanzania',
             'South Sudan' => 'South Sudan',
+            'UAE' => 'UAE',
         ];
+
+        if (! Schema::hasTable('listings')) {
+            return $countries;
+        }
+
+        return array_replace(
+            $countries,
+            Listing::query()
+                ->whereNotNull('country')
+                ->where('country', '!=', '')
+                ->distinct()
+                ->orderBy('country')
+                ->pluck('country', 'country')
+                ->all(),
+        );
     }
 
     public static function cityOptions(?string $country = null): array
@@ -80,7 +98,31 @@ class MarketplaceOptions
                 'Aweil' => 'Aweil',
                 'Bor' => 'Bor',
             ],
+            'UAE' => [
+                'Dubai' => 'Dubai',
+                'Abu Dhabi' => 'Abu Dhabi',
+                'Sharjah' => 'Sharjah',
+            ],
         ];
+
+        if (Schema::hasTable('listings')) {
+            $dynamicCities = Listing::query()
+                ->whereNotNull('country')
+                ->where('country', '!=', '')
+                ->whereNotNull('city')
+                ->where('city', '!=', '')
+                ->select('country', 'city')
+                ->distinct()
+                ->orderBy('city')
+                ->get()
+                ->groupBy('country')
+                ->map(fn ($group) => $group->pluck('city', 'city')->all())
+                ->all();
+
+            foreach ($dynamicCities as $countryName => $countryCities) {
+                $cities[$countryName] = array_replace($cities[$countryName] ?? [], $countryCities);
+            }
+        }
 
         if ($country !== null) {
             return $cities[$country] ?? [];

@@ -36,7 +36,7 @@ jobs:
           SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST || '41.186.186.162' }}
           SSH_PORT: ${{ secrets.PRODUCTION_SSH_PORT || '222' }}
           SSH_USER: ${{ secrets.PRODUCTION_SSH_USER || 'root' }}
-          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify' }}
+          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify-production' }}
         run: |
           set -euo pipefail
           ssh -i ~/.ssh/production_key -p "${SSH_PORT}" "${SSH_USER}@${SSH_HOST}" \
@@ -47,7 +47,7 @@ jobs:
           SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST || '41.186.186.162' }}
           SSH_PORT: ${{ secrets.PRODUCTION_SSH_PORT || '222' }}
           SSH_USER: ${{ secrets.PRODUCTION_SSH_USER || 'root' }}
-          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify' }}
+          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify-production' }}
         run: |
           set -euo pipefail
           rsync -az --delete \
@@ -69,8 +69,8 @@ jobs:
           SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST || '41.186.186.162' }}
           SSH_PORT: ${{ secrets.PRODUCTION_SSH_PORT || '222' }}
           SSH_USER: ${{ secrets.PRODUCTION_SSH_USER || 'root' }}
-          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify' }}
-          APP_URL: ${{ vars.PRODUCTION_APP_URL || 'https://dev.connectify.rw' }}
+          APP_DIR: ${{ vars.PRODUCTION_APP_DIR || '/var/www/connectify-production' }}
+          APP_URL: ${{ vars.PRODUCTION_APP_URL || 'https://connectify.rw' }}
         run: |
           set -euo pipefail
           ssh -i ~/.ssh/production_key -p "${SSH_PORT}" "${SSH_USER}@${SSH_HOST}" \
@@ -78,7 +78,7 @@ jobs:
 
       - name: Smoke test
         env:
-          APP_URL: ${{ vars.PRODUCTION_APP_URL || 'https://dev.connectify.rw' }}
+          APP_URL: ${{ vars.PRODUCTION_APP_URL || 'https://connectify.rw' }}
         run: |
           set -euo pipefail
           curl --fail --silent --show-error "${APP_URL}/up"

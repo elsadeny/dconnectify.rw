@@ -62,6 +62,7 @@ has_env_value() {
 
     set_env_var APP_ENV production "${APP_DIR}/.env"
     set_env_var APP_DEBUG false "${APP_DIR}/.env"
+    set_env_var DB_CONNECTION mysql "${APP_DIR}/.env"
 
     if [[ -n "${APP_URL:-}" ]]; then
         set_env_var APP_URL "${APP_URL}" "${APP_DIR}/.env"

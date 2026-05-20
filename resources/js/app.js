@@ -39,3 +39,124 @@ document.querySelectorAll('[data-country-city-filter]').forEach((form) => {
 		renderCities(countrySelect.value);
 	});
 });
+
+const isSameOriginUrl = (url) => {
+	try {
+		const parsed = new URL(url, window.location.href);
+		return parsed.origin === window.location.origin;
+	} catch {
+		return false;
+	}
+};
+
+const refreshAsyncContainer = async ({
+	url,
+	targetSelector,
+	pushState = true,
+}) => {
+	const target = document.querySelector(targetSelector);
+
+	if (!target) {
+		return;
+	}
+
+	target.classList.add('opacity-60', 'pointer-events-none');
+	target.setAttribute('aria-busy', 'true');
+
+	try {
+		const response = await fetch(url, {
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest',
+			},
+		});
+
+		if (!response.ok) {
+			window.location.href = url;
+			return;
+		}
+
+		const html = await response.text();
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(html, 'text/html');
+		const nextTarget = doc.querySelector(targetSelector);
+
+		if (!nextTarget) {
+			window.location.href = url;
+			return;
+		}
+
+		target.replaceWith(nextTarget);
+
+		if (pushState) {
+			window.history.pushState({}, '', url);
+		}
+	} catch {
+		window.location.href = url;
+	} finally {
+		const currentTarget = document.querySelector(targetSelector);
+
+		if (currentTarget) {
+			currentTarget.classList.remove('opacity-60', 'pointer-events-none');
+			currentTarget.removeAttribute('aria-busy');
+		}
+	}
+};
+
+document.querySelectorAll('form[data-async-form]').forEach((form) => {
+	form.addEventListener('submit', async (event) => {
+		event.preventDefault();
+
+		const targetSelector = form.dataset.asyncTarget;
+
+		if (!targetSelector) {
+			form.submit();
+			return;
+		}
+
+		const method = (form.method || 'GET').toUpperCase();
+
+		if (method !== 'GET') {
+			form.submit();
+			return;
+		}
+
+		const action = form.action || window.location.href;
+		const url = new URL(action, window.location.href);
+		const params = new URLSearchParams(new FormData(form));
+		url.search = params.toString();
+
+		await refreshAsyncContainer({
+			url: url.toString(),
+			targetSelector,
+			pushState: form.dataset.asyncPushState !== 'false',
+		});
+	});
+});
+
+document.addEventListener('click', async (event) => {
+	const link = event.target.closest('a[href]');
+
+	if (!link || !isSameOriginUrl(link.href)) {
+		return;
+	}
+
+	const container = link.closest('[data-async-container]');
+
+	if (!container) {
+		return;
+	}
+
+	const url = new URL(link.href, window.location.href);
+
+	if (url.pathname !== window.location.pathname || !url.searchParams.has('page')) {
+		return;
+	}
+
+	event.preventDefault();
+
+	await refreshAsyncContainer({
+		url: url.toString(),
+		targetSelector: `#${container.id}`,
+		pushState: true,
+	});
+});

@@ -78,11 +78,18 @@ What gets imported:
 
 The importer stores `legacy_id` values on imported users, listings, and bookings so it can be re-run without losing the mapping.
 
-## MySQL setup
+## Database defaults
 
-The application defaults now target MySQL instead of SQLite.
+Local development now defaults to SQLite (`.env.example`):
 
-Example `.env` values:
+```dotenv
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+```
+
+Production remains on MySQL. Both deployment scripts (`scripts/deploy.sh` and `scripts/deploy-ci.sh`) explicitly set `DB_CONNECTION=mysql` in production and keep MySQL credentials/config in `.env`.
+
+If you want to use MySQL locally, set these values in your local `.env`:
 
 ```dotenv
 DB_CONNECTION=mysql
@@ -92,8 +99,6 @@ DB_DATABASE=connectify
 DB_USERNAME=connectify
 DB_PASSWORD=connectify-password
 ```
-
-You also need the PHP MySQL extension enabled locally or on the server (`pdo_mysql` / `php-mysql`).
 
 ## Fresh VPS deployment
 

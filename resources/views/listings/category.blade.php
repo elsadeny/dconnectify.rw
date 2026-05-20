@@ -72,7 +72,8 @@
         <!-- Horizontal Quick Filter Bar -->
         <section class="relative z-20 -mt-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="glass-panel overflow-hidden rounded-[2.5rem] p-2 shadow-2xl">
-                <form action="{{ route('category.show', $type->value) }}" method="GET"
+                <form action="{{ route('category.show', $type->value) }}" method="GET" data-async-form
+                    data-async-target="#category-results" data-async-push-state="true"
                     class="flex flex-col gap-2 md:flex-row md:items-center">
                     <div class="flex-1 grid grid-cols-1 gap-2 p-1 sm:grid-cols-3">
                         <!-- Transaction Type -->
@@ -189,7 +190,9 @@
                     <!-- Price Range Card -->
                     <div class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white">
                         <h3 class="font-display text-lg font-bold text-[var(--color-ink)]">Price Range</h3>
-                        <form action="{{ route('category.show', $type->value) }}" method="GET" class="mt-6 space-y-4">
+                        <form action="{{ route('category.show', $type->value) }}" method="GET"
+                            class="mt-6 space-y-4" data-async-form data-async-target="#category-results"
+                            data-async-push-state="true">
                             @foreach($filters as $k => $v)
                             @if(!in_array($k, ['min_price', 'max_price']))
                             <input type="hidden" name="{{ $k }}" value="{{ $v }}">
@@ -231,7 +234,7 @@
                 </aside>
 
                 <!-- Listing Grid & Results Header -->
-                <div class="space-y-8">
+                <div class="space-y-8" id="category-results" data-async-container>
                     <!-- Header Bar -->
                     <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                         <div>

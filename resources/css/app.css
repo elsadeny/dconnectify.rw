@@ -131,6 +131,24 @@
         @apply w-full rounded-2xl border border-[#d6e6f6] px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[var(--color-ocean)] focus:ring-4 focus:ring-sky-100;
     }
 
+    .connectify-input option {
+        color: #0f172a;
+        background: #ffffff;
+    }
+
+    input,
+    select,
+    textarea {
+        color: #0f172a;
+        caret-color: #0f172a;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #94a3b8;
+        opacity: 1;
+    }
+
     .footer-link {
         @apply text-sm text-white/58 transition hover:text-white;
     }

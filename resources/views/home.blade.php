@@ -43,7 +43,8 @@
             <section class="block lg:hidden px-4 pb-4">
                 <!-- Mobile Search -->
                 <div class="mb-4">
-                    <form method="GET" action="{{ route('home') }}" class="relative">
+                    <form method="GET" action="{{ route('home') }}" class="relative" data-async-form
+                        data-async-target="#latest" data-async-push-state="true">
                         <input type="text" name="q" placeholder="What are you looking for?"
                             class="w-full rounded-2xl border-none bg-white py-4 pl-12 pr-4 text-sm font-medium text-[var(--color-ink)] shadow-lg ring-1 ring-black/5 focus:ring-2 focus:ring-[var(--color-ocean)]">
                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -263,7 +264,8 @@
 
                     <form method="GET" action="{{ route('home') }}"
                         class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter
-                        data-country-city-map='@json($countryCityMap)'>
+                        data-country-city-map='@json($countryCityMap)' data-async-form data-async-target="#latest"
+                        data-async-push-state="true">
                         <div class="border-b border-white/8 pb-4">
                             <p class="section-heading">Explore connectify</p>
                             <h2 class="mt-2 font-display text-2xl font-bold text-white">Find your next move</h2>
@@ -278,7 +280,7 @@
                                     Search</span>
                                 <input type="text" name="q" value="{{ $filters['q'] ?? '' }}"
                                     placeholder="Search cars, homes, jobs..."
-                                    class="connectify-input placeholder:text-white/40">
+                                    class="connectify-input">
                             </label>
                         </div>
 
@@ -288,14 +290,14 @@
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Min
                                     Price</span>
                                 <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
-                                    placeholder="0" class="connectify-input placeholder:text-white/40">
+                                    placeholder="0" class="connectify-input">
                             </label>
                             <label class="space-y-2">
                                 <span
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Max
                                     Price</span>
                                 <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
-                                    placeholder="Any" class="connectify-input placeholder:text-white/40">
+                                    placeholder="Any" class="connectify-input">
                             </label>
                         </div>
 
@@ -386,10 +388,10 @@
 
             @if ($heroListing)
             <a href="{{ route('listings.show', $heroListing) }}"
-                class="hero-panel hidden overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
-                <div class="relative overflow-hidden rounded-[1.5rem]">
+                class="hero-panel mx-auto hidden w-full max-w-5xl overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
+                <div class="relative aspect-[16/8] overflow-hidden rounded-[1.5rem]">
                     <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
-                        class="h-64 w-full object-cover">
+                        class="absolute inset-0 h-full w-full object-cover object-center">
                     <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.82))]">
                     </div>
                     <div class="absolute inset-x-0 bottom-0 p-5">
@@ -400,8 +402,8 @@
                             <div>
                                 <p class="text-xl font-extrabold text-white">{{
                                     $heroListing->formattedPrimaryValue }}</p>
-                                <p class="text-sm text-white/65">{{ $listing->city }}, {{
-                                    $listing->country
+                                <p class="text-sm text-white/65">{{ $heroListing->city }}, {{
+                                    $heroListing->country
                                     }}</p>
                             </div>
                             <span
@@ -500,54 +502,56 @@
         <div class="mt-6 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
             @if ($heroListing)
             <article
-                class="relative overflow-hidden rounded-[2rem] bg-[var(--color-ink)] text-white shadow-[0_30px_80px_-38px_rgba(0,0,0,0.7)] group">
-                <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
-                    class="h-full min-h-[28rem] w-full object-cover">
-                @auth
-                @php $isSaved = auth()->user()->savedListings->contains($heroListing->id); @endphp
-                <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $heroListing) }}"
-                    class="absolute top-6 right-6 z-20 hidden group-hover:block">
-                    @csrf
-                    @if ($isSaved) @method('DELETE') @endif
-                    <button type="submit"
-                        class="rounded-full bg-white/90 p-3 shadow-lg backdrop-blur transition hover:scale-105"
-                        title="{{ $isSaved ? 'Unsave' : 'Save' }}">
-                        <svg class="h-6 w-6 {{ $isSaved ? 'fill-red-500 text-red-500' : 'fill-none text-slate-800' }}"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </form>
-                @endauth
-                <div
-                    class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,11,15,0.92),rgba(9,11,15,0.38),rgba(9,11,15,0.72))]">
-                </div>
-                <div class="absolute inset-0 flex flex-col justify-between p-7 md:p-9">
-                    <div class="flex items-start justify-between gap-4">
-                        <span class="gold-chip">Featured listing</span>
-                        @if ($heroListing->is_verified)
-                        <span
-                            class="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">Verified
-                            seller</span>
-                        @endif
+                class="group self-start rounded-[2rem] bg-[var(--color-ink)] p-3 text-white shadow-[0_30px_80px_-38px_rgba(0,0,0,0.7)] md:p-4">
+                <div class="relative mx-auto aspect-[16/9] max-w-[58rem] overflow-hidden rounded-[1.5rem]">
+                    <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
+                        class="absolute inset-0 h-full w-full object-cover object-center">
+                    @auth
+                    @php $isSaved = auth()->user()->savedListings->contains($heroListing->id); @endphp
+                    <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $heroListing) }}"
+                        class="absolute top-6 right-6 z-20 hidden group-hover:block">
+                        @csrf
+                        @if ($isSaved) @method('DELETE') @endif
+                        <button type="submit"
+                            class="rounded-full bg-white/90 p-3 shadow-lg backdrop-blur transition hover:scale-105"
+                            title="{{ $isSaved ? 'Unsave' : 'Save' }}">
+                            <svg class="h-6 w-6 {{ $isSaved ? 'fill-red-500 text-red-500' : 'fill-none text-slate-800' }}"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                            </svg>
+                        </button>
+                    </form>
+                    @endauth
+                    <div
+                        class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,11,15,0.92),rgba(9,11,15,0.38),rgba(9,11,15,0.72))]">
                     </div>
-                    <div class="max-w-xl">
-                        <p class="text-sm uppercase tracking-[0.24em] text-[var(--color-sand)]">{{
-                            $heroListing->type->label() }}</p>
-                        <h3 class="mt-3 font-display text-3xl font-bold md:text-5xl">{{ $heroListing->title }}</h3>
-                        <p class="mt-4 max-w-lg text-sm leading-7 text-white/70">{{
-                            \Illuminate\Support\Str::limit($heroListing->description, 180) }}</p>
-                        <div class="mt-6 flex flex-wrap items-end gap-4">
-                            <div>
-                                <p class="text-3xl font-extrabold text-white">{{
-                                    $heroListing->formattedPrimaryValue }}</p>
-                                <p class="mt-1 text-sm text-white/60">{{ $heroListing->city }}, {{
-                                    $heroListing->country }}</p>
+                    <div class="absolute inset-0 flex flex-col justify-between p-7 md:p-9">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="gold-chip">Featured listing</span>
+                            @if ($heroListing->is_verified)
+                            <span
+                                class="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">Verified
+                                seller</span>
+                            @endif
+                        </div>
+                        <div class="max-w-xl">
+                            <p class="text-sm uppercase tracking-[0.24em] text-[var(--color-sand)]">{{
+                                $heroListing->type->label() }}</p>
+                            <h3 class="mt-3 font-display text-3xl font-bold md:text-5xl">{{ $heroListing->title }}</h3>
+                            <p class="mt-4 max-w-lg text-sm leading-7 text-white/70">{{
+                                \Illuminate\Support\Str::limit($heroListing->description, 180) }}</p>
+                            <div class="mt-6 flex flex-wrap items-end gap-4">
+                                <div>
+                                    <p class="text-3xl font-extrabold text-white">{{
+                                        $heroListing->formattedPrimaryValue }}</p>
+                                    <p class="mt-1 text-sm text-white/60">{{ $heroListing->city }}, {{
+                                        $heroListing->country }}</p>
+                                </div>
+                                <a href="{{ route('listings.show', $heroListing) }}" class="primary-cta">Open
+                                    listing</a>
                             </div>
-                            <a href="{{ route('listings.show', $heroListing) }}" class="primary-cta">Open
-                                listing</a>
                         </div>
                     </div>
                 </div>
@@ -607,7 +611,7 @@
         </div>
     </section>
 
-    <section id="latest" class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+    <section id="latest" class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" data-async-container>
         <div class="surface-card rounded-[2rem] p-6 text-[var(--color-ink)] md:p-8">
             <div class="flex flex-col gap-3 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between">
                 <div>

@@ -38,13 +38,14 @@
             </div>
         </header>
 
+        <div id="home-content" data-async-container>
         <main class="pt-32 lg:pt-32">
             <!-- Mobile Landing Page (Block lg:hidden) -->
             <section class="block lg:hidden px-4 pb-4">
                 <!-- Mobile Search -->
                 <div class="mb-4">
                     <form method="GET" action="{{ route('home') }}" class="relative" data-async-form
-                        data-async-target="#latest" data-async-push-state="true">
+                        data-async-target="#home-content" data-async-push-state="true">
                         <input type="text" name="q" placeholder="What are you looking for?"
                             class="w-full rounded-2xl border-none bg-white py-4 pl-12 pr-4 text-sm font-medium text-[var(--color-ink)] shadow-lg ring-1 ring-black/5 focus:ring-2 focus:ring-[var(--color-ocean)]">
                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -123,6 +124,7 @@
                         </div>
                         @if(!empty($filters['country']))
                         <a href="{{ route('home', array_merge($filters, ['country' => null, 'city' => null])) }}"
+                            data-async-link data-async-target="#home-content" data-async-push-state="true"
                             class="text-[10px] font-bold text-[var(--color-sand)] uppercase tracking-widest hover:opacity-75">Change
                             Country</a>
                         @endif
@@ -132,6 +134,7 @@
                         @if(empty($filters['country']))
                         @foreach($countries->take(6) as $countryName => $countryLabel)
                         <a href="{{ route('home', array_merge($filters, ['country' => $countryName])) }}"
+                            data-async-link data-async-target="#home-content" data-async-push-state="true"
                             class="flex flex-col items-center justify-center rounded-2xl bg-white p-5 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group">
                             <div
                                 class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition group-hover:bg-[var(--color-ocean)] group-hover:text-white">
@@ -153,6 +156,7 @@
                         @endphp
                         @foreach($citiesToDisplay as $cityValue => $cityLabel)
                         <a href="{{ route('home', array_merge($filters, ['city' => $cityValue])) }}"
+                            data-async-link data-async-target="#home-content" data-async-push-state="true"
                             class="flex flex-col items-center justify-center rounded-2xl bg-white p-4 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group">
                             <div
                                 class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition group-hover:bg-[var(--color-ocean)] group-hover:text-white">
@@ -264,7 +268,7 @@
 
                     <form method="GET" action="{{ route('home') }}"
                         class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter
-                        data-country-city-map='@json($countryCityMap)' data-async-form data-async-target="#latest"
+                        data-country-city-map='@json($countryCityMap)' data-async-form data-async-target="#home-content"
                         data-async-push-state="true">
                         <div class="border-b border-white/8 pb-4">
                             <p class="section-heading">Explore connectify</p>
@@ -375,6 +379,7 @@
                             @if ($filters['transaction_type'] ?? '')
                             <div class="mt-3">
                                 <a href="{{ route('home', collect($filters ?? [])->except('transaction_type')->filter()->all()) }}"
+                                    data-async-link data-async-target="#home-content" data-async-push-state="true"
                                     class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60 transition hover:text-white">Clear
                                     intent</a>
                             </div>
@@ -684,4 +689,5 @@
         </div>
     </section>
     </main>
+    </div>
 </x-layouts.app>

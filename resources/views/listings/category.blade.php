@@ -79,7 +79,7 @@
                         <!-- Transaction Type -->
                         <div class="relative">
                             <select name="transaction_type" onchange="this.form.submit()"
-                                class="w-full appearance-none rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
+                                class="connectify-select-light w-full rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
                                 <option value="">All Intent</option>
                                 <option value="sale" {{ ($filters['transaction_type'] ?? '' )==='sale' ? 'selected' : ''
                                     }}>To Buy</option>
@@ -88,49 +88,28 @@
                                 <option value="hire" {{ ($filters['transaction_type'] ?? '' )==='hire' ? 'selected' : ''
                                     }}>To Hire</option>
                             </select>
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-slate-400">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
                         </div>
                         <!-- Country -->
                         <div class="relative">
                             <select name="country" onchange="this.form.submit()"
-                                class="w-full appearance-none rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
+                                class="connectify-select-light w-full rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
                                 <option value="">Regions</option>
                                 @foreach($countries as $country)
                                 <option value="{{ $country }}" {{ ($filters['country'] ?? '' )===$country ? 'selected'
                                     : '' }}>{{ $country }}</option>
                                 @endforeach
                             </select>
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-slate-400">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
                         </div>
                         <!-- City -->
                         <div class="relative">
                             <select name="city" onchange="this.form.submit()"
-                                class="w-full appearance-none rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
+                                class="connectify-select-light w-full rounded-3xl border border-slate-200 bg-white px-6 py-4 pr-10 text-sm font-bold text-[var(--color-ink)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)]">
                                 <option value="">All Cities</option>
                                 @foreach($cities as $city)
                                 <option value="{{ $city }}" {{ ($filters['city'] ?? '' )===$city ? 'selected' : '' }}>{{
                                     $city }}</option>
                                 @endforeach
                             </select>
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-slate-400">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
                         </div>
                     </div>
                     <div class="flex items-center gap-2 p-1">
@@ -166,7 +145,8 @@
                             <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Active
                                 Filters
                             </h3>
-                            <a href="{{ route('category.show', $type->value) }}"
+                            <a href="{{ route('category.show', $type->value) }}" data-async-link
+                                data-async-target="#category-results" data-async-push-state="true"
                                 class="text-[10px] font-bold text-[var(--color-clay)] hover:underline">Clear all</a>
                         </div>
                         <div class="mt-4 flex flex-wrap gap-2">
@@ -175,6 +155,7 @@
                                 class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold shadow-sm border border-slate-100">
                                 {{ ucfirst(str_replace('_', ' ', $val)) }}
                                 <a href="{{ route('category.show', [$type->value] + collect($filters)->except($key)->filter()->all()) }}"
+                                    data-async-link data-async-target="#category-results" data-async-push-state="true"
                                     class="text-slate-400 hover:text-red-500">
                                     <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path
@@ -248,16 +229,11 @@
                         <div class="flex items-center gap-4">
                             <div class="relative">
                                 <select
-                                    class="appearance-none rounded-full border border-slate-200 bg-white px-6 py-2.5 pr-10 text-xs font-bold text-[var(--color-ink)] shadow-sm focus:border-[var(--color-ocean)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)] transition">
+                                    class="connectify-select-light rounded-full border border-slate-200 bg-white px-6 py-2.5 pr-10 text-xs font-bold text-[var(--color-ink)] shadow-sm focus:border-[var(--color-ocean)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)] transition">
                                     <option>Newest First</option>
                                     <option>Price: Low to High</option>
                                     <option>Price: High to Low</option>
                                 </select>
-                                <svg class="pointer-events-none absolute right-4 top-1/2 h-3 w-3 -translate-y-1/2 text-[var(--color-ink)]/50"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
                             </div>
                         </div>
                     </div>

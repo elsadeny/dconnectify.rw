@@ -1,44 +1,52 @@
-document.querySelectorAll('[data-country-city-filter]').forEach((form) => {
-	const countrySelect = form.querySelector('[data-country-select]');
-	const citySelect = form.querySelector('[data-city-select]');
+const initializeCountryCityFilters = () => {
+	document.querySelectorAll('[data-country-city-filter]').forEach((form) => {
+		if (form.dataset.countryCityInitialized === 'true') {
+			return;
+		}
 
-	if (!countrySelect || !citySelect) {
-		return;
-	}
+		const countrySelect = form.querySelector('[data-country-select]');
+		const citySelect = form.querySelector('[data-city-select]');
 
-	const countryCityMap = JSON.parse(form.dataset.countryCityMap ?? '{}');
+		if (!countrySelect || !citySelect) {
+			return;
+		}
 
-	const renderCities = (country, selectedCity = '') => {
-		const cities = country ? countryCityMap[country] ?? {} : {};
+		const countryCityMap = JSON.parse(form.dataset.countryCityMap ?? '{}');
 
-		citySelect.innerHTML = '';
+		const renderCities = (country, selectedCity = '') => {
+			const cities = country ? countryCityMap[country] ?? {} : {};
 
-		const placeholder = document.createElement('option');
-		placeholder.value = '';
-		placeholder.textContent = country ? 'All cities' : 'Choose country first';
-		citySelect.appendChild(placeholder);
+			citySelect.innerHTML = '';
 
-		Object.entries(cities).forEach(([value, label]) => {
-			const option = document.createElement('option');
-			option.value = value;
-			option.textContent = label;
-			option.selected = value === selectedCity;
-			citySelect.appendChild(option);
+			const placeholder = document.createElement('option');
+			placeholder.value = '';
+			placeholder.textContent = country ? 'All cities' : 'Choose country first';
+			citySelect.appendChild(placeholder);
+
+			Object.entries(cities).forEach(([value, label]) => {
+				const option = document.createElement('option');
+				option.value = value;
+				option.textContent = label;
+				option.selected = value === selectedCity;
+				citySelect.appendChild(option);
+			});
+
+			citySelect.disabled = !country;
+
+			if (!cities[selectedCity]) {
+				citySelect.value = '';
+			}
+		};
+
+		renderCities(countrySelect.value, citySelect.value);
+
+		countrySelect.addEventListener('change', () => {
+			renderCities(countrySelect.value);
 		});
 
-		citySelect.disabled = !country;
-
-		if (!cities[selectedCity]) {
-			citySelect.value = '';
-		}
-	};
-
-	renderCities(countrySelect.value, citySelect.value);
-
-	countrySelect.addEventListener('change', () => {
-		renderCities(countrySelect.value);
+		form.dataset.countryCityInitialized = 'true';
 	});
-});
+};
 
 const isSameOriginUrl = (url) => {
 	try {
@@ -47,6 +55,45 @@ const isSameOriginUrl = (url) => {
 	} catch {
 		return false;
 	}
+};
+
+const initializeAsyncForms = () => {
+	document.querySelectorAll('form[data-async-form]').forEach((form) => {
+		if (form.dataset.asyncInitialized === 'true') {
+			return;
+		}
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+
+			const targetSelector = form.dataset.asyncTarget;
+
+			if (!targetSelector) {
+				form.submit();
+				return;
+			}
+
+			const method = (form.method || 'GET').toUpperCase();
+
+			if (method !== 'GET') {
+				form.submit();
+				return;
+			}
+
+			const action = form.action || window.location.href;
+			const url = new URL(action, window.location.href);
+			const params = new URLSearchParams(new FormData(form));
+			url.search = params.toString();
+
+			await refreshAsyncContainer({
+				url: url.toString(),
+				targetSelector,
+				pushState: form.dataset.asyncPushState !== 'false',
+			});
+		});
+
+		form.dataset.asyncInitialized = 'true';
+	});
 };
 
 const refreshAsyncContainer = async ({
@@ -86,6 +133,8 @@ const refreshAsyncContainer = async ({
 		}
 
 		target.replaceWith(nextTarget);
+		initializeCountryCityFilters();
+		initializeAsyncForms();
 
 		if (pushState) {
 			window.history.pushState({}, '', url);
@@ -101,37 +150,6 @@ const refreshAsyncContainer = async ({
 		}
 	}
 };
-
-document.querySelectorAll('form[data-async-form]').forEach((form) => {
-	form.addEventListener('submit', async (event) => {
-		event.preventDefault();
-
-		const targetSelector = form.dataset.asyncTarget;
-
-		if (!targetSelector) {
-			form.submit();
-			return;
-		}
-
-		const method = (form.method || 'GET').toUpperCase();
-
-		if (method !== 'GET') {
-			form.submit();
-			return;
-		}
-
-		const action = form.action || window.location.href;
-		const url = new URL(action, window.location.href);
-		const params = new URLSearchParams(new FormData(form));
-		url.search = params.toString();
-
-		await refreshAsyncContainer({
-			url: url.toString(),
-			targetSelector,
-			pushState: form.dataset.asyncPushState !== 'false',
-		});
-	});
-});
 
 document.addEventListener('click', async (event) => {
 	const link = event.target.closest('a[href]');
@@ -160,3 +178,35 @@ document.addEventListener('click', async (event) => {
 		pushState: true,
 	});
 });
+
+document.addEventListener('click', async (event) => {
+	const link = event.target.closest('a[data-async-link][href]');
+
+	if (!link || !isSameOriginUrl(link.href)) {
+		return;
+	}
+
+	const targetSelector = link.dataset.asyncTarget;
+
+	if (!targetSelector) {
+		return;
+	}
+
+	const url = new URL(link.href, window.location.href);
+	const currentUrl = new URL(window.location.href);
+
+	if (url.pathname !== currentUrl.pathname) {
+		return;
+	}
+
+	event.preventDefault();
+
+	await refreshAsyncContainer({
+		url: url.toString(),
+		targetSelector,
+		pushState: link.dataset.asyncPushState !== 'false',
+	});
+});
+
+initializeCountryCityFilters();
+initializeAsyncForms();

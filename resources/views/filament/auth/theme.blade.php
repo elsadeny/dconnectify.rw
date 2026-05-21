@@ -33,6 +33,7 @@
         background: linear-gradient(180deg, rgba(248, 251, 255, 0.97), rgba(237, 244, 251, 0.95)) !important;
         box-shadow: 0 40px 100px -48px rgba(0, 0, 0, 0.75);
         padding: 2rem 1.4rem !important;
+        color: #0f2138;
     }
 
     @media (min-width: 640px) {
@@ -47,11 +48,45 @@
         letter-spacing: -0.03em;
     }
 
+    .fi-simple-main [class*="fi-simple-header-heading"],
+    .fi-simple-main [class*="fi-simple-header-subheading"],
+    .fi-simple-main h1,
+    .fi-simple-main h2,
+    .fi-simple-main h3 {
+        color: #0a182a !important;
+    }
+
+    .fi-simple-main [class*="fi-input-wrp-label"],
+    .fi-simple-main label,
+    .fi-simple-main .fi-checkbox-label {
+        color: #23384f !important;
+        font-weight: 600;
+    }
+
+    .fi-simple-main [class*="fi-fo-field-wrp-hint"],
+    .fi-simple-main [class*="fi-fo-field-wrp-helper-text"] {
+        color: #4a627a !important;
+    }
+
     .fi-simple-main .fi-input-wrp {
         border-radius: 1rem;
         border-color: #d1e2f2;
         background: rgba(255, 255, 255, 0.9);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .fi-simple-main .fi-input,
+    .fi-simple-main input,
+    .fi-simple-main select,
+    .fi-simple-main textarea {
+        color: #0f2138 !important;
+    }
+
+    .fi-simple-main .fi-input::placeholder,
+    .fi-simple-main input::placeholder,
+    .fi-simple-main textarea::placeholder {
+        color: #6f879f !important;
+        opacity: 1;
     }
 
     .fi-simple-main .fi-input-wrp:focus-within {
@@ -76,6 +111,21 @@
     .fi-simple-main .fi-link,
     .fi-simple-main a {
         color: #1d8fff;
+    }
+
+    .fi-simple-main .fi-link:hover,
+    .fi-simple-main a:hover {
+        color: #0f6fcc;
+    }
+
+    .fi-simple-main [type='checkbox'] {
+        border-color: #b8cce0;
+        background-color: rgba(255, 255, 255, 0.88);
+    }
+
+    .fi-simple-main [type='checkbox']:checked {
+        border-color: #1d8fff;
+        background-color: #1d8fff;
     }
 
     .connectify-auth-intro {

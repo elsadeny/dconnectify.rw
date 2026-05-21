@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -31,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->passwordReset()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -56,6 +57,34 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                PanelsRenderHook::STYLES_AFTER,
+                function (): string {
+                    return view('filament.auth.theme')->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
+                function (): string {
+                    return view('filament.auth.intro', array(
+                        'eyebrow' => 'connectify admin',
+                        'title' => 'Welcome back',
+                        'copy' => 'Moderate listings, review sellers, and keep the marketplace trusted across East Africa.',
+                        'chips' => array('Admin access', 'Listing approvals', 'User oversight'),
+                    ))->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::AUTH_PASSWORD_RESET_REQUEST_FORM_BEFORE,
+                function (): string {
+                    return view('filament.auth.intro', array(
+                        'eyebrow' => 'connectify admin',
+                        'title' => 'Reset your password',
+                        'copy' => 'Use your admin email and we will send a secure reset link.',
+                        'chips' => array('Secure reset', 'Admin account', 'Fast recovery'),
+                    ))->render();
+                },
+            );
     }
 }

@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -31,7 +32,7 @@ class SellerPanelProvider extends PanelProvider
             ->registration()
             ->passwordReset()
             ->colors([
-                'primary' => Color::Cyan,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Seller/Resources'), for: 'App\Filament\Seller\Resources')
             ->discoverPages(in: app_path('Filament/Seller/Pages'), for: 'App\Filament\Seller\Pages')
@@ -56,6 +57,45 @@ class SellerPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                PanelsRenderHook::STYLES_AFTER,
+                function (): string {
+                    return view('filament.auth.theme')->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
+                function (): string {
+                    return view('filament.auth.intro', array(
+                        'eyebrow' => 'connectify seller',
+                        'title' => 'Sign in to your seller portal',
+                        'copy' => 'Manage listings, track bookings, and respond to buyer inquiries quickly.',
+                        'chips' => array('Seller dashboard', 'Listing tools', 'Bookings'),
+                    ))->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::AUTH_REGISTER_FORM_BEFORE,
+                function (): string {
+                    return view('filament.auth.intro', array(
+                        'eyebrow' => 'connectify seller',
+                        'title' => 'Create your seller account',
+                        'copy' => 'Start publishing verified listings and grow your reach across regional markets.',
+                        'chips' => array('Quick setup', 'Verified profile', 'Publish instantly'),
+                    ))->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::AUTH_PASSWORD_RESET_REQUEST_FORM_BEFORE,
+                function (): string {
+                    return view('filament.auth.intro', array(
+                        'eyebrow' => 'connectify seller',
+                        'title' => 'Reset your seller password',
+                        'copy' => 'Enter your seller email to receive a secure password reset link.',
+                        'chips' => array('Secure reset', 'Email recovery', 'Fast access'),
+                    ))->render();
+                },
+            );
     }
 }

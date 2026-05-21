@@ -15,6 +15,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class UserResource extends Resource
@@ -65,6 +66,13 @@ class UserResource extends Resource
             TextColumn::make('company_name')->label('Company'),
             TextColumn::make('city')->searchable(),
             TextColumn::make('country')->searchable(),
+        ])
+            ->filters([
+            SelectFilter::make('role')
+                ->options(MarketplaceOptions::userRoleOptions()),
+            SelectFilter::make('country')
+                ->options(MarketplaceOptions::countryOptions())
+                ->searchable(),
         ])
             ->actions([
             \Filament\Actions\EditAction::make(),

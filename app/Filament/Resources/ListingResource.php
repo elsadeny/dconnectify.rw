@@ -22,6 +22,8 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class ListingResource extends Resource
@@ -146,6 +148,26 @@ class ListingResource extends Resource
             TextColumn::make('seller.name')->label('Seller')->searchable(),
             TextColumn::make('formattedPrimaryValue')->label('Price / Salary'),
             IconColumn::make('is_verified')->boolean()->label('Verified'),
+        ])
+            ->filters([
+            SelectFilter::make('type')
+                ->options(MarketplaceOptions::listingTypeOptions()),
+            SelectFilter::make('transaction_type')
+                ->options(MarketplaceOptions::transactionTypeOptions()),
+            SelectFilter::make('status')
+                ->options(MarketplaceOptions::listingStatusOptions()),
+            SelectFilter::make('availability')
+                ->options([
+                    'available' => 'Available',
+                    'sold' => 'Sold',
+                ]),
+            SelectFilter::make('country')
+                ->options(MarketplaceOptions::countryOptions())
+                ->searchable(),
+            TernaryFilter::make('is_verified')
+                ->label('Verified seller'),
+            TernaryFilter::make('is_featured')
+                ->label('Featured listing'),
         ])
             ->actions([
             \Filament\Actions\EditAction::make(),

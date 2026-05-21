@@ -1,11 +1,18 @@
 <style>
     .fi-body.fi-panel-admin,
     .fi-body.fi-panel-seller {
+        overflow: hidden;
         background:
             radial-gradient(circle at top left, rgba(29, 143, 255, 0.14), transparent 22%),
             radial-gradient(circle at top right, rgba(103, 184, 255, 0.08), transparent 18%),
             linear-gradient(180deg, #08111d 0%, #0d1826 48%, #101c2a 100%);
         color: #e5eef9;
+    }
+
+    .fi-body.fi-panel-admin .fi-layout,
+    .fi-body.fi-panel-seller .fi-layout {
+        height: 100dvh;
+        overflow: hidden;
     }
 
     .fi-body.fi-panel-admin .fi-sidebar,
@@ -14,6 +21,8 @@
         top: 0;
         bottom: 0;
         left: 0;
+        display: flex;
+        flex-direction: column;
         width: var(--sidebar-width);
         background: linear-gradient(180deg, rgba(7, 17, 31, 0.98), rgba(12, 29, 48, 0.98));
         border-right: 1px solid rgba(255, 255, 255, 0.08);
@@ -50,8 +59,10 @@
     .fi-body.fi-panel-admin .fi-main-ctn,
     .fi-body.fi-panel-seller .fi-main-ctn {
         margin-left: var(--sidebar-width);
+        height: 100dvh;
         min-height: 100dvh;
         padding-top: 4.5rem;
+        overflow: hidden;
     }
 
     .fi-body.fi-panel-admin .fi-topbar .fi-input-wrp,
@@ -71,7 +82,19 @@
 
     .fi-body.fi-panel-admin .fi-main,
     .fi-body.fi-panel-seller .fi-main {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
         padding-top: 1.25rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .fi-body.fi-panel-admin .fi-sidebar-nav,
+    .fi-body.fi-panel-seller .fi-sidebar-nav {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 0;
     }
 
     .fi-body.fi-panel-admin .fi-page,
@@ -433,6 +456,13 @@
     }
 
     @media (max-width: 640px) {
+        .fi-body.fi-panel-admin,
+        .fi-body.fi-panel-seller,
+        .fi-body.fi-panel-admin .fi-layout,
+        .fi-body.fi-panel-seller .fi-layout {
+            overflow: visible;
+        }
+
         .fi-body.fi-panel-admin .fi-sidebar,
         .fi-body.fi-panel-seller .fi-sidebar {
             width: auto;
@@ -446,14 +476,24 @@
 
         .fi-body.fi-panel-admin .fi-main-ctn,
         .fi-body.fi-panel-seller .fi-main-ctn {
+            height: auto;
             margin-left: 0;
             padding-top: 4rem;
+            overflow: visible;
         }
 
         .fi-body.fi-panel-admin .fi-topbar,
         .fi-body.fi-panel-seller .fi-topbar {
             margin: 0;
             border-radius: 0;
+        }
+
+        .fi-body.fi-panel-admin .fi-main,
+        .fi-body.fi-panel-seller .fi-main,
+        .fi-body.fi-panel-admin .fi-sidebar-nav,
+        .fi-body.fi-panel-seller .fi-sidebar-nav {
+            height: auto;
+            overflow: visible;
         }
 
         .connectify-panel-hero {

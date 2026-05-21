@@ -22,6 +22,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -137,6 +138,22 @@ class ListingResource extends Resource
                 TextColumn::make('city'),
                 TextColumn::make('formattedPrimaryValue')->label('Price / Salary'),
                 TextColumn::make('updated_at')->since()->label('Updated'),
+            ])
+            ->filters([
+                SelectFilter::make('type')
+                    ->options(MarketplaceOptions::listingTypeOptions()),
+                SelectFilter::make('transaction_type')
+                    ->options(MarketplaceOptions::transactionTypeOptions()),
+                SelectFilter::make('status')
+                    ->options(MarketplaceOptions::listingStatusOptions()),
+                SelectFilter::make('availability')
+                    ->options([
+                        'available' => 'Available',
+                        'sold' => 'Sold',
+                    ]),
+                SelectFilter::make('country')
+                    ->options(MarketplaceOptions::countryOptions())
+                    ->searchable(),
             ])
             ->actions([
                 \Filament\Actions\EditAction::make(),

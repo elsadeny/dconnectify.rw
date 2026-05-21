@@ -23,8 +23,8 @@
                         </a>
                         @endforeach
                     </nav>
-                    <div class="flex items-center gap-2">
-                        <a href="/seller"
+                    <div class="hidden items-center gap-2 md:flex">
+                        <a href="/seller/login"
                             class="rounded-full border border-white/15 bg-white/95 px-5 py-2.5 text-sm font-bold text-[var(--color-ink)] transition hover:-translate-y-0.5">
                             Seller Panel</a>
                     </div>

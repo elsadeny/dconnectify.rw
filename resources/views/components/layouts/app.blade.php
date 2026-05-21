@@ -360,7 +360,7 @@
                     </svg>
                     <span>Search</span>
                 </a>
-                <a href="/seller/register" class="-mt-7 flex flex-col items-center gap-1">
+                <a href="/seller/login" class="-mt-7 flex flex-col items-center gap-1">
                     <span
                         class="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-[var(--color-ink)] shadow-[0_22px_45px_-18px_rgba(29,143,255,0.8)] ring-4 ring-[rgba(7,17,31,0.88)] transition hover:-translate-y-0.5">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-6 w-6">

@@ -30,7 +30,7 @@
                             :class="scrolled ? 'text-[var(--color-ocean)]' : 'text-white'"
                             class="transition hover:opacity-75 relative font-bold tracking-wide">Saved Ads</a>
                         @endauth
-                        <a href="/seller"
+                        <a href="/seller/login"
                             :class="scrolled ? 'bg-[var(--color-ink)] text-white border-transparent' : 'border-white/15 bg-white/95 text-[var(--color-ink)]'"
                             class="rounded-full border px-4 py-2 transition hover:-translate-y-0.5">Seller Panel</a>
                     </nav>
@@ -224,7 +224,7 @@
 
                     <div class="mt-8 flex flex-wrap gap-3">
                         <a href="#latest" class="primary-cta">Browse listings</a>
-                        <a href="/seller/register" class="secondary-cta">Start selling</a>
+                        <a href="/seller/login" class="secondary-cta">Start selling</a>
                     </div>
 
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">

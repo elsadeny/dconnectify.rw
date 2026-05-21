@@ -818,10 +818,10 @@ class LegacyDataSqlImporter
             ];
         }
 
-        if (in_array($normalized, ['rwanda', 'uganda', 'burundi', 'drc', 'kenya', 'tanzania', 'south sudan', 'uae'], true)) {
+        if (in_array($normalized, ['rwanda', 'uganda', 'burundi', 'drc', 'kenya', 'tanzania', 'south sudan'], true)) {
             return [
-                'country' => Str::upper($normalized) === 'UAE' ? 'UAE' : Str::headline($location),
-                'city' => $this->defaultCityForCountry(Str::upper($normalized) === 'UAE' ? 'UAE' : Str::headline($location)),
+                'country' => Str::headline($location),
+                'city' => $this->defaultCityForCountry(Str::headline($location)),
                 'area' => null,
             ];
         }
@@ -836,7 +836,6 @@ class LegacyDataSqlImporter
     protected function defaultCityForCountry(string $country): string
     {
         return match ($country) {
-            'UAE' => 'Dubai',
             'Uganda' => 'Kampala',
             'Burundi' => 'Bujumbura',
             'DRC' => 'Goma',

@@ -12,18 +12,7 @@ class MarketplaceController extends Controller
 {
     public function index(Request $request): View
     {
-        $countryOptions = Listing::query()
-            ->published()
-            ->whereNotNull('country')
-            ->where('country', '!=', '')
-            ->distinct()
-            ->orderBy('country')
-            ->pluck('country', 'country')
-            ->all();
-
-        if ($countryOptions === []) {
-            $countryOptions = MarketplaceOptions::countryOptions();
-        }
+        $countryOptions = MarketplaceOptions::countryOptions();
 
         $selectedCountry = $request->string('country')->value();
         $selectedCountry = array_key_exists($selectedCountry, $countryOptions) ? $selectedCountry : null;
@@ -162,14 +151,14 @@ class MarketplaceController extends Controller
             'type' => $listingType,
             'listings' => $listings,
             'filters' => $filters,
-            'countries' => Listing::distinct()->pluck('country'),
-            'cities' => Listing::when($request->country, fn($q) => $q->where('country', $request->country))
-            ->distinct()->pluck('city'),
-            'countryCityMap' => Listing::select('country', 'city')
-            ->distinct()
-            ->get()
-            ->groupBy('country')
-            ->map(fn($group) => $group->pluck('city')->unique()->values()),
+            'countries' => collect(MarketplaceOptions::countryOptions()),
+            'cities' => $request->filled('country')
+                ? collect(MarketplaceOptions::cityOptions($request->country))
+                : collect(),
+            'countryCityMap' => collect(MarketplaceOptions::countryOptions())
+                ->keys()
+                ->mapWithKeys(fn (string $country) => [$country => collect(MarketplaceOptions::cityOptions($country))->keys()->values()])
+                ->all(),
         ]);
     }
 }

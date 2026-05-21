@@ -10,33 +10,37 @@ use Illuminate\Support\Facades\Schema;
 
 class MarketplaceOptions
 {
+    private const ALLOWED_COUNTRIES = [
+        'Rwanda',
+        'Uganda',
+        'Burundi',
+        'DRC',
+        'Kenya',
+        'Tanzania',
+        'South Sudan',
+    ];
+
     public static function countryOptions(): array
     {
-        $countries = [
-            'Rwanda' => 'Rwanda',
-            'Uganda' => 'Uganda',
-            'Burundi' => 'Burundi',
-            'DRC' => 'DRC',
-            'Kenya' => 'Kenya',
-            'Tanzania' => 'Tanzania',
-            'South Sudan' => 'South Sudan',
-            'UAE' => 'UAE',
-        ];
+        $countries = array_combine(self::ALLOWED_COUNTRIES, self::ALLOWED_COUNTRIES);
 
         if (! Schema::hasTable('listings')) {
             return $countries;
         }
 
-        return array_replace(
-            $countries,
-            Listing::query()
-                ->whereNotNull('country')
-                ->where('country', '!=', '')
-                ->distinct()
-                ->orderBy('country')
-                ->pluck('country', 'country')
-                ->all(),
-        );
+        foreach (Listing::query()
+            ->whereNotNull('country')
+            ->where('country', '!=', '')
+            ->distinct()
+            ->orderBy('country')
+            ->pluck('country')
+            ->all() as $country) {
+            if (in_array($country, self::ALLOWED_COUNTRIES, true)) {
+                $countries[$country] = $country;
+            }
+        }
+
+        return $countries;
     }
 
     public static function cityOptions(?string $country = null): array
@@ -98,11 +102,6 @@ class MarketplaceOptions
                 'Aweil' => 'Aweil',
                 'Bor' => 'Bor',
             ],
-            'UAE' => [
-                'Dubai' => 'Dubai',
-                'Abu Dhabi' => 'Abu Dhabi',
-                'Sharjah' => 'Sharjah',
-            ],
         ];
 
         if (Schema::hasTable('listings')) {
@@ -120,6 +119,10 @@ class MarketplaceOptions
                 ->all();
 
             foreach ($dynamicCities as $countryName => $countryCities) {
+                if (! in_array($countryName, self::ALLOWED_COUNTRIES, true)) {
+                    continue;
+                }
+
                 $cities[$countryName] = array_replace($cities[$countryName] ?? [], $countryCities);
             }
         }

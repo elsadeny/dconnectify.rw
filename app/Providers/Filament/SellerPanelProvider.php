@@ -6,7 +6,6 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -29,7 +28,7 @@ class SellerPanelProvider extends PanelProvider
             ->path('seller')
             ->brandName('connectify Seller')
             ->login()
-            ->registration()
+            ->registration(\App\Filament\Seller\Auth\Register::class)
             ->passwordReset()
             ->colors([
                 'primary' => Color::Blue,
@@ -37,7 +36,7 @@ class SellerPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Seller/Resources'), for: 'App\Filament\Seller\Resources')
             ->discoverPages(in: app_path('Filament/Seller/Pages'), for: 'App\Filament\Seller\Pages')
             ->pages([
-                Dashboard::class,
+                \App\Filament\Seller\Pages\SellerDashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Seller/Widgets'), for: 'App\Filament\Seller\Widgets')
             ->widgets([
@@ -61,7 +60,18 @@ class SellerPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::STYLES_AFTER,
                 function (): string {
-                    return view('filament.auth.theme')->render();
+                    return view('filament.auth.theme')->render() . view('filament.panel-theme')->render();
+                },
+            )
+            ->renderHook(
+                PanelsRenderHook::SIMPLE_LAYOUT_START,
+                function (): string {
+                    return view('components.connectify.public-navbar', [
+                        'ctaHref' => route('home'),
+                        'ctaLabel' => 'Marketplace',
+                        'homeHref' => route('home'),
+                        'showSectionLinks' => false,
+                    ])->render();
                 },
             )
             ->renderHook(
@@ -76,13 +86,21 @@ class SellerPanelProvider extends PanelProvider
                 },
             )
             ->renderHook(
+                PanelsRenderHook::SIMPLE_LAYOUT_END,
+                function (): string {
+                    return view('filament.auth.footer', [
+                        'copy' => 'Seller tools for the connectify marketplace.',
+                    ])->render();
+                },
+            )
+            ->renderHook(
                 PanelsRenderHook::AUTH_REGISTER_FORM_BEFORE,
                 function (): string {
                     return view('filament.auth.intro', array(
                         'eyebrow' => 'connectify seller',
                         'title' => 'Create your seller account',
                         'copy' => 'Start publishing verified listings and grow your reach across regional markets.',
-                        'chips' => array('Quick setup', 'Verified profile', 'Publish instantly'),
+                        'chips' => array('Seller account', 'Publish faster'),
                     ))->render();
                 },
             )
@@ -96,6 +114,7 @@ class SellerPanelProvider extends PanelProvider
                         'chips' => array('Secure reset', 'Email recovery', 'Fast access'),
                     ))->render();
                 },
-            );
+            )
+            ;
     }
 }

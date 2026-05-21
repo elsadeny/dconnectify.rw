@@ -5,38 +5,7 @@
     @endphp
 
     <div class="premium-hero-bg pb-12">
-        <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:pt-6 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-7xl">
-                <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6">
-                    <a href="{{ route('home') }}" class="flex items-center gap-3">
-                        <div
-                            class="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)]">
-                            C</div>
-                        <div>
-                            <p class="font-display text-lg font-bold tracking-tight text-white">connectify</p>
-                            <p class="text-[10px] uppercase tracking-[0.2em] text-white/60 sm:block hidden">Premium
-                                marketplace across East Africa</p>
-                            <p class="text-[10px] uppercase tracking-[0.2em] text-white/60 sm:hidden block">East Africa
-                                Marketplace</p>
-                        </div>
-                    </a>
-                    <nav class="hidden items-center gap-6 text-sm font-medium text-white/80 md:flex">
-                        <a href="#categories" class="transition hover:text-white">Categories</a>
-                        <a href="#why-connectify" class="transition hover:text-white">Why connectify</a>
-                        <a href="#featured" class="transition hover:text-white">Featured</a>
-                        <a href="#latest" class="transition hover:opacity-75 relative">Latest</a>
-                        @auth
-                        <a href="{{ route('saved.index') }}"
-                            :class="scrolled ? 'text-[var(--color-ocean)]' : 'text-white'"
-                            class="transition hover:opacity-75 relative font-bold tracking-wide">Saved Ads</a>
-                        @endauth
-                        <a href="/seller/login"
-                            :class="scrolled ? 'bg-[var(--color-ink)] text-white border-transparent' : 'border-white/15 bg-white/95 text-[var(--color-ink)]'"
-                            class="rounded-full border px-4 py-2 transition hover:-translate-y-0.5">Seller Panel</a>
-                    </nav>
-                </div>
-            </div>
-        </header>
+        <x-connectify.public-navbar />
 
         <div id="home-content" data-async-container>
         <main class="pt-32 lg:pt-32">

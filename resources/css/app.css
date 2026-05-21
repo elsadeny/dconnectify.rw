@@ -183,4 +183,134 @@
     .footer-title {
         @apply text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)];
     }
+
+    .connectify-public-navbar {
+        inset-inline: 0;
+        z-index: 50;
+        padding: 1rem 1rem 0;
+    }
+
+    .connectify-public-navbar--fixed {
+        position: fixed;
+        top: 0;
+    }
+
+    .connectify-public-navbar__shell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0.75rem 1rem;
+        border-radius: 9999px;
+        background: linear-gradient(180deg, rgba(7, 17, 31, 0.92), rgba(4, 9, 20, 0.88));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 24px 80px -40px rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(24px);
+    }
+
+    .connectify-public-navbar__brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 0;
+        text-decoration: none;
+    }
+
+    .connectify-public-navbar__logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, var(--color-ocean), #8fd0ff);
+        color: var(--color-ink);
+        font-size: 1.125rem;
+        font-weight: 900;
+        flex-shrink: 0;
+    }
+
+    .connectify-public-navbar__copy {
+        min-width: 0;
+    }
+
+    .connectify-public-navbar__name {
+        color: white;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .connectify-public-navbar__tag {
+        margin-top: 0.18rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .connectify-public-navbar__tag--mobile {
+        display: none;
+    }
+
+    .connectify-public-navbar__nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .connectify-public-navbar__link {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .connectify-public-navbar__link:hover {
+        color: white;
+    }
+
+    .connectify-public-navbar__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.5rem;
+        padding: 0 1rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--color-ink);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+    }
+
+    .connectify-public-navbar__cta:hover {
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 767px) {
+        .connectify-public-navbar__shell {
+            padding: 0.7rem 0.9rem;
+        }
+
+        .connectify-public-navbar__tag--desktop {
+            display: none;
+        }
+
+        .connectify-public-navbar__tag--mobile {
+            display: block;
+        }
+
+        .connectify-public-navbar__nav {
+            display: none;
+        }
+    }
 }

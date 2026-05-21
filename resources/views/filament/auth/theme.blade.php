@@ -29,11 +29,11 @@
 
     .fi-simple-main {
         border-radius: 2rem !important;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: linear-gradient(180deg, rgba(248, 251, 255, 0.97), rgba(237, 244, 251, 0.95)) !important;
-        box-shadow: 0 40px 100px -48px rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(143, 208, 255, 0.22);
+        background: linear-gradient(180deg, rgba(9, 23, 40, 0.96), rgba(6, 16, 30, 0.94)) !important;
+        box-shadow: 0 40px 100px -48px rgba(0, 0, 0, 0.9);
         padding: 2rem 1.4rem !important;
-        color: #0f2138;
+        color: #d9e8f6;
     }
 
     @media (min-width: 640px) {
@@ -43,7 +43,7 @@
     }
 
     .fi-simple-main .fi-logo {
-        color: #07111f !important;
+        color: #ecf4ff !important;
         font-weight: 800;
         letter-spacing: -0.03em;
     }
@@ -53,39 +53,39 @@
     .fi-simple-main h1,
     .fi-simple-main h2,
     .fi-simple-main h3 {
-        color: #0a182a !important;
+        color: #ecf4ff !important;
     }
 
     .fi-simple-main [class*="fi-input-wrp-label"],
     .fi-simple-main label,
     .fi-simple-main .fi-checkbox-label {
-        color: #23384f !important;
+        color: #d3e3f5 !important;
         font-weight: 600;
     }
 
     .fi-simple-main [class*="fi-fo-field-wrp-hint"],
     .fi-simple-main [class*="fi-fo-field-wrp-helper-text"] {
-        color: #4a627a !important;
+        color: #9bb4cf !important;
     }
 
     .fi-simple-main .fi-input-wrp {
         border-radius: 1rem;
-        border-color: #d1e2f2;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        border-color: rgba(143, 208, 255, 0.28);
+        background: rgba(18, 39, 62, 0.9);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
     .fi-simple-main .fi-input,
     .fi-simple-main input,
     .fi-simple-main select,
     .fi-simple-main textarea {
-        color: #0f2138 !important;
+        color: #ecf4ff !important;
     }
 
     .fi-simple-main .fi-input::placeholder,
     .fi-simple-main input::placeholder,
     .fi-simple-main textarea::placeholder {
-        color: #6f879f !important;
+        color: #8ea6bf !important;
         opacity: 1;
     }
 
@@ -110,17 +110,17 @@
 
     .fi-simple-main .fi-link,
     .fi-simple-main a {
-        color: #1d8fff;
+        color: #7ec4ff;
     }
 
     .fi-simple-main .fi-link:hover,
     .fi-simple-main a:hover {
-        color: #0f6fcc;
+        color: #b9e1ff;
     }
 
     .fi-simple-main [type='checkbox'] {
-        border-color: #b8cce0;
-        background-color: rgba(255, 255, 255, 0.88);
+        border-color: rgba(143, 208, 255, 0.42);
+        background-color: rgba(13, 31, 49, 0.92);
     }
 
     .fi-simple-main [type='checkbox']:checked {

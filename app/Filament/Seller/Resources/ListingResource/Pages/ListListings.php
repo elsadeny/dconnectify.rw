@@ -7,6 +7,7 @@ use App\Enums\ListingType;
 use App\Filament\Seller\Resources\ListingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -19,6 +20,11 @@ class ListListings extends ListRecords
         return [
             Actions\CreateAction::make()->label('Post new ad'),
         ];
+    }
+
+    public function getTabsContentComponent(): Component
+    {
+        return parent::getTabsContentComponent()->hidden();
     }
 
     public function getTabs(): array

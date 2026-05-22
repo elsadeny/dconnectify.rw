@@ -6,6 +6,7 @@ use App\Enums\ListingType;
 use App\Filament\Resources\Bookings\BookingResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -18,6 +19,11 @@ class ListBookings extends ListRecords
         return [
             CreateAction::make()->label('Create booking'),
         ];
+    }
+
+    public function getTabsContentComponent(): Component
+    {
+        return parent::getTabsContentComponent()->hidden();
     }
 
     public function getTabs(): array

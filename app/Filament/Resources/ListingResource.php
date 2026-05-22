@@ -32,7 +32,9 @@ class ListingResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Marketplace';
+    protected static string|\UnitEnum|null $navigationGroup = 'Catalog';
+
+    protected static ?string $navigationLabel = 'Marketplace Ads';
 
     protected static ?string $recordTitleAttribute = 'title';
 

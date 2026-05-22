@@ -32,7 +32,9 @@ class ListingResource extends Resource
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-briefcase';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Seller Tools';
+    protected static string | \UnitEnum | null $navigationGroup = 'Selling';
+
+    protected static ?string $navigationLabel = 'My Ads';
 
     protected static ?string $recordTitleAttribute = 'title';
 

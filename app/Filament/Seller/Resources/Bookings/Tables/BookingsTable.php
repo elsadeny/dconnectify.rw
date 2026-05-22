@@ -2,6 +2,7 @@
 
 namespace App\Filament\Seller\Resources\Bookings\Tables;
 
+use App\Support\MarketplaceOptions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -54,6 +55,27 @@ class BookingsTable
                         'cancelled' => 'Cancelled',
                         'completed' => 'Completed',
                     ]),
+                SelectFilter::make('listing_type')
+                    ->label('Category')
+                    ->options(MarketplaceOptions::listingTypeOptions())
+                    ->query(fn (Builder $query, array $data) => $query->when(
+                        filled($data['value'] ?? null),
+                        fn (Builder $query) => $query->whereHas('listing', fn (Builder $listingQuery) => $listingQuery->where('type', $data['value']))
+                    )),
+                SelectFilter::make('transaction_type')
+                    ->label('Intent')
+                    ->options(MarketplaceOptions::transactionTypeOptions())
+                    ->query(fn (Builder $query, array $data) => $query->when(
+                        filled($data['value'] ?? null),
+                        fn (Builder $query) => $query->whereHas('listing', fn (Builder $listingQuery) => $listingQuery->where('transaction_type', $data['value']))
+                    )),
+                SelectFilter::make('country')
+                    ->options(MarketplaceOptions::countryOptions())
+                    ->searchable()
+                    ->query(fn (Builder $query, array $data) => $query->when(
+                        filled($data['value'] ?? null),
+                        fn (Builder $query) => $query->whereHas('listing', fn (Builder $listingQuery) => $listingQuery->where('country', $data['value']))
+                    )),
                 Filter::make('start_date')
                     ->schema([
                         DatePicker::make('from'),

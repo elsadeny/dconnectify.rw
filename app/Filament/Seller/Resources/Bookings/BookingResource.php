@@ -21,7 +21,9 @@ class BookingResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-calendar-days';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Seller Tools';
+    protected static string|\UnitEnum|null $navigationGroup = 'Selling';
+
+    protected static ?string $navigationLabel = 'Booking Inbox';
 
     public static function form(Schema $schema): Schema
     {

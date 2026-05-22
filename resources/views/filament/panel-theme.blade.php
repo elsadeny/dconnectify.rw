@@ -23,6 +23,8 @@
         left: 0;
         display: flex;
         flex-direction: column;
+        min-height: 100dvh;
+        height: 100dvh;
         width: var(--sidebar-width);
         background: linear-gradient(180deg, rgba(7, 17, 31, 0.98), rgba(12, 29, 48, 0.98));
         border-right: 1px solid rgba(255, 255, 255, 0.08);
@@ -92,6 +94,7 @@
     .fi-body.fi-panel-admin .fi-sidebar-nav,
     .fi-body.fi-panel-seller .fi-sidebar-nav {
         flex: 1;
+        height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
         min-height: 0;
@@ -466,6 +469,8 @@
         .fi-body.fi-panel-admin .fi-sidebar,
         .fi-body.fi-panel-seller .fi-sidebar {
             width: auto;
+            min-height: 100dvh;
+            height: 100dvh;
         }
 
         .fi-body.fi-panel-admin .fi-topbar-ctn,
@@ -494,6 +499,12 @@
         .fi-body.fi-panel-seller .fi-sidebar-nav {
             height: auto;
             overflow: visible;
+        }
+
+        .fi-body.fi-panel-admin .fi-sidebar-nav,
+        .fi-body.fi-panel-seller .fi-sidebar-nav {
+            min-height: calc(100dvh - 4rem);
+            overflow-y: auto;
         }
 
         .connectify-panel-hero {

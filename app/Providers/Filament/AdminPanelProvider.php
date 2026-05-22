@@ -112,81 +112,102 @@ class AdminPanelProvider extends PanelProvider
     protected function adminNavigationItems(): array
     {
         return [
-            NavigationItem::make('Marketplace Ads')
+            NavigationItem::make('All ads')
                 ->group('Catalog')
                 ->icon('heroicon-o-rectangle-stack')
-                ->childItems([
-                    NavigationItem::make('All ads')
-                        ->url('/admin/listings')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && blank(request()->query('tab'))),
-                    NavigationItem::make('Cars')
-                        ->url('/admin/listings?tab=cars')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'cars'),
-                    NavigationItem::make('Car sales')
-                        ->url('/admin/listings?tab=car_sales')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_sales'),
-                    NavigationItem::make('Car hire')
-                        ->url('/admin/listings?tab=car_hire')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_hire'),
-                    NavigationItem::make('Estate sale')
-                        ->url('/admin/listings?tab=homes_for_sale')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'homes_for_sale'),
-                    NavigationItem::make('Estate rent')
-                        ->url('/admin/listings?tab=rentals')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'rentals'),
-                    NavigationItem::make('Jobs')
-                        ->url('/admin/listings?tab=jobs')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'jobs'),
-                    NavigationItem::make('Services')
-                        ->url('/admin/listings?tab=services')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'services'),
-                    NavigationItem::make('Pending review')
-                        ->url('/admin/listings?tab=pending_review')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'pending_review'),
-                    NavigationItem::make('Featured')
-                        ->url('/admin/listings?tab=featured')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'featured'),
-                ]),
-            NavigationItem::make('Booking Requests')
+                ->url('/admin/listings')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && blank(request()->query('tab')))
+                ->sort(10),
+            NavigationItem::make('Cars')
+                ->group('Catalog')
+                ->icon('heroicon-o-truck')
+                ->url('/admin/listings?tab=cars')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'cars')
+                ->sort(11),
+            NavigationItem::make('Car sales')
+                ->group('Catalog')
+                ->icon('heroicon-o-banknotes')
+                ->url('/admin/listings?tab=car_sales')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_sales')
+                ->sort(12),
+            NavigationItem::make('Car hire')
+                ->group('Catalog')
+                ->icon('heroicon-o-key')
+                ->url('/admin/listings?tab=car_hire')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_hire')
+                ->sort(13),
+            NavigationItem::make('Estate sale')
+                ->group('Catalog')
+                ->icon('heroicon-o-home-modern')
+                ->url('/admin/listings?tab=homes_for_sale')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'homes_for_sale')
+                ->sort(14),
+            NavigationItem::make('Estate rent')
+                ->group('Catalog')
+                ->icon('heroicon-o-building-office-2')
+                ->url('/admin/listings?tab=rentals')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'rentals')
+                ->sort(15),
+            NavigationItem::make('Jobs')
+                ->group('Catalog')
+                ->icon('heroicon-o-briefcase')
+                ->url('/admin/listings?tab=jobs')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'jobs')
+                ->sort(16),
+            NavigationItem::make('Services')
+                ->group('Catalog')
+                ->icon('heroicon-o-wrench-screwdriver')
+                ->url('/admin/listings?tab=services')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'services')
+                ->sort(17),
+            NavigationItem::make('Pending review')
+                ->group('Catalog')
+                ->icon('heroicon-o-clock')
+                ->url('/admin/listings?tab=pending_review')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'pending_review')
+                ->sort(18),
+            NavigationItem::make('Featured')
+                ->group('Catalog')
+                ->icon('heroicon-o-star')
+                ->url('/admin/listings?tab=featured')
+                ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'featured')
+                ->sort(19),
+            NavigationItem::make('All bookings')
                 ->group('Catalog')
                 ->icon('heroicon-o-calendar-days')
-                ->childItems([
-                    NavigationItem::make('All bookings')
-                        ->url('/admin/bookings')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && blank(request()->query('tab'))),
-                    NavigationItem::make('Pending')
-                        ->url('/admin/bookings?tab=pending')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'pending'),
-                    NavigationItem::make('Confirmed')
-                        ->url('/admin/bookings?tab=confirmed')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'confirmed'),
-                    NavigationItem::make('Upcoming')
-                        ->url('/admin/bookings?tab=upcoming')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'upcoming'),
-                    NavigationItem::make('Cars')
-                        ->url('/admin/bookings?tab=cars')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'cars'),
-                    NavigationItem::make('Estate')
-                        ->url('/admin/bookings?tab=estate')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'estate'),
-                ]),
+                ->url('/admin/bookings')
+                ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && blank(request()->query('tab')))
+                ->sort(20),
+            NavigationItem::make('Pending bookings')
+                ->group('Catalog')
+                ->icon('heroicon-o-inbox-stack')
+                ->url('/admin/bookings?tab=pending')
+                ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'pending')
+                ->sort(21),
+            NavigationItem::make('Upcoming bookings')
+                ->group('Catalog')
+                ->icon('heroicon-o-calendar')
+                ->url('/admin/bookings?tab=upcoming')
+                ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'upcoming')
+                ->sort(22),
             NavigationItem::make('Accounts')
                 ->group('Operations')
                 ->icon('heroicon-o-users')
-                ->childItems([
-                    NavigationItem::make('All accounts')
-                        ->url('/admin/users')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && blank(request()->query('tab'))),
-                    NavigationItem::make('Sellers')
-                        ->url('/admin/users?tab=sellers')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'sellers'),
-                    NavigationItem::make('Buyers')
-                        ->url('/admin/users?tab=buyers')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'buyers'),
-                    NavigationItem::make('Admin team')
-                        ->url('/admin/users?tab=admins')
-                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'admins'),
-                ]),
+                ->url('/admin/users')
+                ->isActiveWhen(fn (): bool => request()->is('admin/users') && blank(request()->query('tab')))
+                ->sort(30),
+            NavigationItem::make('Sellers')
+                ->group('Operations')
+                ->icon('heroicon-o-user-group')
+                ->url('/admin/users?tab=sellers')
+                ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'sellers')
+                ->sort(31),
+            NavigationItem::make('Buyers')
+                ->group('Operations')
+                ->icon('heroicon-o-user')
+                ->url('/admin/users?tab=buyers')
+                ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'buyers')
+                ->sort(32),
         ];
     }
 }

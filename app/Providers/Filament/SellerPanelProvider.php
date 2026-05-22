@@ -123,64 +123,84 @@ class SellerPanelProvider extends PanelProvider
     protected function sellerNavigationItems(): array
     {
         return [
-            NavigationItem::make('My Ads')
+            NavigationItem::make('All ads')
                 ->group('Selling')
                 ->icon('heroicon-o-briefcase')
-                ->childItems([
-                    NavigationItem::make('All ads')
-                        ->url('/seller/listings')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && blank(request()->query('tab'))),
-                    NavigationItem::make('Cars')
-                        ->url('/seller/listings?tab=cars')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'cars'),
-                    NavigationItem::make('Car sales')
-                        ->url('/seller/listings?tab=car_sales')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_sales'),
-                    NavigationItem::make('Car hire')
-                        ->url('/seller/listings?tab=car_hire')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_hire'),
-                    NavigationItem::make('Sell estate')
-                        ->url('/seller/listings?tab=property_sales')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'property_sales'),
-                    NavigationItem::make('Rent estate')
-                        ->url('/seller/listings?tab=rentals')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'rentals'),
-                    NavigationItem::make('List a job')
-                        ->url('/seller/listings?tab=jobs')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'jobs'),
-                    NavigationItem::make('Services')
-                        ->url('/seller/listings?tab=services')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'services'),
-                    NavigationItem::make('Drafts')
-                        ->url('/seller/listings?tab=drafts')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'drafts'),
-                    NavigationItem::make('Pending review')
-                        ->url('/seller/listings?tab=pending')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'pending'),
-                ]),
-            NavigationItem::make('Booking Inbox')
+                ->url('/seller/listings')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && blank(request()->query('tab')))
+                ->sort(10),
+            NavigationItem::make('Cars')
+                ->group('Selling')
+                ->icon('heroicon-o-truck')
+                ->url('/seller/listings?tab=cars')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'cars')
+                ->sort(11),
+            NavigationItem::make('Car sales')
+                ->group('Selling')
+                ->icon('heroicon-o-banknotes')
+                ->url('/seller/listings?tab=car_sales')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_sales')
+                ->sort(12),
+            NavigationItem::make('Car hire')
+                ->group('Selling')
+                ->icon('heroicon-o-key')
+                ->url('/seller/listings?tab=car_hire')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_hire')
+                ->sort(13),
+            NavigationItem::make('Sell estate')
+                ->group('Selling')
+                ->icon('heroicon-o-home-modern')
+                ->url('/seller/listings?tab=property_sales')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'property_sales')
+                ->sort(14),
+            NavigationItem::make('Rent estate')
+                ->group('Selling')
+                ->icon('heroicon-o-building-office-2')
+                ->url('/seller/listings?tab=rentals')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'rentals')
+                ->sort(15),
+            NavigationItem::make('List a job')
+                ->group('Selling')
+                ->icon('heroicon-o-briefcase')
+                ->url('/seller/listings?tab=jobs')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'jobs')
+                ->sort(16),
+            NavigationItem::make('Services')
+                ->group('Selling')
+                ->icon('heroicon-o-wrench-screwdriver')
+                ->url('/seller/listings?tab=services')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'services')
+                ->sort(17),
+            NavigationItem::make('Drafts')
+                ->group('Selling')
+                ->icon('heroicon-o-document')
+                ->url('/seller/listings?tab=drafts')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'drafts')
+                ->sort(18),
+            NavigationItem::make('Pending review')
+                ->group('Selling')
+                ->icon('heroicon-o-clock')
+                ->url('/seller/listings?tab=pending')
+                ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'pending')
+                ->sort(19),
+            NavigationItem::make('All bookings')
                 ->group('Selling')
                 ->icon('heroicon-o-calendar-days')
-                ->childItems([
-                    NavigationItem::make('All bookings')
-                        ->url('/seller/bookings')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && blank(request()->query('tab'))),
-                    NavigationItem::make('New leads')
-                        ->url('/seller/bookings?tab=new_leads')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'new_leads'),
-                    NavigationItem::make('Confirmed')
-                        ->url('/seller/bookings?tab=confirmed')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'confirmed'),
-                    NavigationItem::make('Upcoming')
-                        ->url('/seller/bookings?tab=upcoming')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'upcoming'),
-                    NavigationItem::make('Cars')
-                        ->url('/seller/bookings?tab=cars')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'cars'),
-                    NavigationItem::make('Estate')
-                        ->url('/seller/bookings?tab=estate')
-                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'estate'),
-                ]),
+                ->url('/seller/bookings')
+                ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && blank(request()->query('tab')))
+                ->sort(20),
+            NavigationItem::make('New leads')
+                ->group('Selling')
+                ->icon('heroicon-o-inbox-stack')
+                ->url('/seller/bookings?tab=new_leads')
+                ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'new_leads')
+                ->sort(21),
+            NavigationItem::make('Upcoming bookings')
+                ->group('Selling')
+                ->icon('heroicon-o-calendar')
+                ->url('/seller/bookings?tab=upcoming')
+                ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'upcoming')
+                ->sort(22),
         ];
     }
 }

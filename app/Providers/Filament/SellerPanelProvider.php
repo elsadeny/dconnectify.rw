@@ -2,8 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Seller\Resources\Bookings\BookingResource as SellerBookingResource;
-use App\Filament\Seller\Resources\ListingResource as SellerListingResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -130,58 +128,58 @@ class SellerPanelProvider extends PanelProvider
                 ->icon('heroicon-o-briefcase')
                 ->childItems([
                     NavigationItem::make('All ads')
-                        ->url(SellerListingResource::getUrl('index', panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(SellerListingResource::getRouteBaseName('seller') . '.index') && blank(request()->query('tab'))),
+                        ->url('/seller/listings')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && blank(request()->query('tab'))),
                     NavigationItem::make('Cars')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'cars'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'cars'),
+                        ->url('/seller/listings?tab=cars')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'cars'),
                     NavigationItem::make('Car sales')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'car_sales'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'car_sales'),
+                        ->url('/seller/listings?tab=car_sales')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_sales'),
                     NavigationItem::make('Car hire')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'car_hire'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'car_hire'),
+                        ->url('/seller/listings?tab=car_hire')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'car_hire'),
                     NavigationItem::make('Sell estate')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'property_sales'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'property_sales'),
+                        ->url('/seller/listings?tab=property_sales')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'property_sales'),
                     NavigationItem::make('Rent estate')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'rentals'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'rentals'),
+                        ->url('/seller/listings?tab=rentals')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'rentals'),
                     NavigationItem::make('List a job')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'jobs'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'jobs'),
+                        ->url('/seller/listings?tab=jobs')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'jobs'),
                     NavigationItem::make('Services')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'services'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'services'),
+                        ->url('/seller/listings?tab=services')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'services'),
                     NavigationItem::make('Drafts')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'drafts'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'drafts'),
+                        ->url('/seller/listings?tab=drafts')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'drafts'),
                     NavigationItem::make('Pending review')
-                        ->url(SellerListingResource::getUrl('index', ['tab' => 'pending'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'pending'),
+                        ->url('/seller/listings?tab=pending')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/listings') && request()->query('tab') === 'pending'),
                 ]),
             NavigationItem::make('Booking Inbox')
                 ->group('Selling')
                 ->icon('heroicon-o-calendar-days')
                 ->childItems([
                     NavigationItem::make('All bookings')
-                        ->url(SellerBookingResource::getUrl('index', panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(SellerBookingResource::getRouteBaseName('seller') . '.index') && blank(request()->query('tab'))),
+                        ->url('/seller/bookings')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && blank(request()->query('tab'))),
                     NavigationItem::make('New leads')
-                        ->url(SellerBookingResource::getUrl('index', ['tab' => 'new_leads'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'new_leads'),
+                        ->url('/seller/bookings?tab=new_leads')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'new_leads'),
                     NavigationItem::make('Confirmed')
-                        ->url(SellerBookingResource::getUrl('index', ['tab' => 'confirmed'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'confirmed'),
+                        ->url('/seller/bookings?tab=confirmed')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'confirmed'),
                     NavigationItem::make('Upcoming')
-                        ->url(SellerBookingResource::getUrl('index', ['tab' => 'upcoming'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'upcoming'),
+                        ->url('/seller/bookings?tab=upcoming')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'upcoming'),
                     NavigationItem::make('Cars')
-                        ->url(SellerBookingResource::getUrl('index', ['tab' => 'cars'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'cars'),
+                        ->url('/seller/bookings?tab=cars')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'cars'),
                     NavigationItem::make('Estate')
-                        ->url(SellerBookingResource::getUrl('index', ['tab' => 'estate'], panel: 'seller'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'estate'),
+                        ->url('/seller/bookings?tab=estate')
+                        ->isActiveWhen(fn (): bool => request()->is('seller/bookings') && request()->query('tab') === 'estate'),
                 ]),
         ];
     }

@@ -2,9 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Resources\Bookings\BookingResource as AdminBookingResource;
-use App\Filament\Resources\ListingResource as AdminListingResource;
-use App\Filament\Resources\UserResource as AdminUserResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -120,75 +117,75 @@ class AdminPanelProvider extends PanelProvider
                 ->icon('heroicon-o-rectangle-stack')
                 ->childItems([
                     NavigationItem::make('All ads')
-                        ->url(AdminListingResource::getUrl('index', panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(AdminListingResource::getRouteBaseName('admin') . '.index') && blank(request()->query('tab'))),
+                        ->url('/admin/listings')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && blank(request()->query('tab'))),
                     NavigationItem::make('Cars')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'cars'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(AdminListingResource::getRouteBaseName('admin') . '.index') && request()->query('tab') === 'cars'),
+                        ->url('/admin/listings?tab=cars')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'cars'),
                     NavigationItem::make('Car sales')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'car_sales'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'car_sales'),
+                        ->url('/admin/listings?tab=car_sales')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_sales'),
                     NavigationItem::make('Car hire')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'car_hire'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'car_hire'),
+                        ->url('/admin/listings?tab=car_hire')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'car_hire'),
                     NavigationItem::make('Estate sale')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'homes_for_sale'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'homes_for_sale'),
+                        ->url('/admin/listings?tab=homes_for_sale')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'homes_for_sale'),
                     NavigationItem::make('Estate rent')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'rentals'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'rentals'),
+                        ->url('/admin/listings?tab=rentals')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'rentals'),
                     NavigationItem::make('Jobs')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'jobs'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'jobs'),
+                        ->url('/admin/listings?tab=jobs')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'jobs'),
                     NavigationItem::make('Services')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'services'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'services'),
+                        ->url('/admin/listings?tab=services')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'services'),
                     NavigationItem::make('Pending review')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'pending_review'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'pending_review'),
+                        ->url('/admin/listings?tab=pending_review')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'pending_review'),
                     NavigationItem::make('Featured')
-                        ->url(AdminListingResource::getUrl('index', ['tab' => 'featured'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'featured'),
+                        ->url('/admin/listings?tab=featured')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/listings') && request()->query('tab') === 'featured'),
                 ]),
             NavigationItem::make('Booking Requests')
                 ->group('Catalog')
                 ->icon('heroicon-o-calendar-days')
                 ->childItems([
                     NavigationItem::make('All bookings')
-                        ->url(AdminBookingResource::getUrl('index', panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(AdminBookingResource::getRouteBaseName('admin') . '.index') && blank(request()->query('tab'))),
+                        ->url('/admin/bookings')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && blank(request()->query('tab'))),
                     NavigationItem::make('Pending')
-                        ->url(AdminBookingResource::getUrl('index', ['tab' => 'pending'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'pending'),
+                        ->url('/admin/bookings?tab=pending')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'pending'),
                     NavigationItem::make('Confirmed')
-                        ->url(AdminBookingResource::getUrl('index', ['tab' => 'confirmed'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'confirmed'),
+                        ->url('/admin/bookings?tab=confirmed')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'confirmed'),
                     NavigationItem::make('Upcoming')
-                        ->url(AdminBookingResource::getUrl('index', ['tab' => 'upcoming'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'upcoming'),
+                        ->url('/admin/bookings?tab=upcoming')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'upcoming'),
                     NavigationItem::make('Cars')
-                        ->url(AdminBookingResource::getUrl('index', ['tab' => 'cars'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'cars'),
+                        ->url('/admin/bookings?tab=cars')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'cars'),
                     NavigationItem::make('Estate')
-                        ->url(AdminBookingResource::getUrl('index', ['tab' => 'estate'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'estate'),
+                        ->url('/admin/bookings?tab=estate')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/bookings') && request()->query('tab') === 'estate'),
                 ]),
             NavigationItem::make('Accounts')
                 ->group('Operations')
                 ->icon('heroicon-o-users')
                 ->childItems([
                     NavigationItem::make('All accounts')
-                        ->url(AdminUserResource::getUrl('index', panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->routeIs(AdminUserResource::getRouteBaseName('admin') . '.index') && blank(request()->query('tab'))),
+                        ->url('/admin/users')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && blank(request()->query('tab'))),
                     NavigationItem::make('Sellers')
-                        ->url(AdminUserResource::getUrl('index', ['tab' => 'sellers'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'sellers'),
+                        ->url('/admin/users?tab=sellers')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'sellers'),
                     NavigationItem::make('Buyers')
-                        ->url(AdminUserResource::getUrl('index', ['tab' => 'buyers'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'buyers'),
+                        ->url('/admin/users?tab=buyers')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'buyers'),
                     NavigationItem::make('Admin team')
-                        ->url(AdminUserResource::getUrl('index', ['tab' => 'admins'], panel: 'admin'))
-                        ->isActiveWhen(fn (): bool => request()->query('tab') === 'admins'),
+                        ->url('/admin/users?tab=admins')
+                        ->isActiveWhen(fn (): bool => request()->is('admin/users') && request()->query('tab') === 'admins'),
                 ]),
         ];
     }

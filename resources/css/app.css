@@ -45,9 +45,9 @@
     body {
         font-family: var(--font-sans);
         background:
-            radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.26), transparent 24%),
-            radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.14), transparent 18%),
-            linear-gradient(180deg, #040914 0%, var(--color-night) 18%, #16314f 18%, #16314f 23%, var(--color-paper) 23%, var(--color-paper) 100%);
+            radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.16), transparent 24%),
+            radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.08), transparent 18%),
+            linear-gradient(180deg, #040914 0%, #07111f 24%, #0b1626 66%, #040914 100%);
     }
 
     html[data-theme='light'] body {
@@ -60,9 +60,81 @@
     html[data-theme='dark'] body,
     html.dark body {
         background:
-            radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.26), transparent 24%),
-            radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.14), transparent 18%),
-            linear-gradient(180deg, #040914 0%, var(--color-night) 18%, #16314f 18%, #16314f 23%, var(--color-paper) 23%, var(--color-paper) 100%);
+            radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.16), transparent 24%),
+            radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.08), transparent 18%),
+            linear-gradient(180deg, #040914 0%, #07111f 24%, #0b1626 66%, #040914 100%) !important;
+        color: #eaf2ff;
+    }
+
+    html[data-theme='dark'] .surface-card,
+    html[data-theme='dark'] .surface-card-soft,
+    html[data-theme='dark'] .hero-panel,
+    html[data-theme='dark'] .glass-panel,
+    html[data-theme='dark'] .connectify-public-navbar__shell,
+    html[data-theme='dark'] #site-footer,
+    html[data-theme='dark'] .home-featured-hero,
+    html[data-theme='dark'] #why-connectify .rounded-\[1\.5rem\],
+    html[data-theme='dark'] #featured .surface-card,
+    html[data-theme='dark'] #featured .surface-card-soft,
+    html[data-theme='dark'] #latest .surface-card,
+    html[data-theme='dark'] #latest .surface-card-soft,
+    html[data-theme='dark'] #categories .surface-card {
+        background: linear-gradient(180deg, rgba(6, 12, 22, 0.98), rgba(11, 20, 33, 0.96)) !important;
+        border-color: rgba(96, 165, 250, 0.12) !important;
+        box-shadow: 0 24px 70px -48px rgba(0, 0, 0, 0.84) !important;
+    }
+
+    html[data-theme='dark'] .bg-white,
+    html[data-theme='dark'] .bg-white\/5,
+    html[data-theme='dark'] .bg-white\/6,
+    html[data-theme='dark'] .bg-white\/8,
+    html[data-theme='dark'] .bg-white\/10,
+    html[data-theme='dark'] .bg-white\/20,
+    html[data-theme='dark'] .bg-white\/40,
+    html[data-theme='dark'] .bg-white\/50,
+    html[data-theme='dark'] .bg-white\/70,
+    html[data-theme='dark'] .bg-white\/90,
+    html[data-theme='dark'] .bg-white\/95 {
+        background-color: rgba(6, 12, 22, 0.98) !important;
+    }
+
+    html[data-theme='dark'] .text-\[var\(--color-ink\)\],
+    html[data-theme='dark'] .text-slate-900,
+    html[data-theme='dark'] .text-slate-800,
+    html[data-theme='dark'] .text-slate-700,
+    html[data-theme='dark'] .text-slate-600,
+    html[data-theme='dark'] .text-slate-500 {
+        color: #eaf2ff !important;
+    }
+
+    html[data-theme='dark'] .bg-\[var\(--color-paper-strong\)\],
+    html[data-theme='dark'] .bg-\[var\(--color-paper\)\],
+    html[data-theme='dark'] .bg-white,
+    html[data-theme='dark'] .bg-white\/5,
+    html[data-theme='dark'] .bg-white\/6,
+    html[data-theme='dark'] .bg-white\/8,
+    html[data-theme='dark'] .bg-white\/10,
+    html[data-theme='dark'] .bg-white\/20,
+    html[data-theme='dark'] .bg-white\/40,
+    html[data-theme='dark'] .bg-white\/50,
+    html[data-theme='dark'] .bg-white\/70,
+    html[data-theme='dark'] .bg-white\/90,
+    html[data-theme='dark'] .bg-white\/95 {
+        background-color: rgba(6, 12, 22, 0.98) !important;
+    }
+
+    html[data-theme='dark'] .bg-slate-50,
+    html[data-theme='dark'] .bg-slate-100,
+    html[data-theme='dark'] .bg-slate-200,
+    html[data-theme='dark'] .bg-slate-300,
+    html[data-theme='dark'] .bg-slate-400,
+    html[data-theme='dark'] .bg-slate-500 {
+        background-color: rgba(11, 20, 33, 0.98) !important;
+    }
+
+    html[data-theme='dark'] .text-slate-400,
+    html[data-theme='dark'] .text-slate-300 {
+        color: rgba(234, 242, 255, 0.72) !important;
     }
 
     ::selection {
@@ -131,6 +203,10 @@
 
     .section-heading {
         @apply text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-clay)];
+    }
+
+    html[data-theme='dark'] .section-heading {
+        color: rgba(143, 208, 255, 0.92) !important;
     }
 
     .primary-cta {

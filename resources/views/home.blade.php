@@ -362,7 +362,7 @@
 
             @if ($heroListing)
             <a href="{{ route('listings.show', $heroListing) }}"
-                class="hero-panel mx-auto hidden w-full max-w-5xl overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
+                class="featured-image-card hero-panel mx-auto hidden w-full max-w-5xl overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
                 <div class="relative aspect-[16/8] overflow-hidden rounded-[1.5rem]">
                     <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
                         class="absolute inset-0 h-full w-full object-cover object-center">
@@ -476,7 +476,7 @@
         <div class="mt-6 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
             @if ($heroListing)
             <article
-                class="group self-start rounded-[2rem] bg-[var(--color-ink)] p-3 text-white shadow-[0_30px_80px_-38px_rgba(0,0,0,0.7)] md:p-4">
+                class="featured-image-card group self-start rounded-[2rem] bg-[var(--color-ink)] p-3 text-white shadow-[0_30px_80px_-38px_rgba(0,0,0,0.7)] md:p-4">
                 <div class="relative mx-auto aspect-[16/9] max-w-[58rem] overflow-hidden rounded-[1.5rem]">
                     <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
                         class="absolute inset-0 h-full w-full object-cover object-center">

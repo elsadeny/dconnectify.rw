@@ -180,6 +180,14 @@
         color: #07111f !important;
     }
 
+    html[data-theme='light'] .featured-image-card .text-white,
+    html[data-theme='light'] .featured-image-card .text-white\/75,
+    html[data-theme='light'] .featured-image-card .text-white\/70,
+    html[data-theme='light'] .featured-image-card .text-white\/65,
+    html[data-theme='light'] .featured-image-card .text-white\/60 {
+        color: rgba(255, 255, 255, 0.96) !important;
+    }
+
     html[data-theme='light'] .glass-panel,
     html[data-theme='light'] .hero-panel,
     html[data-theme='light'] .surface-card,

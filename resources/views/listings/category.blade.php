@@ -52,7 +52,7 @@
                     </svg>
                     <span class="text-white">{{ $type->label() }}</span>
                 </nav>
-                <h1 class="mt-8 font-display text-5xl font-extrabold tracking-tight md:text-7xl drop-shadow-lg">{{
+                <h1 class="mt-8 font-display text-4xl font-extrabold tracking-tight md:text-6xl drop-shadow-lg">{{
                     $type->label() }}</h1>
                 <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/80 md:text-xl font-medium">
                     Explore premium {{ strtolower($type->label()) }} listings across East Africa with trusted discovery
@@ -291,7 +291,7 @@
                                         $listing->transaction_type === 'hire' ? 'Employment' :
                                         $listing->transaction_type }}</span>
                                 </div>
-                                <h3 class="mt-3 font-display text-xl font-bold leading-7 text-[var(--color-ink)]">
+                                <h3 class="mt-3 font-display text-lg font-bold leading-6 text-[var(--color-ink)]">
                                     <a href="{{ route('listings.show', $listing) }}"
                                         class="hover:text-[var(--color-ocean)] transition line-clamp-1">{{
                                         $listing->title }}</a>

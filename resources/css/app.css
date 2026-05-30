@@ -28,8 +28,35 @@
         color-scheme: light;
     }
 
+    html.dark {
+        color-scheme: dark;
+    }
+
+    html[data-theme='light'] {
+        color-scheme: light;
+    }
+
+    html[data-theme='dark'] {
+        color-scheme: dark;
+    }
+
     body {
         font-family: var(--font-sans);
+        background:
+            radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.26), transparent 24%),
+            radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.14), transparent 18%),
+            linear-gradient(180deg, #040914 0%, var(--color-night) 18%, #16314f 18%, #16314f 23%, var(--color-paper) 23%, var(--color-paper) 100%);
+    }
+
+    html[data-theme='light'] body {
+        background:
+            radial-gradient(circle at 18% 10%, rgba(29, 143, 255, 0.15), transparent 22%),
+            radial-gradient(circle at 82% 12%, rgba(22, 149, 107, 0.08), transparent 18%),
+            linear-gradient(180deg, #f8fbff 0%, #edf4fb 28%, #f8fbff 100%);
+    }
+
+    html[data-theme='dark'] body,
+    html.dark body {
         background:
             radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.26), transparent 24%),
             radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.14), transparent 18%),
@@ -182,6 +209,10 @@
 
     .footer-title {
         @apply text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)];
+    }
+
+    .theme-pill {
+        @apply rounded-full border border-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70 transition hover:bg-white/8 hover:text-white;
     }
 
     .connectify-public-navbar {

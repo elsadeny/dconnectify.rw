@@ -1,3 +1,63 @@
+const THEME_STORAGE_KEY = 'connectify-theme';
+
+const getResolvedTheme = (themePreference) => {
+	const hour = new Date().getHours();
+	const isNight = hour >= 18 || hour < 7;
+
+	if (themePreference === 'light' || themePreference === 'dark') {
+		return themePreference;
+	}
+
+	if (themePreference === 'system') {
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	}
+
+	return isNight ? 'dark' : 'light';
+};
+
+const applyThemePreference = (themePreference) => {
+	const resolvedTheme = getResolvedTheme(themePreference);
+
+	document.documentElement.dataset.theme = themePreference;
+	document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+	document.documentElement.style.colorScheme = resolvedTheme;
+
+	document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+		const isActive = button.dataset.themeChoice === themePreference;
+
+		button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+		button.classList.toggle('bg-white/15', isActive);
+		button.classList.toggle('text-white', isActive);
+		button.classList.toggle('border-white/30', isActive);
+	});
+};
+
+const initializeThemeControls = () => {
+	const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'auto';
+	applyThemePreference(savedTheme);
+
+	document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+		if (button.dataset.themeInitialized === 'true') {
+			return;
+		}
+
+		button.addEventListener('click', () => {
+			const nextTheme = button.dataset.themeChoice || 'auto';
+			localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+			applyThemePreference(nextTheme);
+		});
+
+		button.dataset.themeInitialized = 'true';
+	});
+
+	const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+	systemThemeQuery.addEventListener?.('change', () => {
+		if ((localStorage.getItem(THEME_STORAGE_KEY) || 'auto') === 'system') {
+			applyThemePreference('system');
+		}
+	});
+};
+
 const initializeCountryCityFilters = () => {
 	document.querySelectorAll('[data-country-city-filter]').forEach((form) => {
 		if (form.dataset.countryCityInitialized === 'true') {
@@ -210,3 +270,4 @@ document.addEventListener('click', async (event) => {
 
 initializeCountryCityFilters();
 initializeAsyncForms();
+initializeThemeControls();

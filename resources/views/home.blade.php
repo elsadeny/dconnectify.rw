@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="p-4">
-                                <h3 class="text-sm font-bold text-white line-clamp-1">{{ $listing->title }}</h3>
+                                <h3 class="text-[0.8rem] font-semibold text-white line-clamp-1">{{ $listing->title }}</h3>
                                 <p class="mt-1 text-[10px] text-white/60 font-medium uppercase tracking-widest">{{
                                     $listing->city }}, {{ $listing->country }}</p>
                             </div>
@@ -370,7 +370,7 @@
                     </div>
                     <div class="absolute inset-x-0 bottom-0 p-5">
                         <span class="gold-chip">Featured</span>
-                        <h3 class="mt-3 font-display text-2xl font-bold text-white">{{ $heroListing->title }}
+                        <h3 class="mt-3 font-display text-xl font-bold text-white">{{ $heroListing->title }}
                         </h3>
                         <div class="mt-3 flex items-end justify-between gap-4">
                             <div>
@@ -564,7 +564,7 @@
                                 <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{{
                                     ucfirst($listing->transaction_type) }}</span>
                             </div>
-                            <h3 class="mt-4 font-display text-2xl font-bold"><a
+                            <h3 class="mt-4 font-display text-xl font-bold"><a
                                     href="{{ route('listings.show', $listing) }}">{{ $listing->title }}</a></h3>
                             <p class="mt-3 text-sm leading-6 text-slate-600">{{
                                 \Illuminate\Support\Str::limit($listing->description, 110) }}</p>
@@ -645,7 +645,7 @@
                 @empty
                 <div class="lg:col-span-3">
                     <div class="surface-card-soft rounded-[1.5rem] border-dashed px-6 py-12 text-center">
-                        <h3 class="font-display text-2xl font-bold">No listings match your filters</h3>
+                        <h3 class="font-display text-xl font-bold">No listings match your filters</h3>
                         <p class="mt-2 text-sm text-slate-600">Try a different country or city, broaden your
                             category, or publish a new listing from the seller panel to start building local
                             inventory.</p>

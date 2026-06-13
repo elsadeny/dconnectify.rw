@@ -23,6 +23,7 @@
 /storage/.npm-cache
 /test_error.txt
 /test_route.php
+/database/prod_db_backup.sql
 _ide_helper.php
 Homestead.json
 Homestead.yaml

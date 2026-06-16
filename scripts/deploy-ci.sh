@@ -20,6 +20,57 @@ run_as_app_user() {
     sudo -u "${APP_USER}" "$@"
 }
 
+run_artisan() {
+    run_as_app_user env \
+        APP_ENV="${APP_ENV:-production}" \
+        APP_DEBUG="${APP_DEBUG:-false}" \
+        APP_URL="${APP_URL:-}" \
+        DB_CONNECTION="$(read_env_var DB_CONNECTION "${APP_DIR}/.env")" \
+        DB_HOST="$(read_env_var DB_HOST "${APP_DIR}/.env")" \
+        DB_PORT="$(read_env_var DB_PORT "${APP_DIR}/.env")" \
+        DB_DATABASE="$(read_env_var DB_DATABASE "${APP_DIR}/.env")" \
+        DB_USERNAME="$(read_env_var DB_USERNAME "${APP_DIR}/.env")" \
+        DB_PASSWORD="$(read_env_var DB_PASSWORD "${APP_DIR}/.env")" \
+        "${PHP_BIN}" artisan "$@"
+}
+
+read_env_var() {
+    local key="$1"
+    local file="$2"
+
+    php -r '
+        $key = $argv[1];
+        $file = $argv[2];
+        if (! is_file($file)) {
+            exit(1);
+        }
+        $value = null;
+        foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+            $line = trim($line);
+            if ($line === "" || str_starts_with($line, "#") || ! str_contains($line, "=")) {
+                continue;
+            }
+            [$envKey, $envValue] = explode("=", $line, 2);
+            if ($envKey !== $key) {
+                continue;
+            }
+            $envValue = trim($envValue);
+            if (
+                strlen($envValue) >= 2 &&
+                (($envValue[0] === "\"" && substr($envValue, -1) === "\"") ||
+                ($envValue[0] === "'"'"'" && substr($envValue, -1) === "'"'"'"))
+            ) {
+                $envValue = substr($envValue, 1, -1);
+            }
+            $value = $envValue;
+            break;
+        }
+        if ($value !== null) {
+            echo $value;
+        }
+    ' "${key}" "${file}"
+}
+
 set_env_var() {
     local key="$1"
     local value="$2"
@@ -79,7 +130,7 @@ has_env_value() {
 
     if ! has_env_value APP_KEY "${APP_DIR}/.env"; then
         echo "Generating missing Laravel app key..."
-        run_as_app_user "${PHP_BIN}" artisan key:generate --force
+        run_artisan key:generate --force
     fi
 
     echo "Installing Node dependencies and building assets..."
@@ -91,13 +142,13 @@ has_env_value() {
     run_as_app_user npm run build --cache "${NPM_CACHE_DIR}"
 
     echo "Running Laravel deployment tasks..."
-    run_as_app_user "${PHP_BIN}" artisan storage:link || true
-    run_as_app_user "${PHP_BIN}" artisan migrate --force
-    run_as_app_user "${PHP_BIN}" artisan optimize:clear
-    run_as_app_user "${PHP_BIN}" artisan config:cache
-    run_as_app_user "${PHP_BIN}" artisan route:cache
-    run_as_app_user "${PHP_BIN}" artisan view:cache
-    run_as_app_user "${PHP_BIN}" artisan event:cache
+    run_artisan storage:link || true
+    run_artisan migrate --force
+    run_artisan optimize:clear
+    run_artisan config:cache
+    run_artisan route:cache
+    run_artisan view:cache
+    run_artisan event:cache
 
     chown -R "${APP_USER}:${APP_USER}" "${APP_DIR}"
     chmod -R ug+rwx "${APP_DIR}/storage" "${APP_DIR}/bootstrap/cache"

@@ -168,6 +168,12 @@
             box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.4);
         }
 
+        html[data-theme='dark'] .secondary-cta {
+            color: #eaf2ff !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)) !important;
+        }
+
         .gold-chip {
             display: inline-flex;
             border-radius: 9999px;
@@ -187,6 +193,23 @@
             padding: 1.25rem;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
             backdrop-filter: blur(16px);
+        }
+
+        html[data-theme='dark'] .connectify-input,
+        html[data-theme='dark'] input.connectify-input,
+        html[data-theme='dark'] select.connectify-input,
+        html[data-theme='dark'] textarea.connectify-input {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+            color: #eaf2ff !important;
+            caret-color: #eaf2ff !important;
+        }
+
+        html[data-theme='dark'] .connectify-input::placeholder,
+        html[data-theme='dark'] input::placeholder,
+        html[data-theme='dark'] textarea::placeholder {
+            color: rgba(234, 242, 255, 0.7) !important;
+            opacity: 1;
         }
 
         .connectify-input {

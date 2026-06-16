@@ -138,6 +138,29 @@
         color: rgba(234, 242, 255, 0.72) !important;
     }
 
+    html[data-theme='dark'] .secondary-cta {
+        color: #eaf2ff !important;
+        border-color: rgba(255, 255, 255, 0.14) !important;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)) !important;
+    }
+
+    html[data-theme='dark'] .connectify-input,
+    html[data-theme='dark'] input.connectify-input,
+    html[data-theme='dark'] select.connectify-input,
+    html[data-theme='dark'] textarea.connectify-input {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        color: #eaf2ff !important;
+        caret-color: #eaf2ff !important;
+    }
+
+    html[data-theme='dark'] .connectify-input::placeholder,
+    html[data-theme='dark'] input::placeholder,
+    html[data-theme='dark'] textarea::placeholder {
+        color: rgba(234, 242, 255, 0.7) !important;
+        opacity: 1;
+    }
+
     html[data-theme='light'] .premium-hero-bg {
         background:
             radial-gradient(circle at 18% 10%, rgba(29, 143, 255, 0.15), transparent 22%),

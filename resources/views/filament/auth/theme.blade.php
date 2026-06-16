@@ -75,9 +75,17 @@
 
     .fi-simple-main [class*="fi-input-wrp-label"],
     .fi-simple-main label,
-    .fi-simple-main .fi-checkbox-label {
+    .fi-simple-main .fi-checkbox-label,
+    .fi-simple-main [class*="fi-fo-field-wrp-label"],
+    .fi-simple-main [class*="fi-fo-field-wrp-label"] *,
+    .fi-simple-main label *,
+    .fi-simple-main legend {
         color: #d3e3f5 !important;
         font-weight: 600;
+    }
+
+    .fi-simple-main [class*="fi-fo-field-wrp-required-mark"] {
+        color: #ff6b6b !important;
     }
 
     .fi-simple-main [class*="fi-fo-field-wrp-hint"],

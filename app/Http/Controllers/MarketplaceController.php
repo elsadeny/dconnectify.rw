@@ -67,6 +67,12 @@ class MarketplaceController extends Controller
             'featured' => $featured,
             'countries' => collect($countryOptions),
             'cities' => collect($cityOptions),
+            'categoryCounts' => Listing::query()
+                ->published()
+                ->selectRaw('type, count(*) as aggregate')
+                ->groupBy('type')
+                ->pluck('aggregate', 'type')
+                ->all(),
             'countryCityMap' => Listing::query()
                 ->published()
                 ->whereNotNull('country')

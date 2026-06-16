@@ -162,7 +162,7 @@
             padding: 0.75rem 1.25rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: white;
+            color: var(--color-ink);
             border: 1px solid rgba(255, 255, 255, 0.12);
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
             box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.4);

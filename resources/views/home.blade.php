@@ -415,7 +415,7 @@
                     } }}</p>
                 <div class="mt-4 flex items-center justify-between sm:mt-6">
                     <span class="inline-flex text-sm font-semibold text-[var(--color-ocean)] dark:text-[#7eb7ff]">Browse now</span>
-                    <span class="text-lg text-[var(--color-clay)] dark:text-slate-400">01</span>
+                    <span class="text-lg text-[var(--color-clay)] dark:text-slate-400">{{ number_format($categoryCounts[$type->value] ?? 0) }}</span>
                 </div>
             </a>
             @endforeach
@@ -559,7 +559,7 @@
                         <div class="p-6">
                             <div class="flex items-center justify-between gap-4">
                                 <span
-                                    class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)] dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">{{
+                                    class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)] dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[var(--color-sand)]">{{
                                     $listing->type->label() }}</span>
                                 <span class="text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{{
                                     ucfirst($listing->transaction_type) }}</span>
@@ -623,7 +623,7 @@
                         class="h-48 w-full rounded-[1.25rem] object-cover">
                     <div class="mt-4 flex items-center justify-between gap-3">
                         <span
-                            class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)] dark:text-slate-300">{{
+                            class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)] dark:text-[var(--color-clay)]">{{
                             $listing->type->label() }}</span>
                         <span class="text-xs text-slate-500 dark:text-slate-300">{{ $listing->area ?? $listing->city }}</span>
                     </div>

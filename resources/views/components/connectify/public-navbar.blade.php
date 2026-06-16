@@ -23,7 +23,7 @@
                 </div>
                 <div class="connectify-public-navbar__copy">
                     <p class="connectify-public-navbar__name">connectify</p>
-                    <p class="connectify-public-navbar__tag connectify-public-navbar__tag--desktop italic">Premium marketplace across East Africa</p>
+                    <p class="connectify-public-navbar__tag connectify-public-navbar__tag--desktop">Premium marketplace across East Africa</p>
                     <p class="connectify-public-navbar__tag connectify-public-navbar__tag--mobile">East Africa Marketplace</p>
                 </div>
             </a>

@@ -6,9 +6,8 @@ use App\Filament\Resources\ListingResource\Pages\CreateListing;
 use App\Filament\Resources\ListingResource\Pages\EditListing;
 use App\Filament\Resources\ListingResource\Pages\ListListings;
 use App\Models\Listing;
+use App\Support\ListingImageFields;
 use App\Support\MarketplaceOptions;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
@@ -93,31 +92,8 @@ class ListingResource extends Resource
                 Textarea::make('description')->rows(6)->required()->columnSpanFull(),
                 TextInput::make('contact_name'),
                 TextInput::make('whatsapp_number'),
-                TextInput::make('cover_image')->url()->columnSpanFull()->live(onBlur: true),
-                \Filament\Forms\Components\Placeholder::make('cover_image_preview')
-                    ->label('Cover Image Preview')
-                    ->content(fn ($get) => $get('cover_image') ? new \Illuminate\Support\HtmlString('<img src="' . htmlspecialchars($get('cover_image')) . '" style="max-height: 150px; border-radius: 8px; object-fit: contain;" />') : null)
-                    ->visible(fn ($get) => filled($get('cover_image')))
-                    ->columnSpanFull(),
-                TagsInput::make('gallery')->separator(',')->columnSpanFull()->live(onBlur: true),
-                \Filament\Forms\Components\Placeholder::make('gallery_preview')
-                    ->label('Gallery Preview')
-                    ->content(function ($get) {
-                        $gallery = $get('gallery') ?? [];
-                        if (is_string($gallery)) {
-                            $gallery = explode(',', $gallery);
-                        }
-                        $html = '<div style="display: flex; gap: 10px; flex-wrap: wrap;">';
-                        foreach ($gallery as $url) {
-                            if (filled($url)) {
-                                $html .= '<img src="' . htmlspecialchars(trim($url)) . '" style="max-height: 100px; border-radius: 8px; object-fit: contain;" />';
-                            }
-                        }
-                        $html .= '</div>';
-                        return new \Illuminate\Support\HtmlString($html);
-                    })
-                    ->visible(fn ($get) => filled($get('gallery')))
-                    ->columnSpanFull(),
+                ListingImageFields::coverImage(),
+                ListingImageFields::gallery(),
                 TagsInput::make('highlights')->separator(',')->columnSpanFull(),
                 KeyValue::make('details')->columnSpanFull(),
                 DateTimePicker::make('published_at'),

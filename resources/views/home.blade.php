@@ -199,17 +199,17 @@
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">
                         <div class="dark-stat">
                             <p class="text-3xl font-extrabold text-white">{{ $stats['liveListings'] }}</p>
-                            <p class="mt-2 text-sm text-white/65">Live listings across cars, jobs, property and
+                            <p class="mt-2 text-sm italic text-white/65">Live listings across cars, jobs, property and
                                 services.
                             </p>
                         </div>
                         <div class="dark-stat">
                             <p class="text-3xl font-extrabold text-white">{{ $stats['verifiedSellers'] }}</p>
-                            <p class="mt-2 text-sm text-white/65">Verified sellers ready to close on WhatsApp.</p>
+                            <p class="mt-2 text-sm italic text-white/65">Verified sellers ready to close on WhatsApp.</p>
                         </div>
                         <div class="dark-stat">
                             <p class="text-3xl font-extrabold text-white">{{ $stats['countries'] }}</p>
-                            <p class="mt-2 text-sm text-white/65">East African markets covered from launch.</p>
+                            <p class="mt-2 text-sm italic text-white/65">East African markets covered from launch.</p>
                         </div>
                     </div>
 

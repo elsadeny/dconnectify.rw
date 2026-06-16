@@ -55,8 +55,11 @@ class MarketplaceController extends Controller
             ->published()
             ->where('is_featured', true)
             ->latest('published_at')
+            ->take(12)
+            ->get()
+            ->shuffle()
             ->take(3)
-            ->get();
+            ->values();
 
         return view('home', [
             'filters' => $filters,

@@ -39,6 +39,9 @@ return [
         'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
         'api_key' => env('CLOUDINARY_API_KEY'),
         'api_secret' => env('CLOUDINARY_API_SECRET'),
+        'root' => env('CLOUDINARY_FOLDER_ROOT'),
+        'test_root' => env('CLOUDINARY_FOLDER_TEST', 'connectify_test'),
+        'production_root' => env('CLOUDINARY_FOLDER_PROD', 'connectify_prod'),
     ],
 
 ];

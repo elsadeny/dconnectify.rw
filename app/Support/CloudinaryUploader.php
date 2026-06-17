@@ -22,7 +22,7 @@ class CloudinaryUploader
 
         $timestamp = time();
         $params = [
-            'folder' => trim($folder, '/'),
+            'folder' => $this->qualifyFolder($folder),
             'timestamp' => $timestamp,
         ];
 
@@ -114,6 +114,21 @@ class CloudinaryUploader
         }
 
         return $secureUrl;
+    }
+
+    protected function qualifyFolder(string $folder): string
+    {
+        $root = (string) config('services.cloudinary.root');
+
+        if (blank($root)) {
+            $root = app()->environment('production')
+                ? (string) config('services.cloudinary.production_root')
+                : (string) config('services.cloudinary.test_root');
+        }
+
+        return collect([$root, trim($folder, '/')])
+            ->filter(fn (?string $segment): bool => is_string($segment) && $segment !== '')
+            ->implode('/');
     }
 
     protected function extractPublicId(string $url, string $cloudName): ?string

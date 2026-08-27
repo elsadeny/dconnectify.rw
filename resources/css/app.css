@@ -722,4 +722,64 @@
             display: none;
         }
     }
+
+    @keyframes listing-gallery-progress {
+        from {
+            transform: scaleX(0);
+        }
+
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    .listing-gallery-progress {
+        transform: scaleX(0);
+        transform-origin: left center;
+    }
+
+    .listing-gallery-progress.is-running {
+        animation: listing-gallery-progress 10s linear forwards;
+    }
+
+    .listing-gallery-progress.is-paused {
+        animation-play-state: paused;
+    }
+
+    .listing-gallery-progress-track {
+        opacity: 1;
+        transition: opacity 0.35s ease;
+    }
+
+    .listing-gallery-progress-track.is-stopped {
+        opacity: 0;
+    }
+
+    .listing-gallery-zoom {
+        position: absolute;
+        z-index: 2;
+        width: 10.5rem;
+        height: 10.5rem;
+        border-radius: 1.25rem;
+        border: 2px solid rgba(255, 255, 255, 0.88);
+        box-shadow:
+            0 16px 36px -16px rgba(8, 20, 33, 0.55),
+            0 0 0 1px rgba(8, 20, 33, 0.12);
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        background-repeat: no-repeat;
+        transition: opacity 0.12s ease;
+    }
+
+    .listing-gallery-zoom.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .listing-gallery-zoom {
+            display: none;
+        }
+    }
 }

@@ -268,6 +268,199 @@ document.addEventListener('click', async (event) => {
 	});
 });
 
+const LISTING_SLIDESHOW_MS = 10000;
+const LISTING_ZOOM_SIZE = 168;
+const LISTING_ZOOM_LEVEL = 2.35;
+
+const getObjectCoverMetrics = (img) => {
+	const rect = img.getBoundingClientRect();
+	const displayW = rect.width;
+	const displayH = rect.height;
+	const naturalW = img.naturalWidth || displayW;
+	const naturalH = img.naturalHeight || displayH;
+	const scale = Math.max(displayW / naturalW, displayH / naturalH);
+	const renderedW = naturalW * scale;
+	const renderedH = naturalH * scale;
+
+	return {
+		rect,
+		displayW,
+		displayH,
+		renderedW,
+		renderedH,
+		offsetX: (renderedW - displayW) / 2,
+		offsetY: (renderedH - displayH) / 2,
+	};
+};
+
+const canHoverZoom = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+const initializeListingGallery = () => {
+	document.querySelectorAll('[data-listing-gallery]').forEach((gallery) => {
+		if (gallery.dataset.galleryInitialized === 'true') {
+			return;
+		}
+
+		const preview = gallery.querySelector('[data-listing-preview]');
+		const previewWrap = gallery.querySelector('[data-listing-preview-wrap]');
+		const zoom = gallery.querySelector('[data-listing-zoom]');
+		const thumbs = Array.from(gallery.querySelectorAll('[data-listing-thumb]'));
+		const progress = gallery.querySelector('[data-listing-progress]');
+		const progressTrack = gallery.querySelector('[data-listing-progress-track]');
+
+		if (!preview) {
+			return;
+		}
+
+		const sources = thumbs.map((thumb) => thumb.dataset.listingThumb).filter(Boolean);
+		let currentIndex = Math.max(0, sources.indexOf(preview.getAttribute('src')));
+		let slideshowActive = sources.length > 1;
+		let slideshowPaused = false;
+		let remainingMs = LISTING_SLIDESHOW_MS;
+		let slideStartedAt = Date.now();
+		let timer = null;
+
+		const setActiveImage = (src) => {
+			preview.src = src;
+			currentIndex = Math.max(0, sources.indexOf(src));
+
+			thumbs.forEach((thumb) => {
+				const isActive = thumb.dataset.listingThumb === src;
+
+				thumb.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+				thumb.classList.toggle('ring-[var(--color-ocean)]', isActive);
+				thumb.classList.toggle('ring-transparent', !isActive);
+			});
+		};
+
+		const clearTimer = () => {
+			if (timer) {
+				clearTimeout(timer);
+				timer = null;
+			}
+		};
+
+		const restartProgress = () => {
+			if (!progress || !slideshowActive) {
+				return;
+			}
+
+			progress.classList.remove('is-running', 'is-paused');
+			void progress.offsetWidth;
+			progress.classList.add('is-running');
+		};
+
+		const advanceSlide = () => {
+			if (!slideshowActive || slideshowPaused) {
+				return;
+			}
+
+			const nextIndex = (currentIndex + 1) % sources.length;
+			setActiveImage(sources[nextIndex]);
+			remainingMs = LISTING_SLIDESHOW_MS;
+			slideStartedAt = Date.now();
+			restartProgress();
+			scheduleAdvance(LISTING_SLIDESHOW_MS);
+		};
+
+		const scheduleAdvance = (delay) => {
+			clearTimer();
+			timer = setTimeout(advanceSlide, delay);
+		};
+
+		const pauseSlideshow = () => {
+			if (!slideshowActive || slideshowPaused) {
+				return;
+			}
+
+			slideshowPaused = true;
+			remainingMs = Math.max(0, remainingMs - (Date.now() - slideStartedAt));
+			clearTimer();
+			progress?.classList.add('is-paused');
+		};
+
+		const resumeSlideshow = () => {
+			if (!slideshowActive || !slideshowPaused) {
+				return;
+			}
+
+			slideshowPaused = false;
+			slideStartedAt = Date.now();
+			progress?.classList.remove('is-paused');
+			scheduleAdvance(remainingMs);
+		};
+
+		const stopSlideshow = () => {
+			slideshowActive = false;
+			slideshowPaused = false;
+			clearTimer();
+			progress?.classList.remove('is-running', 'is-paused');
+			progressTrack?.classList.add('is-stopped');
+		};
+
+		const hideZoom = () => {
+			if (!zoom) {
+				return;
+			}
+
+			zoom.hidden = true;
+			zoom.classList.remove('is-visible');
+		};
+
+		const updateZoom = (event) => {
+			if (!zoom || !canHoverZoom()) {
+				hideZoom();
+				return;
+			}
+
+			const metrics = getObjectCoverMetrics(preview);
+			const x = Math.min(Math.max(event.clientX - metrics.rect.left, 0), metrics.displayW);
+			const y = Math.min(Math.max(event.clientY - metrics.rect.top, 0), metrics.displayH);
+			const lensX = Math.min(Math.max(x - LISTING_ZOOM_SIZE / 2, 8), Math.max(8, metrics.displayW - LISTING_ZOOM_SIZE - 8));
+			const lensY = Math.min(Math.max(y - LISTING_ZOOM_SIZE / 2, 8), Math.max(8, metrics.displayH - LISTING_ZOOM_SIZE - 8));
+			const backgroundX = (x + metrics.offsetX) * LISTING_ZOOM_LEVEL;
+			const backgroundY = (y + metrics.offsetY) * LISTING_ZOOM_LEVEL;
+
+			zoom.hidden = false;
+			zoom.classList.add('is-visible');
+			zoom.style.left = `${lensX}px`;
+			zoom.style.top = `${lensY}px`;
+			zoom.style.backgroundImage = `url("${preview.currentSrc}")`;
+			zoom.style.backgroundSize = `${metrics.renderedW * LISTING_ZOOM_LEVEL}px ${metrics.renderedH * LISTING_ZOOM_LEVEL}px`;
+			zoom.style.backgroundPosition = `${x - lensX - backgroundX}px ${y - lensY - backgroundY}px`;
+		};
+
+		if (previewWrap) {
+			previewWrap.addEventListener('mouseenter', (event) => {
+				pauseSlideshow();
+				updateZoom(event);
+			});
+			previewWrap.addEventListener('mousemove', updateZoom);
+			previewWrap.addEventListener('mouseleave', () => {
+				hideZoom();
+				resumeSlideshow();
+			});
+		}
+
+		thumbs.forEach((thumb) => {
+			thumb.addEventListener('click', () => {
+				stopSlideshow();
+				setActiveImage(thumb.dataset.listingThumb);
+			});
+		});
+
+		if (slideshowActive) {
+			slideStartedAt = Date.now();
+			remainingMs = LISTING_SLIDESHOW_MS;
+			restartProgress();
+			scheduleAdvance(LISTING_SLIDESHOW_MS);
+		}
+
+		gallery.dataset.galleryInitialized = 'true';
+	});
+};
+
 initializeCountryCityFilters();
 initializeAsyncForms();
 initializeThemeControls();
+initializeListingGallery();

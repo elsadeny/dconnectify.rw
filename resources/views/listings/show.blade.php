@@ -23,14 +23,38 @@
 
         <div class="mt-6 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
             <section class="space-y-6">
-                <div class="overflow-hidden rounded-[2rem] bg-white shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)]">
-                    <img src="{{ $listing->cover_image }}" alt="{{ $listing->title }}"
-                        class="h-[22rem] w-full object-cover sm:h-[30rem]">
-                    @if (filled($listing->gallery))
+                @php
+                    $galleryImages = collect([$listing->cover_image])
+                        ->merge($listing->gallery ?? [])
+                        ->filter()
+                        ->unique()
+                        ->values();
+                @endphp
+                <div class="overflow-hidden rounded-[2rem] bg-white shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)]"
+                    data-listing-gallery>
+                    <div class="relative overflow-hidden" data-listing-preview-wrap>
+                        <img src="{{ $galleryImages->first() }}" alt="{{ $listing->title }}"
+                            data-listing-preview
+                            class="h-[22rem] w-full cursor-zoom-in object-cover sm:h-[30rem]">
+                        <div data-listing-zoom class="listing-gallery-zoom" hidden></div>
+                        @if ($galleryImages->count() > 1)
+                        <div data-listing-progress-track
+                            class="listing-gallery-progress-track pointer-events-none absolute inset-x-0 bottom-0 h-[3px] bg-white/20">
+                            <div data-listing-progress
+                                class="listing-gallery-progress h-full w-full origin-left bg-white/80"></div>
+                        </div>
+                        @endif
+                    </div>
+                    @if ($galleryImages->count() > 1)
                     <div class="grid grid-cols-2 gap-3 p-4 md:grid-cols-3">
-                        @foreach ($listing->gallery as $image)
-                        <img src="{{ $image }}" alt="{{ $listing->title }} gallery image"
-                            class="h-32 w-full rounded-2xl object-cover">
+                        @foreach ($galleryImages as $index => $image)
+                        <button type="button" data-listing-thumb="{{ $image }}"
+                            aria-label="Show image {{ $index + 1 }} of {{ $listing->title }}"
+                            aria-pressed="{{ $index === 0 ? 'true' : 'false' }}"
+                            class="overflow-hidden rounded-2xl ring-2 ring-transparent transition hover:opacity-90 focus:outline-none focus-visible:ring-[var(--color-ocean)] {{ $index === 0 ? 'ring-[var(--color-ocean)]' : '' }}">
+                            <img src="{{ $image }}" alt="{{ $listing->title }} gallery image {{ $index + 1 }}"
+                                class="h-32 w-full object-cover">
+                        </button>
                         @endforeach
                     </div>
                     @endif

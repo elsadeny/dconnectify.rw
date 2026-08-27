@@ -77,7 +77,13 @@ class ListingResource extends Resource
                 ->options(MarketplaceOptions::countryOptions())
                 ->searchable()
                 ->live()
-                ->afterStateUpdated(fn($set) => $set('city', null))
+                ->afterStateUpdated(function ($state, $old, $set): void {
+                    if ($state === $old) {
+                        return;
+                    }
+
+                    $set('city', null);
+                })
                 ->required(),
                 Select::make('city')
                 ->options(fn($get): array => MarketplaceOptions::cityOptions($get('country')))
@@ -94,7 +100,7 @@ class ListingResource extends Resource
                 TextInput::make('whatsapp_number'),
                 ListingImageFields::coverImage(),
                 ListingImageFields::gallery(),
-                TagsInput::make('highlights')->separator(',')->columnSpanFull(),
+                TagsInput::make('highlights')->columnSpanFull(),
                 KeyValue::make('details')->columnSpanFull(),
                 DateTimePicker::make('published_at'),
                 Toggle::make('is_featured'),

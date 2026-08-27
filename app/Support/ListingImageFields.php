@@ -17,6 +17,7 @@ class ListingImageFields
             ->directory('listings/cover-images')
             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
             ->maxSize(10240)
+            ->fetchFileInformation(false)
             ->saveUploadedFileUsing(fn (BaseFileUpload $component, TemporaryUploadedFile $file): string => app(CloudinaryUploader::class)->upload($file, (string) $component->getDirectory()))
             ->getUploadedFileUsing(fn (string $file): array => app(CloudinaryUploader::class)->getUploadedFile($file))
             ->deleteUploadedFileUsing(function (string $file): void {
@@ -38,6 +39,7 @@ class ListingImageFields
             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
             ->maxFiles(12)
             ->maxSize(10240)
+            ->fetchFileInformation(false)
             ->saveUploadedFileUsing(fn (BaseFileUpload $component, TemporaryUploadedFile $file): string => app(CloudinaryUploader::class)->upload($file, (string) $component->getDirectory()))
             ->getUploadedFileUsing(fn (string $file): array => app(CloudinaryUploader::class)->getUploadedFile($file))
             ->deleteUploadedFileUsing(function (string $file): void {

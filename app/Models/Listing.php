@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Casts\JsonList;
+use App\Casts\JsonMap;
 use App\Enums\ListingStatus;
 use App\Enums\ListingType;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -50,9 +52,9 @@ class Listing extends Model
         return [
             'type' => ListingType::class,
             'status' => ListingStatus::class,
-            'gallery' => 'array',
-            'details' => 'array',
-            'highlights' => 'array',
+            'gallery' => JsonList::class,
+            'details' => JsonMap::class,
+            'highlights' => JsonList::class,
             'is_featured' => 'boolean',
             'is_verified' => 'boolean',
             'published_at' => 'datetime',

@@ -25,10 +25,12 @@
             <section class="space-y-6">
                 @php
                     $galleryImages = collect([$listing->cover_image])
-                        ->merge($listing->gallery ?? [])
+                        ->merge(\App\Casts\JsonList::decode($listing->gallery))
                         ->filter()
                         ->unique()
                         ->values();
+                    $listingDetails = \App\Casts\JsonMap::decode($listing->details);
+                    $listingHighlights = \App\Casts\JsonList::decode($listing->highlights);
                 @endphp
                 <div class="overflow-hidden rounded-[2rem] bg-white shadow-[0_25px_70px_-35px_rgba(8,20,33,0.6)]"
                     data-listing-gallery>
@@ -97,7 +99,7 @@
                     </div>
 
                     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        @foreach (($listing->details ?? []) as $label => $value)
+                        @foreach ($listingDetails as $label => $value)
                         <div class="rounded-2xl bg-[var(--color-mist)] p-4">
                             <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)]">{{
                                 str_replace('_', ' ', $label) }}</p>
@@ -106,11 +108,11 @@
                         @endforeach
                     </div>
 
-                    @if (filled($listing->highlights))
+                    @if (filled($listingHighlights))
                     <div class="mt-8">
                         <h2 class="font-display text-2xl font-bold">Highlights</h2>
                         <div class="mt-4 flex flex-wrap gap-3">
-                            @foreach ($listing->highlights as $highlight)
+                            @foreach ($listingHighlights as $highlight)
                             <span
                                 class="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700">{{
                                 $highlight }}</span>

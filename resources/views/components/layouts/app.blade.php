@@ -357,22 +357,26 @@
                 <div
                     class="flex flex-col gap-3 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
                     <p>&copy; {{ now()->year }} connectify marketplace. All rights reserved.</p>
-                    <div class="flex flex-wrap items-center gap-4">
-                        <a href="/seller" class="footer-link">Seller Sign In</a>
-                        <a href="/seller/register" class="footer-link">Seller Sign Up</a>
-                        <x-social-icon href="https://www.instagram.com/connectify.rw/" label="Instagram" icon="instagram" />
-                        <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
-                            rel="noreferrer" class="footer-link">Contact</a>
-                        <div class="flex flex-wrap items-center gap-2">
+                    <div class="flex items-center gap-2">
                             <button type="button" data-theme-choice="auto"
                                 class="theme-pill">Auto</button>
                             <button type="button" data-theme-choice="system"
                                 class="theme-pill">System</button>
-                            <button type="button" data-theme-choice="light"
-                                class="theme-pill">Light</button>
-                            <button type="button" data-theme-choice="dark"
-                                class="theme-pill">Dark</button>
-                        </div>
+                            <button type="button" data-theme-choice="light" class="theme-pill theme-pill--icon"
+                                aria-label="Use light theme" title="Light theme">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    class="h-4 w-4" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="3.5" />
+                                    <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+                                </svg>
+                            </button>
+                            <button type="button" data-theme-choice="dark" class="theme-pill theme-pill--icon"
+                                aria-label="Use dark theme" title="Dark theme">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    class="h-4 w-4" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
+                                </svg>
+                            </button>
                     </div>
                 </div>
             </div>

@@ -238,9 +238,8 @@
                     </div>
 
                     <form method="GET" action="{{ route('home') }}"
-                        class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-country-city-filter
-                        data-country-city-map='@json($countryCityMap)' data-async-form data-async-target="#home-content"
-                        data-async-push-state="true">
+                        class="hero-panel space-y-5 rounded-[2rem] p-5 text-white md:p-6" data-async-form
+                        data-async-target="#home-content" data-async-push-state="true">
                         <div class="border-b border-white/8 pb-4">
                             <p class="section-heading">Explore connectify</p>
                             <h2 class="mt-2 font-display text-2xl font-bold text-white">Find your next move</h2>
@@ -248,7 +247,7 @@
                                 conversations.</p>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="grid grid-cols-[minmax(0,2fr)_minmax(6.5rem,0.7fr)_minmax(6.5rem,0.7fr)] gap-3">
                             <label class="space-y-2">
                                 <span
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Keyword
@@ -257,9 +256,6 @@
                                     placeholder="Search cars, homes, jobs..."
                                     class="connectify-input">
                             </label>
-                        </div>
-
-                        <div class="mb-4 grid gap-3 sm:grid-cols-2">
                             <label class="space-y-2">
                                 <span
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Min
@@ -273,44 +269,6 @@
                                     Price</span>
                                 <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
                                     placeholder="Any" class="connectify-input">
-                            </label>
-                        </div>
-
-                        <div class="grid gap-3 sm:grid-cols-2">
-                            <label class="space-y-2">
-                                <span
-                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Country</span>
-                                <select name="country" class="connectify-input text-slate-800" data-country-select>
-                                    <option value="">All countries</option>
-                                    @foreach ($countries as $country)
-                                    <option value="{{ $country }}" {{ ($filters['country'] ?? '' )===$country
-                                        ? 'selected' : '' }}>{{ $country }}</option>
-                                    @endforeach
-                                </select>
-                            </label>
-                            <label class="space-y-2 sm:col-span-2">
-                                <span
-                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">City</span>
-                                <select name="city" class="connectify-input text-slate-800" data-city-select
-                                    @disabled(blank($filters['country'] ?? '' ))>
-                                    <option value="">{{ ($filters['country'] ?? '') ? 'All cities' : 'Choose country
-                                        first' }}</option>
-                                    @foreach ($cities as $city)
-                                    <option value="{{ $city }}" {{ ($filters['city'] ?? '' )===$city ? 'selected' : ''
-                                        }}>{{ $city }}</option>
-                                    @endforeach
-                                </select>
-                            </label>
-                            <label class="space-y-2 sm:col-span-2">
-                                <span
-                                    class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Category</span>
-                                <select name="type" class="connectify-input text-slate-800">
-                                    <option value="">All categories</option>
-                                    @foreach ($types as $type)
-                                    <option value="{{ $type->value }}" {{ ($filters['type'] ?? '' )===$type->value ?
-                                        'selected' : '' }}>{{ $type->label() }}</option>
-                                    @endforeach
-                                </select>
                             </label>
                         </div>
 

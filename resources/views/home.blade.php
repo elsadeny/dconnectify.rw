@@ -333,7 +333,7 @@
                             class="absolute inset-0 h-full w-full object-cover object-center">
                         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.84))]">
                         </div>
-                        <span
+                        <span data-featured-label
                             class="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">Featured
                             car</span>
                         <div data-featured-overlay class="absolute inset-x-0 bottom-0 p-5">

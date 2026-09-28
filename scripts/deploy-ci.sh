@@ -111,6 +111,11 @@ has_env_value() {
         cp "${APP_DIR}/.env.example" "${APP_DIR}/.env"
     fi
 
+    # Laravel selects .env.production when APP_ENV=production. Keep it tied to
+    # the protected canonical environment file so stale duplicate values cannot
+    # replace live database, mail, or storage credentials during cache builds.
+    ln -sfn .env "${APP_DIR}/.env.production"
+
     set_env_var APP_ENV production "${APP_DIR}/.env"
     set_env_var APP_DEBUG false "${APP_DIR}/.env"
     set_env_var DB_CONNECTION mysql "${APP_DIR}/.env"

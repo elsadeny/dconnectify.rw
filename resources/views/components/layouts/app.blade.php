@@ -425,8 +425,11 @@
         </div>
 
         <nav
+            aria-label="Mobile navigation"
+            data-mobile-navigation
             class="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[rgba(7,17,31,0.82)] px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl md:hidden">
             <div
+                data-mobile-navigation-shell
                 class="mx-auto grid max-w-lg grid-cols-5 items-end gap-2 rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] px-2 py-2 shadow-[0_-18px_50px_-26px_rgba(0,0,0,0.7)]">
                 <a href="{{ route('home') }}"
                     class="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-medium text-white/78 transition hover:bg-white/6 hover:text-white">
@@ -445,7 +448,7 @@
                     <span>Search</span>
                 </a>
                 <a href="/seller/login" class="-mt-7 flex flex-col items-center gap-1">
-                    <span
+                    <span data-mobile-navigation-post
                         class="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-[var(--color-ink)] shadow-[0_22px_45px_-18px_rgba(29,143,255,0.8)] ring-4 ring-[rgba(7,17,31,0.88)] transition hover:-translate-y-0.5">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-6 w-6">
                             <path stroke-linecap="round" d="M12 5v14M5 12h14" />

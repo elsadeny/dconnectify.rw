@@ -1,5 +1,5 @@
 <x-layouts.app :title="$type->label() . ' | Connectify Marketplace'">
-    <div class="relative min-h-screen bg-[var(--color-paper-strong)] dark:bg-black">
+    <div class="category-page relative min-h-screen bg-[var(--color-paper-strong)] dark:bg-black">
         <!-- Original Navbar -->
         <header class="fixed inset-x-0 top-0 z-50 px-4 pt-6 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
@@ -32,7 +32,7 @@
         </header>
 
         <!-- Immersive Hero -->
-        <section
+        <section data-category-hero
             class="relative overflow-hidden bg-[#040914] bg-gradient-to-b from-[#040914] via-[var(--color-night)] to-[var(--color-deep)] pb-40 pt-32 text-white md:pb-48 md:pt-44 dark:bg-black">
             <!-- Decorative orbs for premium feel -->
             <div

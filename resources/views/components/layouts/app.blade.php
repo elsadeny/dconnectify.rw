@@ -256,32 +256,24 @@
         <footer id="site-footer"
             class="mt-12 hidden border-t border-white/8 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(4,9,20,1))] md:block">
             <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <div
-                    class="mb-8 grid gap-4 rounded-[2rem] border border-white/8 bg-white/5 p-5 md:grid-cols-[1.25fr_0.75fr_0.75fr] md:items-center md:p-6">
-                    <div>
-                        <p class="footer-title">Support channels</p>
-                        <h2 class="mt-3 font-display text-2xl font-bold text-white">Support buyers, renters, job seekers
-                            and sellers from one marketplace.</h2>
-                        <p class="mt-2 max-w-xl text-sm leading-6 text-white/62">Keep trusted support and onboarding
-                            channels visible so people can move from browsing to conversation fast across every
-                            category.</p>
+                <div class="mb-8 rounded-[2rem] border border-white/8 bg-white/5 p-5 md:p-6">
+                    <div class="mb-5">
+                        <p class="footer-title">Contact us</p>
+                        <h2 class="mt-2 font-display text-2xl font-bold text-white">Choose the right contact for your question.</h2>
                     </div>
-                    <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
-                        rel="noreferrer"
-                        class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4 transition hover:-translate-y-0.5 hover:bg-white/8">
-                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sand)]">
-                            Marketplace support</p>
-                        <p class="mt-2 text-lg font-bold text-white">Chat on WhatsApp</p>
-                        <p class="mt-1 text-sm text-white/58">+250 788 881 400</p>
-                    </a>
-                    <a href="https://wa.me/250788888204?text=Hello%2C%20I%27m%20interested" target="_blank"
-                        rel="noreferrer"
-                        class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4 transition hover:-translate-y-0.5 hover:bg-white/8">
-                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sand)]">Seller
-                            onboarding</p>
-                        <p class="mt-2 text-lg font-bold text-white">List with connectify</p>
-                        <p class="mt-1 text-sm text-white/58">+250 788 888 204</p>
-                    </a>
+                    <div class="grid gap-4 md:grid-cols-3">
+                        @foreach ([
+                            ['label' => 'General support', 'phone' => '+250 788 881 400', 'number' => '250788881400', 'email' => 'supports@connectify.rw'],
+                            ['label' => 'Customer care', 'phone' => '+250 788 888 209', 'number' => '250788888209', 'email' => 'customers@connectify.rw'],
+                            ['label' => 'Seller support', 'phone' => '+250 788 888 204', 'number' => '250788888204', 'email' => 'supports@connectify.rw'],
+                        ] as $contact)
+                        <div class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4">
+                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">{{ $contact['label'] }}</p>
+                            <a href="tel:{{ $contact['number'] }}" class="mt-3 block text-lg font-bold text-white hover:text-[var(--color-sand)]">{{ $contact['phone'] }}</a>
+                            <a href="mailto:{{ $contact['email'] }}" class="mt-1 block truncate text-sm text-white/58 hover:text-white">{{ $contact['email'] }}</a>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="grid gap-8 border-b border-white/8 pb-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">

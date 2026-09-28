@@ -20,8 +20,10 @@
             const isNight = hour >= 18 || hour < 7;
             const resolvedTheme = theme === 'light' ? 'light' : theme === 'dark' ? 'dark' : theme === 'system' ? (prefersDark ? 'dark' : 'light') : (isNight ? 'dark' : 'light');
 
-            document.documentElement.dataset.theme = theme;
+            document.documentElement.dataset.theme = resolvedTheme;
+            document.documentElement.dataset.themePreference = theme;
             document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+            document.documentElement.style.colorScheme = resolvedTheme;
         })();
     </script>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))

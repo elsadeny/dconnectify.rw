@@ -18,7 +18,8 @@ const getResolvedTheme = (themePreference) => {
 const applyThemePreference = (themePreference) => {
 	const resolvedTheme = getResolvedTheme(themePreference);
 
-	document.documentElement.dataset.theme = themePreference;
+	document.documentElement.dataset.theme = resolvedTheme;
+	document.documentElement.dataset.themePreference = themePreference;
 	document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
 	document.documentElement.style.colorScheme = resolvedTheme;
 

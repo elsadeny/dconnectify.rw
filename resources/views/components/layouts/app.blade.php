@@ -7,7 +7,9 @@
     <title>{{ $title ?? 'connectify Marketplace' }}</title>
     <meta name="description"
         content="connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
-    <link rel="icon" type="image/png" href="{{ asset('images/connectify-logo.png') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="16x16 32x32 48x48 64x64 96x96"
+        type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/connectify-logo.png') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=space-grotesk:400,500,700|plus-jakarta-sans:400,500,600,700,800"
         rel="stylesheet" />

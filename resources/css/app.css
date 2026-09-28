@@ -212,6 +212,21 @@
         color: rgba(255, 255, 255, 0.96) !important;
     }
 
+    html[data-theme='light'] .featured-image-card [data-featured-overlay],
+    html[data-theme='light'] .featured-image-card [data-featured-overlay] * {
+        color: #fff !important;
+    }
+
+    html[data-theme='light'] .featured-image-card [data-featured-view] {
+        background: #525252 !important;
+        border-color: #737373 !important;
+        color: #fff !important;
+    }
+
+    html[data-theme='light'] .featured-image-card [data-featured-view]:hover {
+        background: #404040 !important;
+    }
+
     html[data-theme='light'] .hero-panel,
     html[data-theme='light'] .surface-card,
     html[data-theme='light'] .surface-card-soft,

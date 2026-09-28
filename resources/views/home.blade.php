@@ -336,14 +336,14 @@
                         <span
                             class="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">Featured
                             car</span>
-                        <div class="absolute inset-x-0 bottom-0 p-5">
+                        <div data-featured-overlay class="absolute inset-x-0 bottom-0 p-5">
                             <h3 class="line-clamp-1 font-display text-xl font-bold text-white">{{ $featuredCar->title }}</h3>
                             <div class="mt-3 flex items-end justify-between gap-3">
                                 <div class="min-w-0">
                                     <p class="truncate text-lg font-extrabold text-white">{{ $featuredCar->formattedPrimaryValue }}</p>
                                     <p class="truncate text-sm text-white/65">{{ $featuredCar->city }}, {{ $featuredCar->country }}</p>
                                 </div>
-                                <span class="shrink-0 rounded-full border border-white/12 bg-white/10 px-3 py-2 text-sm font-semibold text-white">View</span>
+                                <span data-featured-view class="shrink-0 rounded-full border border-white/12 bg-white/10 px-3 py-2 text-sm font-semibold text-white">View</span>
                             </div>
                         </div>
                     </div>

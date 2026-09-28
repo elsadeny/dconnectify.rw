@@ -45,18 +45,18 @@
     </script>
     <style>
         :root {
-            --color-ink: #07111f;
-            --color-night: #0d1b2e;
-            --color-deep: #16314f;
-            --color-paper: #edf4fb;
-            --color-paper-strong: #f8fbff;
-            --color-sun: #67b8ff;
-            --color-clay: #2f6ea8;
-            --color-ocean: #1d8fff;
+            --color-ink: #0a0a0a;
+            --color-night: #111111;
+            --color-deep: #262626;
+            --color-paper: #f5f5f5;
+            --color-paper-strong: #ffffff;
+            --color-sun: #d4d4d4;
+            --color-clay: #525252;
+            --color-ocean: #171717;
             --color-leaf: #16956b;
-            --color-mist: #dfeefa;
-            --color-sand: #9fcbf5;
-            --color-steel: #6f8da9;
+            --color-mist: #ededed;
+            --color-sand: #a3a3a3;
+            --color-steel: #737373;
         }
 
         body {
@@ -66,9 +66,8 @@
 
         .premium-hero-bg {
             background:
-                radial-gradient(circle at 14% 10%, rgba(29, 143, 255, 0.26), transparent 24%),
-                radial-gradient(circle at 85% 12%, rgba(103, 184, 255, 0.14), transparent 18%),
-                linear-gradient(180deg, #040914 0%, var(--color-night) 60%, var(--color-deep) 100%);
+                radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.08), transparent 24%),
+                linear-gradient(180deg, #000 0%, var(--color-night) 60%, var(--color-deep) 100%);
         }
 
         .font-display {
@@ -95,7 +94,7 @@
             background-image:
                 linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(135deg, rgba(29, 143, 255, 0.1), transparent 30%);
+                linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 30%);
             background-size: 78px 78px, 78px 78px, auto;
             -webkit-mask-image: linear-gradient(180deg, black 0%, black 35%, transparent 80%);
             mask-image: linear-gradient(180deg, black 0%, black 35%, transparent 80%);
@@ -125,13 +124,13 @@
 
         .surface-card {
             background: linear-gradient(180deg, rgba(248, 251, 255, 0.98), rgba(237, 244, 251, 0.96));
-            border: 1px solid #cfe0f0;
-            box-shadow: 0 28px 80px -42px rgba(8, 20, 33, 0.45);
+            border: 1px solid #d4d4d4;
+            box-shadow: 0 28px 80px -42px rgba(0, 0, 0, 0.35);
         }
 
         .surface-card-soft {
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(232, 242, 252, 0.95));
-            border: 1px solid #d7e6f5;
+            border: 1px solid #d4d4d4;
         }
 
         .section-heading {
@@ -153,8 +152,8 @@
             text-transform: uppercase;
             letter-spacing: 0.22em;
             color: var(--color-ink);
-            background: linear-gradient(135deg, var(--color-ocean), #8fd0ff);
-            box-shadow: 0 18px 40px -18px rgba(29, 143, 255, 0.72);
+            background: linear-gradient(135deg, var(--color-ocean), #525252);
+            box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.5);
         }
 
         .secondary-cta {
@@ -180,14 +179,14 @@
         .gold-chip {
             display: inline-flex;
             border-radius: 9999px;
-            border: 1px solid rgba(29, 143, 255, 0.28);
+            border: 1px solid #d4d4d4;
             padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             color: var(--color-clay);
-            background: linear-gradient(180deg, rgba(29, 143, 255, 0.18), rgba(29, 143, 255, 0.08));
+            background: #ededed;
         }
 
         .dark-stat {
@@ -218,7 +217,7 @@
         .connectify-input {
             width: 100%;
             border-radius: 1rem;
-            border: 1px solid #d6e6f6;
+            border: 1px solid #d4d4d4;
             background: rgba(255, 255, 255, 0.88);
             padding: 0.75rem 1rem;
             font-size: 0.875rem;
@@ -247,9 +246,9 @@
 </head>
 
 <body class="bg-[var(--color-paper)] text-[var(--color-ink)] antialiased">
-    <div class="page-orb left-[-8rem] top-16 h-64 w-64 bg-[rgba(29,143,255,0.22)]"></div>
-    <div class="page-orb right-[-7rem] top-28 h-72 w-72 bg-[rgba(103,184,255,0.14)]"></div>
-    <div class="page-orb bottom-20 left-[20%] h-60 w-60 bg-[rgba(56,118,184,0.18)]"></div>
+    <div class="page-orb left-[-8rem] top-16 h-64 w-64 bg-black/10"></div>
+    <div class="page-orb right-[-7rem] top-28 h-72 w-72 bg-black/5"></div>
+    <div class="page-orb bottom-20 left-[20%] h-60 w-60 bg-black/10"></div>
     <div class="site-shell">
         {{ $slot }}
 
@@ -280,7 +279,7 @@
                     <div>
                         <div class="flex items-center gap-3">
                             <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
-                                class="h-12 w-12 shrink-0 rounded-full object-cover shadow-[0_14px_35px_-16px_rgba(29,143,255,0.8)]">
+                                class="h-12 w-12 shrink-0 rounded-full object-cover shadow-[0_14px_35px_-16px_rgba(0,0,0,0.55)]">
                             <div>
                                 <p class="font-display text-xl font-bold text-white">connectify.rw</p>
                                 <p class="text-xs uppercase tracking-[0.24em] text-white/50">East Africa marketplace</p>
@@ -386,7 +385,7 @@
             class="group fixed bottom-[calc(6.75rem+env(safe-area-inset-bottom))] right-4 z-40 md:bottom-6 md:right-6">
             <div
                 class="invisible absolute bottom-full right-0 hidden w-72 translate-y-1 pb-3 opacity-0 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 md:block">
-                <div class="overflow-hidden rounded-lg border border-white/10 bg-[#07111f] text-white shadow-[0_20px_50px_-18px_rgba(0,0,0,0.75)]">
+                <div class="overflow-hidden rounded-lg border border-white/10 bg-[#111] text-white shadow-[0_20px_50px_-18px_rgba(0,0,0,0.75)]">
                     <div class="flex items-center justify-between border-b border-white/10 px-4 py-3">
                         <div>
                             <p class="text-sm font-semibold">WhatsApp support</p>
@@ -449,7 +448,7 @@
                 </a>
                 <a href="/seller/login" class="-mt-7 flex flex-col items-center gap-1">
                     <span data-mobile-navigation-post
-                        class="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-[var(--color-ink)] shadow-[0_22px_45px_-18px_rgba(29,143,255,0.8)] ring-4 ring-[rgba(7,17,31,0.88)] transition hover:-translate-y-0.5">
+                        class="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-[linear-gradient(135deg,var(--color-ocean),#525252)] text-white shadow-[0_22px_45px_-18px_rgba(0,0,0,0.7)] ring-4 ring-black/90 transition hover:-translate-y-0.5">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-6 w-6">
                             <path stroke-linecap="round" d="M12 5v14M5 12h14" />
                         </svg>

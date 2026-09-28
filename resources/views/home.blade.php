@@ -279,7 +279,7 @@
                                     <input type="radio" name="transaction_type" value="rent" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='rent' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-black/45 peer-checked:bg-black/10 peer-checked:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] dark:peer-checked:border-white/45 dark:peer-checked:bg-white/10">
                                         <span class="font-bold text-white">Rent</span>
                                         <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Homes and cars</span>
                                     </span>
@@ -288,7 +288,7 @@
                                     <input type="radio" name="transaction_type" value="sale" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='sale' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-black/45 peer-checked:bg-black/10 peer-checked:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] dark:peer-checked:border-white/45 dark:peer-checked:bg-white/10">
                                         <span class="font-bold text-white">Buy</span>
                                         <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Vehicles and property</span>
                                     </span>
@@ -297,7 +297,7 @@
                                     <input type="radio" name="transaction_type" value="hire" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='hire' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-black/45 peer-checked:bg-black/10 peer-checked:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] dark:peer-checked:border-white/45 dark:peer-checked:bg-white/10">
                                         <span class="font-bold text-white">Hire</span>
                                         <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Jobs and talent</span>
                                     </span>
@@ -368,7 +368,7 @@
         <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
             @foreach ($types as $type)
             <a href="{{ route('category.show', $type->value) }}"
-                class="surface-card group flex h-full flex-col rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[#111] dark:text-white">
+                class="surface-card group flex h-full flex-col rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(0,0,0,0.3)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[#111] dark:text-white">
                 <p class="section-heading dark:text-slate-400">{{ $type->value }}</p>
                 <h3 class="mt-3 font-display text-xl font-bold sm:text-2xl dark:text-white">{{ $type->label() }}</h3>
                 <p class="mt-3 hidden text-sm leading-6 text-slate-600 dark:text-slate-300 sm:block">{{ match($type->value) {
@@ -469,7 +469,7 @@
                                 $listing->seller?->company_name ?? $listing->seller?->name }}</p>
                         </div>
                         <a href="{{ route('listings.show', $listing) }}"
-                            class="shrink-0 rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] dark:border-white/10 dark:bg-[#111] dark:text-white">View</a>
+                            class="shrink-0 rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(0,0,0,0.35)] dark:border-white/10 dark:bg-[#111] dark:text-white">View</a>
                     </div>
                 </article>
                 @empty

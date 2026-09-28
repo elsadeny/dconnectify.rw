@@ -3,7 +3,7 @@
         <!-- Original Navbar -->
         <header class="fixed inset-x-0 top-0 z-50 px-4 pt-6 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
-                <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[#111]">
+                <div data-public-navbar-shell class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[#111]">
                     <a href="{{ route('home') }}" class="flex items-center gap-3">
                         <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
                             class="h-11 w-11 shrink-0 rounded-full object-cover">
@@ -39,7 +39,7 @@
                 class="absolute left-[10%] top-[20%] h-64 w-64 rounded-full bg-[var(--color-ocean)]/20 blur-[100px] pointer-events-none">
             </div>
             <div
-                class="absolute right-[10%] top-[30%] h-72 w-72 rounded-full bg-[#8fd0ff]/10 blur-[100px] pointer-events-none">
+                class="absolute right-[10%] top-[30%] h-72 w-72 rounded-full bg-white/10 blur-[100px] pointer-events-none">
             </div>
 
             <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -60,7 +60,7 @@
                 <div class="mt-8 flex flex-wrap gap-4">
                     <div
                         class="flex items-center gap-3 rounded-3xl bg-white/10 px-5 py-3 backdrop-blur-md border border-white/10 shadow-lg">
-                        <span class="text-2xl font-black text-[#8fd0ff]">{{ $listings->total() }}</span>
+                        <span class="text-2xl font-black text-black dark:text-white">{{ $listings->total() }}</span>
                         <span
                             class="text-[10px] font-bold uppercase tracking-widest text-white/70 leading-tight">Verified<br>Listings</span>
                     </div>
@@ -181,17 +181,17 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-[#6f8da9] dark:text-slate-400">Min</span>
+                                    class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 dark:text-slate-400">Min</span>
                                     <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
                                         placeholder="0"
-                                        class="mt-1 w-full rounded-2xl border border-[#d6e6f6] bg-slate-50 px-4 py-3 text-sm font-medium text-[var(--color-ink)] focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)] outline-none transition">
+                                        class="mt-1 w-full rounded-2xl border border-neutral-300 bg-slate-50 px-4 py-3 text-sm font-medium text-[var(--color-ink)] focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)] outline-none transition">
                                 </div>
                                 <div>
                                     <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-[#6f8da9] dark:text-slate-400">Max</span>
+                                    class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 dark:text-slate-400">Max</span>
                                     <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
                                         placeholder="Any"
-                                        class="mt-1 w-full rounded-2xl border border-[#d6e6f6] bg-slate-50 px-4 py-3 text-sm font-medium text-[var(--color-ink)] focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)] outline-none transition">
+                                        class="mt-1 w-full rounded-2xl border border-neutral-300 bg-slate-50 px-4 py-3 text-sm font-medium text-[var(--color-ink)] focus:border-[var(--color-ocean)] focus:ring-[var(--color-ocean)] outline-none transition">
                                 </div>
                             </div>
                             <button type="submit"
@@ -205,7 +205,7 @@
                         class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white flex items-center justify-between dark:border-white/10 dark:bg-[#111]">
                         <div>
                             <h3 class="text-sm font-bold text-[var(--color-ink)] dark:text-white">Verified Only</h3>
-                            <p class="text-[10px] font-medium text-[#6f8da9] mt-0.5 dark:text-slate-400">Show trusted sellers</p>
+                            <p class="mt-0.5 text-[10px] font-medium text-neutral-500 dark:text-slate-400">Show trusted sellers</p>
                         </div>
                         <button class="h-6 w-11 rounded-full bg-slate-200 p-1 transition-colors hover:bg-slate-300">
                             <div class="h-4 w-4 rounded-full bg-white shadow-sm transition-transform dark:bg-[var(--color-ocean)]"></div>
@@ -221,7 +221,7 @@
                             <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)] mb-2 dark:text-slate-400">
                                 Category</p>
                             <h2 class="font-display text-3xl font-extrabold text-[var(--color-ink)] dark:text-white">Showing Result</h2>
-                            <p class="text-sm text-[#6f8da9] mt-1 font-medium dark:text-slate-400">Discover <span
+                            <p class="mt-1 text-sm font-medium text-neutral-500 dark:text-slate-400">Discover <span
                                     class="font-bold text-[var(--color-ink)] dark:text-white">{{ $listings->total() }}</span> available
                                 listings in {{ $type->label() }}</p>
                         </div>

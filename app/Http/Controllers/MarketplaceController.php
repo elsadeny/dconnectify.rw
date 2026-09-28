@@ -65,26 +65,11 @@ class MarketplaceController extends Controller
             ->with('seller')
             ->published()
             ->where('type', ListingType::Vehicle->value)
-            ->where('is_featured', true)
             ->latest('published_at')
-            ->take(12)
-            ->get()
-            ->shuffle()
+            ->latest('id')
             ->take(3)
+            ->get()
             ->values();
-
-        if ($featuredCars->count() < 3) {
-            $fallbackCars = Listing::query()
-                ->with('seller')
-                ->published()
-                ->where('type', ListingType::Vehicle->value)
-                ->whereNotIn('id', $featuredCars->pluck('id'))
-                ->latest('published_at')
-                ->take(3 - $featuredCars->count())
-                ->get();
-
-            $featuredCars = $featuredCars->concat($fallbackCars)->values();
-        }
 
         return view('home', [
             'filters' => $filters,

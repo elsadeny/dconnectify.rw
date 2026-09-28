@@ -318,33 +318,31 @@
 
             </section>
 
-            @if ($heroListing)
-            <a href="{{ route('listings.show', $heroListing) }}"
-                class="featured-image-card hero-panel mx-auto hidden w-full max-w-5xl overflow-hidden rounded-[2rem] p-4 transition hover:-translate-y-1 md:p-5 lg:block">
-                <div class="relative aspect-[16/8] overflow-hidden rounded-[1.5rem]">
-                    <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
-                        class="absolute inset-0 h-full w-full object-cover object-center">
-                    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.82))]">
-                    </div>
-                    <div class="absolute inset-x-0 bottom-0 p-5">
-                        <span class="gold-chip">Featured</span>
-                        <h3 class="mt-3 font-display text-xl font-bold text-white">{{ $heroListing->title }}
-                        </h3>
-                        <div class="mt-3 flex items-end justify-between gap-4">
-                            <div>
-                                <p class="text-xl font-extrabold text-white">{{
-                                    $heroListing->formattedPrimaryValue }}</p>
-                                <p class="text-sm text-white/65">{{ $heroListing->city }}, {{
-                                    $heroListing->country
-                                    }}</p>
+            @if ($featuredCars->isNotEmpty())
+            <div class="mx-auto hidden w-full max-w-7xl grid-cols-3 gap-5 px-4 sm:px-6 lg:grid lg:px-8">
+                @foreach ($featuredCars as $featuredCar)
+                <a href="{{ route('listings.show', $featuredCar) }}"
+                    class="featured-image-card hero-panel overflow-hidden rounded-[2rem] p-3 transition hover:-translate-y-1">
+                    <div class="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+                        <img src="{{ $featuredCar->cover_image }}" alt="{{ $featuredCar->title }}"
+                            class="absolute inset-0 h-full w-full object-cover object-center">
+                        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.84))]">
+                        </div>
+                        <div class="absolute inset-x-0 bottom-0 p-5">
+                            <span class="gold-chip">Featured car</span>
+                            <h3 class="mt-3 line-clamp-1 font-display text-xl font-bold text-white">{{ $featuredCar->title }}</h3>
+                            <div class="mt-3 flex items-end justify-between gap-3">
+                                <div class="min-w-0">
+                                    <p class="truncate text-lg font-extrabold text-white">{{ $featuredCar->formattedPrimaryValue }}</p>
+                                    <p class="truncate text-sm text-white/65">{{ $featuredCar->city }}, {{ $featuredCar->country }}</p>
+                                </div>
+                                <span class="shrink-0 rounded-full border border-white/12 bg-white/10 px-3 py-2 text-sm font-semibold text-white">View</span>
                             </div>
-                            <span
-                                class="rounded-full border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white">View
-                                deal</span>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                @endforeach
+            </div>
             @endif
     </div>
     </section>

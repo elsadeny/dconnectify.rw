@@ -362,7 +362,7 @@
         <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
             @foreach ($types as $type)
             <a href="{{ route('category.show', $type->value) }}"
-                class="surface-card group rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                class="surface-card group flex h-full flex-col rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
                 <p class="section-heading dark:text-slate-400">{{ $type->value }}</p>
                 <h3 class="mt-3 font-display text-xl font-bold sm:text-2xl dark:text-[#eaf2ff]">{{ $type->label() }}</h3>
                 <p class="mt-3 hidden text-sm leading-6 text-slate-600 dark:text-slate-300 sm:block">{{ match($type->value) {
@@ -371,7 +371,7 @@
                     'job' => 'Reach serious employers and job seekers across the region.',
                     default => 'List trusted services, rentals and specialist business offerings.',
                     } }}</p>
-                <div class="mt-4 flex items-center justify-between sm:mt-6">
+                <div class="mt-auto flex items-center justify-between pt-4 sm:pt-6">
                     <span class="inline-flex text-sm font-semibold text-[var(--color-ocean)] dark:text-[#7eb7ff]">Browse now</span>
                     <span class="text-lg text-[var(--color-clay)] dark:text-slate-400">{{ number_format($categoryCounts[$type->value] ?? 0) }}</span>
                 </div>

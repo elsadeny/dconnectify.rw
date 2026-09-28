@@ -318,8 +318,13 @@
 
             </section>
 
-            @if ($featuredCars->isNotEmpty())
-            <div class="mx-auto hidden w-full max-w-7xl grid-cols-3 gap-5 px-4 sm:px-6 lg:grid lg:px-8">
+            <section id="featured" class="mx-auto hidden w-full max-w-7xl px-4 pt-4 sm:px-6 lg:block lg:px-8">
+                <div class="mb-5">
+                    <p class="section-heading">Featured listings</p>
+                    <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">High-intent listings worth viewing first</h2>
+                </div>
+                @if ($featuredCars->isNotEmpty())
+                <div class="grid grid-cols-3 gap-5">
                 @foreach ($featuredCars as $featuredCar)
                 <a href="{{ route('listings.show', $featuredCar) }}"
                     class="featured-image-card hero-panel overflow-hidden rounded-[2rem] p-3 transition hover:-translate-y-1">
@@ -344,8 +349,9 @@
                     </div>
                 </a>
                 @endforeach
-            </div>
-            @endif
+                </div>
+                @endif
+            </section>
     </div>
     </section>
     </main>
@@ -415,130 +421,6 @@
                             tenancy questions and hiring follow-up.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="featured" class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between gap-4">
-            <div>
-                <p class="section-heading">Featured listings</p>
-                <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">High-intent listings worth
-                    viewing first</h2>
-            </div>
-            <a href="/admin"
-                class="hidden rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-[0_18px_32px_-22px_rgba(8,20,33,0.4)] md:inline-flex">Admin
-                Panel</a>
-        </div>
-
-        <div class="mt-6 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-            @if ($heroListing)
-            <article
-                class="featured-image-card group self-start rounded-[2rem] bg-[var(--color-ink)] p-3 text-white shadow-[0_30px_80px_-38px_rgba(0,0,0,0.7)] md:p-4">
-                <div class="relative mx-auto aspect-[16/9] max-w-[58rem] overflow-hidden rounded-[1.5rem]">
-                    <img src="{{ $heroListing->cover_image }}" alt="{{ $heroListing->title }}"
-                        class="absolute inset-0 h-full w-full object-cover object-center">
-                    @auth
-                    @php $isSaved = auth()->user()->savedListings->contains($heroListing->id); @endphp
-                    <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $heroListing) }}"
-                        class="absolute top-6 right-6 z-20 hidden group-hover:block">
-                        @csrf
-                        @if ($isSaved) @method('DELETE') @endif
-                        <button type="submit"
-                            class="rounded-full bg-white/90 p-3 shadow-lg backdrop-blur transition hover:scale-105"
-                            title="{{ $isSaved ? 'Unsave' : 'Save' }}">
-                            <svg class="h-6 w-6 {{ $isSaved ? 'fill-red-500 text-red-500' : 'fill-none text-slate-800' }}"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                </path>
-                            </svg>
-                        </button>
-                    </form>
-                    @endauth
-                    <div
-                        class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,11,15,0.92),rgba(9,11,15,0.38),rgba(9,11,15,0.72))]">
-                    </div>
-                    <div class="absolute inset-0 flex flex-col justify-between p-7 md:p-9">
-                        <div class="flex items-start justify-between gap-4">
-                            <span class="gold-chip">Featured listing</span>
-                            @if ($heroListing->is_verified)
-                            <span
-                                class="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">Verified
-                                seller</span>
-                            @endif
-                        </div>
-                        <div class="max-w-xl">
-                            <p class="text-sm uppercase tracking-[0.24em] text-[var(--color-sand)]">{{
-                                $heroListing->type->label() }}</p>
-                            <h3 class="mt-3 font-display text-3xl font-bold text-white md:text-5xl">{{ $heroListing->title }}</h3>
-                            <p class="mt-4 max-w-lg text-sm leading-7 text-white/75">{{
-                                \Illuminate\Support\Str::limit($heroListing->description, 180) }}</p>
-                            <div class="mt-6 flex flex-wrap items-end gap-4">
-                                <div>
-                                    <p class="text-3xl font-extrabold text-white">{{
-                                        $heroListing->formattedPrimaryValue }}</p>
-                                    <p class="mt-1 text-sm text-white/75">{{ $heroListing->city }}, {{
-                                        $heroListing->country }}</p>
-                                </div>
-                                <a href="{{ route('listings.show', $heroListing) }}" class="primary-cta">Open
-                                    listing</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            @endif
-
-            <div class="grid gap-5">
-                @foreach ($heroSideListings as $listing)
-                <article class="surface-card overflow-hidden rounded-[2rem] text-[var(--color-ink)] relative group dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
-                    @auth
-                    @php $isSaved = auth()->user()->savedListings->contains($listing->id); @endphp
-                    <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $listing) }}"
-                        class="absolute top-4 right-4 z-20 hidden md:group-hover:block">
-                        @csrf
-                        @if ($isSaved) @method('DELETE') @endif
-                        <button type="submit"
-                            class="rounded-full bg-white/90 p-2 shadow backdrop-blur transition hover:scale-105 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]"
-                            title="{{ $isSaved ? 'Unsave' : 'Save' }}">
-                            <svg class="h-5 w-5 {{ $isSaved ? 'fill-red-500 text-red-500' : 'fill-none text-slate-800 dark:text-[#eaf2ff]' }}"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                </path>
-                            </svg>
-                        </button>
-                    </form>
-                    @endauth
-                    <div class="grid gap-0 md:grid-cols-[0.42fr_0.58fr]">
-                        <img src="{{ $listing->cover_image }}" alt="{{ $listing->title }}"
-                            class="h-full min-h-52 w-full object-cover">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between gap-4">
-                                <span
-                                    class="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)] dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[var(--color-sand)]">{{
-                                    $listing->type->label() }}</span>
-                                <span class="text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{{
-                                    ucfirst($listing->transaction_type) }}</span>
-                            </div>
-                            <h3 class="mt-4 font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]"><a
-                                    href="{{ route('listings.show', $listing) }}">{{ $listing->title }}</a></h3>
-                            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{
-                                \Illuminate\Support\Str::limit($listing->description, 110) }}</p>
-                            <div class="mt-5 flex items-end justify-between gap-4">
-                                <div>
-                                    <p class="text-xl font-extrabold text-[var(--color-ink)] dark:text-[#eaf2ff]">{{ $listing->formattedPrimaryValue }}</p>
-                                    <p class="text-sm text-slate-500 dark:text-slate-300">{{ $listing->city }}, {{ $listing->country }}
-                                    </p>
-                                </div>
-                                <a href="{{ $listing->whatsappUrl }}" target="_blank"
-                                    class="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-leaf),#31b98b)] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_40px_-20px_rgba(22,149,107,0.8)] dark:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.9)]">WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                @endforeach
             </div>
         </div>
     </section>

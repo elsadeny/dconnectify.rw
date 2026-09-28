@@ -1,3 +1,15 @@
+<script>
+    (() => {
+        const preference = localStorage.getItem('connectify-theme') || 'system';
+        const isNight = new Date().getHours() >= 18 || new Date().getHours() < 7;
+        const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+        const theme = preference === 'light' ? 'light' : preference === 'dark' ? 'dark' : preference === 'auto' ? (isNight ? 'dark' : 'light') : (prefersDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.themePreference = preference;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.style.colorScheme = theme;
+    })();
+</script>
 <style>
     .fi-body.fi-panel-admin,
     .fi-body.fi-panel-seller {
@@ -607,5 +619,141 @@
     .connectify-dashboard-card__eyebrow,
     .connectify-inline-link {
         color: #d4d4d4 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin,
+    html[data-theme='light'] .fi-body.fi-panel-seller {
+        background: #f5f5f5 !important;
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-topbar,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-topbar {
+        background: #fff !important;
+        border-color: #d4d4d4 !important;
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-section,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-section,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-ta-ctn,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-ta-ctn,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-wi-stats-overview-stat,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-wi-stats-overview-stat,
+    html[data-theme='light'] .connectify-panel-hero,
+    html[data-theme='light'] .connectify-dashboard-card,
+    html[data-theme='light'] .connectify-panel-kpi,
+    html[data-theme='light'] .connectify-dashboard-metric,
+    html[data-theme='light'] .connectify-dashboard-note {
+        background: #fff !important;
+        border-color: #d4d4d4 !important;
+        box-shadow: none !important;
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-main,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-main,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-nav,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-nav {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-input-wrp,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-input-wrp,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-select-input,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-select-input {
+        background: #fff !important;
+        border-color: #bdbdbd !important;
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin input,
+    html[data-theme='light'] .fi-body.fi-panel-seller input,
+    html[data-theme='light'] .fi-body.fi-panel-admin textarea,
+    html[data-theme='light'] .fi-body.fi-panel-seller textarea,
+    html[data-theme='light'] .fi-body.fi-panel-admin select,
+    html[data-theme='light'] .fi-body.fi-panel-seller select {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin input::placeholder,
+    html[data-theme='light'] .fi-body.fi-panel-seller input::placeholder,
+    html[data-theme='light'] .fi-body.fi-panel-admin textarea::placeholder,
+    html[data-theme='light'] .fi-body.fi-panel-seller textarea::placeholder {
+        color: #737373 !important;
+        opacity: 1;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-header-heading,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-header-heading,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-section-header-heading,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-section-header-heading,
+    html[data-theme='light'] .connectify-panel-hero__title,
+    html[data-theme='light'] .connectify-dashboard-card__title,
+    html[data-theme='light'] .connectify-panel-kpi__value,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-item-label,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-item-label,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-topbar * ,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-topbar * {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-header-subheading,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-header-subheading,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-section-header-description,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-section-header-description,
+    html[data-theme='light'] .connectify-panel-hero__copy,
+    html[data-theme='light'] .connectify-dashboard-note p,
+    html[data-theme='light'] .connectify-dashboard-metric span {
+        color: #666 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-item-btn:hover,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-item-btn:hover {
+        background: #e5e5e5 !important;
+        box-shadow: inset 0 0 0 1px #d4d4d4 !important;
+        color: #111 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-btn.fi-color-primary,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-btn.fi-color-primary,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-btn-color-primary,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-btn-color-primary,
+    html[data-theme='light'] .connectify-panel-btn-primary {
+        background: #171717 !important;
+        color: #fff !important;
+        border-color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-ta-header-cell,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-ta-header-cell,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-ta-row,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-ta-row {
+        border-color: #d4d4d4 !important;
+    }
+
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-ta-header-cell-label,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-ta-header-cell-label,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-ta-text,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-ta-text,
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-item-icon,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-item-icon,
+    html[data-theme='light'] .connectify-panel-hero__eyebrow,
+    html[data-theme='light'] .connectify-dashboard-card__eyebrow,
+    html[data-theme='light'] .connectify-inline-link {
+        color: #404040 !important;
+    }
+
+    html[data-theme='light'] .fi-dropdown-panel,
+    html[data-theme='light'] .fi-modal-window,
+    html[data-theme='light'] .fi-notification,
+    html[data-theme='light'] .fi-popover-content {
+        background: #fff !important;
+        border-color: #d4d4d4 !important;
+        color: #171717 !important;
     }
 </style>

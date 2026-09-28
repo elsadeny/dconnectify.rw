@@ -369,4 +369,103 @@
             padding-bottom: 1.15rem;
         }
     }
+
+    html[data-theme='light'] .fi-simple-layout {
+        background: #f5f5f5 !important;
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-layout::before {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+    }
+
+    html[data-theme='light'] .fi-simple-main {
+        border-color: #d4d4d4 !important;
+        background: #fff !important;
+        color: #171717 !important;
+        box-shadow: 0 32px 80px -48px rgba(0, 0, 0, 0.28);
+        scrollbar-color: #a3a3a3 transparent;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-logo,
+    html[data-theme='light'] .fi-simple-main [class*="fi-simple-header-heading"],
+    html[data-theme='light'] .fi-simple-main [class*="fi-simple-header-subheading"],
+    html[data-theme='light'] .fi-simple-main h1,
+    html[data-theme='light'] .fi-simple-main h2,
+    html[data-theme='light'] .fi-simple-main h3 {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main [class*="fi-input-wrp-label"],
+    html[data-theme='light'] .fi-simple-main label,
+    html[data-theme='light'] .fi-simple-main .fi-checkbox-label,
+    html[data-theme='light'] .fi-simple-main [class*="fi-fo-field-wrp-label"],
+    html[data-theme='light'] .fi-simple-main [class*="fi-fo-field-wrp-label"] *,
+    html[data-theme='light'] .fi-simple-main label *,
+    html[data-theme='light'] .fi-simple-main legend {
+        color: #262626 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main [class*="fi-fo-field-wrp-hint"],
+    html[data-theme='light'] .fi-simple-main [class*="fi-fo-field-wrp-helper-text"] {
+        color: #666 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-input-wrp {
+        border-color: #bdbdbd !important;
+        background: #fff !important;
+        box-shadow: none;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-input,
+    html[data-theme='light'] .fi-simple-main input,
+    html[data-theme='light'] .fi-simple-main select,
+    html[data-theme='light'] .fi-simple-main textarea {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-input::placeholder,
+    html[data-theme='light'] .fi-simple-main input::placeholder,
+    html[data-theme='light'] .fi-simple-main textarea::placeholder {
+        color: #737373 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-btn.fi-color-primary {
+        background: #171717 !important;
+        color: #fff !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main .fi-link,
+    html[data-theme='light'] .fi-simple-main a {
+        color: #262626 !important;
+    }
+
+    html[data-theme='light'] .fi-simple-main [type='checkbox'] {
+        border-color: #737373;
+        background-color: #fff;
+    }
+
+    html[data-theme='light'] .fi-simple-main [type='checkbox']:checked {
+        border-color: #171717;
+        background-color: #171717;
+    }
+
+    html[data-theme='light'] .connectify-auth-intro {
+        border-color: #d4d4d4;
+        background: #fff;
+        color: #171717;
+        box-shadow: 0 20px 60px -44px rgba(0, 0, 0, 0.3);
+    }
+
+    html[data-theme='light'] .connectify-auth-intro__chip {
+        border-color: #d4d4d4;
+        background: #f0f0f0;
+        color: #404040;
+    }
+
+    html[data-theme='light'] .connectify-auth-footer p {
+        color: #666;
+    }
 </style>

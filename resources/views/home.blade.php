@@ -328,9 +328,11 @@
                             class="absolute inset-0 h-full w-full object-cover object-center">
                         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,11,15,0.08),rgba(9,11,15,0.84))]">
                         </div>
+                        <span
+                            class="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">Featured
+                            car</span>
                         <div class="absolute inset-x-0 bottom-0 p-5">
-                            <span class="gold-chip">Featured car</span>
-                            <h3 class="mt-3 line-clamp-1 font-display text-xl font-bold text-white">{{ $featuredCar->title }}</h3>
+                            <h3 class="line-clamp-1 font-display text-xl font-bold text-white">{{ $featuredCar->title }}</h3>
                             <div class="mt-3 flex items-end justify-between gap-3">
                                 <div class="min-w-0">
                                     <p class="truncate text-lg font-extrabold text-white">{{ $featuredCar->formattedPrimaryValue }}</p>

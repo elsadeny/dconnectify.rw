@@ -391,6 +391,17 @@
             </div>
         </footer>
 
+        <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20help%20using%20connectify" target="_blank"
+            rel="noreferrer" aria-label="Contact Connectify support on WhatsApp"
+            class="group fixed bottom-[calc(6.75rem+env(safe-area-inset-bottom))] right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_12px_30px_-12px_rgba(37,211,102,0.8)] transition hover:-translate-y-1 hover:bg-[#20bd5a] focus:outline-none focus:ring-4 focus:ring-emerald-300/40 md:bottom-6 md:right-6">
+            <svg viewBox="0 0 24 24" class="h-7 w-7 fill-current" aria-hidden="true">
+                <path d="M12.04 2a9.84 9.84 0 0 0-8.44 14.9L2 22l5.23-1.55A9.92 9.92 0 1 0 12.04 2Zm5.78 13.95c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.14.12-1.84-.12-.42-.14-.97-.32-1.67-.62-2.94-1.27-4.85-4.23-5-4.43-.14-.2-1.19-1.58-1.19-3.01 0-1.44.75-2.14 1.02-2.44.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.07.92 2.22.08.15.13.32.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.61.17.3.75 1.24 1.61 2 .1.09 1.54 1.35 3.16 1.86.3.1.53.08.73-.12.2-.2.85-.99 1.07-1.33.22-.35.45-.29.75-.18.3.12 1.92.91 2.25 1.07.33.17.55.25.63.39.08.15.08.84-.16 1.55Z" />
+            </svg>
+            <span
+                class="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-md bg-slate-950 px-3 py-2 text-xs font-medium text-white shadow-lg group-hover:block group-focus-visible:block">WhatsApp
+                support</span>
+        </a>
+
         <nav
             class="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[rgba(7,17,31,0.82)] px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl md:hidden">
             <div

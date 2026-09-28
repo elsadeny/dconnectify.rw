@@ -161,5 +161,10 @@ has_env_value() {
         systemctl reload "php${PHP_VERSION}-fpm.service" || systemctl restart "php${PHP_VERSION}-fpm.service"
     fi
 
+    if [[ -n "${DEPLOY_SHA:-}" ]]; then
+        printf '%s\n' "${DEPLOY_SHA}" >"${APP_DIR}/storage/app/deployed-sha"
+        chown "${APP_USER}:${APP_USER}" "${APP_DIR}/storage/app/deployed-sha"
+    fi
+
     echo "Deployment completed."
 ) 9>"${LOCK_FILE}"

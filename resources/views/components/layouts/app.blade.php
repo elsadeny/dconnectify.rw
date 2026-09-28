@@ -263,13 +263,13 @@
                             channels visible so people can move from browsing to conversation fast across every
                             category.</p>
                     </div>
-                    <a href="https://wa.me/250788888209?text=Hi%2C%20I%20need%20support" target="_blank"
+                    <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
                         rel="noreferrer"
                         class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4 transition hover:-translate-y-0.5 hover:bg-white/8">
                         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sand)]">
                             Marketplace support</p>
                         <p class="mt-2 text-lg font-bold text-white">Chat on WhatsApp</p>
-                        <p class="mt-1 text-sm text-white/58">+250 788 888 209</p>
+                        <p class="mt-1 text-sm text-white/58">+250 788 881 400</p>
                     </a>
                     <a href="https://wa.me/250788888204?text=Hello%2C%20I%27m%20interested" target="_blank"
                         rel="noreferrer"
@@ -296,7 +296,7 @@
                             marketplace for vehicles, property, jobs, rentals and services, helping people discover
                             trusted listings and connect with sellers faster.</p>
                         <div class="mt-5 flex flex-wrap gap-3 text-sm">
-                            <a href="https://wa.me/250788888209" target="_blank" rel="noreferrer"
+                            <a href="https://wa.me/250788881400" target="_blank" rel="noreferrer"
                                 class="footer-link">WhatsApp</a>
                             <a href="https://www.facebook.com/haruna.nyamushanja/" target="_blank" rel="noreferrer"
                                 class="footer-link">Facebook</a>
@@ -315,7 +315,7 @@
                             <a href="{{ route('home') }}#latest" class="footer-link block">Latest listings</a>
                             <a href="/seller" class="footer-link block">Seller Panel</a>
                             <a href="/seller/register" class="footer-link block">Become a seller</a>
-                            <a href="https://wa.me/250788888209?text=Hi%2C%20I%20need%20support" target="_blank"
+                            <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
                                 rel="noreferrer" class="footer-link block">Contact support</a>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                             <a href="{{ route('home') }}#why-connectify" class="footer-link block">Why connectify?</a>
                             <a href="{{ route('home') }}#featured" class="footer-link block">Featured picks</a>
                             <a href="{{ route('home') }}#latest" class="footer-link block">Fresh listings</a>
-                            <a href="https://wa.me/250788888209?text=Hi%2C%20I%20need%20help%20using%20connectify"
+                            <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20help%20using%20connectify"
                                 target="_blank" rel="noreferrer" class="footer-link block">Using the platform</a>
                             <a href="https://wa.me/250788888204?text=Hello%2C%20I%20want%20to%20list%20on%20connectify"
                                 target="_blank" rel="noreferrer" class="footer-link block">Listing assistance</a>
@@ -372,7 +372,7 @@
                         <a href="/seller/register" class="footer-link">Seller Sign Up</a>
                         <a href="https://www.instagram.com/connectify.rw/" target="_blank" rel="noreferrer"
                             class="footer-link">Instagram</a>
-                        <a href="https://wa.me/250788888209?text=Hi%2C%20I%20need%20support" target="_blank"
+                        <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
                             rel="noreferrer" class="footer-link">Contact</a>
                         <div class="flex flex-wrap items-center gap-2">
                             <button type="button" data-theme-choice="auto"
@@ -418,7 +418,7 @@
                     </span>
                     <span class="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/82">Post</span>
                 </a>
-                <a href="https://wa.me/250788888209?text=Hi%2C%20I%20need%20support" target="_blank" rel="noreferrer"
+                <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank" rel="noreferrer"
                     class="flex flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-medium text-white/78 transition hover:bg-white/6 hover:text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7 10.5h10M7 14h6" />

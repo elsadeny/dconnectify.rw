@@ -1,4 +1,11 @@
 <style>
+    img.fi-logo {
+        aspect-ratio: 1;
+        border-radius: 50%;
+        object-fit: cover;
+        clip-path: circle(50%);
+    }
+
     html,
     body {
         height: 100%;

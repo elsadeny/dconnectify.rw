@@ -241,6 +241,7 @@ sudo -u ${APP_USER} ${PHP_BIN} /usr/bin/composer install \
     --no-interaction
 
 echo "Installing Node dependencies and building assets..."
+rm -f "${APP_DIR}/public/hot"
 if [[ -f "${APP_DIR}/package-lock.json" ]]; then
     sudo -u ${APP_USER} npm ci --cache "${NPM_CACHE_DIR}" --prefix "${APP_DIR}"
 else

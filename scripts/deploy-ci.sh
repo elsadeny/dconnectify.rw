@@ -139,6 +139,7 @@ has_env_value() {
     fi
 
     echo "Installing Node dependencies and building assets..."
+    rm -f "${APP_DIR}/public/hot"
     if [[ -f "${APP_DIR}/package-lock.json" ]]; then
         run_as_app_user npm ci --cache "${NPM_CACHE_DIR}"
     else

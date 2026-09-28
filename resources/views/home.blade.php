@@ -279,27 +279,27 @@
                                     <input type="radio" name="transaction_type" value="rent" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='rent' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
                                         <span class="font-bold text-white">Rent</span>
-                                        <span class="mt-1 block text-xs text-white/55">Homes and cars</span>
+                                        <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Homes and cars</span>
                                     </span>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="transaction_type" value="sale" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='sale' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
                                         <span class="font-bold text-white">Buy</span>
-                                        <span class="mt-1 block text-xs text-white/55">Vehicles and property</span>
+                                        <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Vehicles and property</span>
                                     </span>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="transaction_type" value="hire" class="peer sr-only" {{
                                         ($filters['transaction_type'] ?? '' )==='hire' ? 'checked' : '' }}>
                                     <span
-                                        class="block rounded-2xl border border-white/8 bg-white/5 px-4 py-4 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)] sm:px-3">
+                                        class="block rounded-2xl border border-white/8 bg-white/5 px-2 py-3 transition peer-checked:border-[rgba(29,143,255,0.45)] peer-checked:bg-[rgba(29,143,255,0.14)] peer-checked:shadow-[0_18px_40px_-24px_rgba(29,143,255,0.7)]">
                                         <span class="font-bold text-white">Hire</span>
-                                        <span class="mt-1 block text-xs text-white/55">Jobs and talent</span>
+                                        <span class="mt-1 block whitespace-nowrap text-xs text-white/55">Jobs and talent</span>
                                     </span>
                                 </label>
                             </div>

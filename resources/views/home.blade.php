@@ -391,34 +391,24 @@
             <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                 <div>
                     <p class="gold-chip">Why connectify?</p>
-                    <h2 class="mt-4 max-w-xl font-display text-3xl font-bold text-white md:text-4xl">One marketplace
-                        for trusted cars, homes, jobs and business services across East Africa.</h2>
-                    <p class="mt-4 max-w-lg text-sm leading-7 text-white/72">connectify helps buyers and renters
-                        move faster with verified listings, clear location filters, direct WhatsApp contact, and a
-                        regional inventory that starts in Rwanda and extends into Uganda, Burundi, DRC, Kenya,
-                        Tanzania, and South Sudan.</p>
+                    <h2 class="mt-4 max-w-xl font-display text-3xl font-bold text-white md:text-4xl">Find relevant listings and contact sellers directly.</h2>
+                    <p class="mt-4 max-w-lg text-sm leading-7 text-white/72">Browse cars, property, jobs and services across East Africa.</p>
                 </div>
                 <div class="grid gap-4 md:grid-cols-3">
                     <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">01</p>
                         <h3 class="mt-4 font-display text-xl font-bold text-white">Verified sellers</h3>
-                        <p class="mt-3 text-sm leading-6 text-white/72">Every featured seller profile can include
-                            business identity, WhatsApp details, and listing history so buyers know who they are
-                            dealing with before they enquire.</p>
+                        <p class="mt-3 text-sm leading-6 text-white/72">Verified listings identify sellers reviewed by connectify.</p>
                     </div>
                     <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">02</p>
-                        <h3 class="mt-4 font-display text-xl font-bold text-white">Location-first discovery</h3>
-                        <p class="mt-3 text-sm leading-6 text-white/72">Choose a country first, then filter by real
-                            cities to see inventory that actually matches where you want to buy, rent, hire or
-                            relocate.</p>
+                        <h3 class="mt-4 font-display text-xl font-bold text-white">Search by location</h3>
+                        <p class="mt-3 text-sm leading-6 text-white/72">Browse available listings by country and city.</p>
                     </div>
                     <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">03</p>
-                        <h3 class="mt-4 font-display text-xl font-bold text-white">WhatsApp conversion</h3>
-                        <p class="mt-3 text-sm leading-6 text-white/72">Instead of losing buyers in long forms,
-                            connectify pushes serious enquiries straight into WhatsApp for viewings, negotiations,
-                            tenancy questions and hiring follow-up.</p>
+                        <h3 class="mt-4 font-display text-xl font-bold text-white">Direct contact</h3>
+                        <p class="mt-3 text-sm leading-6 text-white/72">Open WhatsApp from a listing to contact the seller.</p>
                     </div>
                 </div>
             </div>

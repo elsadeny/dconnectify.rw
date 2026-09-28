@@ -257,8 +257,8 @@
         <footer id="site-footer"
             class="mt-12 hidden border-t border-white/8 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(4,9,20,1))] md:block">
             <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <div class="grid gap-8 border-b border-white/8 pb-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
-                    <div>
+                <div class="grid items-start gap-8 border-b border-white/8 pb-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+                    <div class="lg:-mt-3">
                         <div class="flex items-center gap-3">
                             <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
                                 class="h-12 w-12 shrink-0 rounded-full object-cover shadow-[0_14px_35px_-16px_rgba(0,0,0,0.55)]">

@@ -1,6 +1,6 @@
 <script>
     (() => {
-        const preference = localStorage.getItem('connectify-theme') || 'system';
+        const preference = localStorage.getItem('connectify-theme') || localStorage.getItem('theme') || 'system';
         const isNight = new Date().getHours() >= 18 || new Date().getHours() < 7;
         const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
         const theme = preference === 'light' ? 'light' : preference === 'dark' ? 'dark' : preference === 'auto' ? (isNight ? 'dark' : 'light') : (prefersDark ? 'dark' : 'light');
@@ -8,6 +8,22 @@
         document.documentElement.dataset.themePreference = preference;
         document.documentElement.classList.toggle('dark', theme === 'dark');
         document.documentElement.style.colorScheme = theme;
+        // Filament owns the live theme class and its system-theme listener.
+        localStorage.setItem('theme', preference === 'auto' ? theme : preference);
+        const syncTheme = () => {
+            const resolved = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            document.documentElement.dataset.theme = resolved;
+            document.documentElement.style.colorScheme = resolved;
+        };
+        new MutationObserver(syncTheme).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class'],
+        });
+        window.addEventListener('theme-changed', (event) => {
+            if (!['light', 'dark', 'system'].includes(event.detail)) return;
+            localStorage.setItem('connectify-theme', event.detail);
+            document.documentElement.dataset.themePreference = event.detail;
+        });
     })();
 </script>
 <style>
@@ -695,8 +711,8 @@
     html[data-theme='light'] .connectify-panel-kpi__value,
     html[data-theme='light'] .fi-body.fi-panel-admin .fi-sidebar-item-label,
     html[data-theme='light'] .fi-body.fi-panel-seller .fi-sidebar-item-label,
-    html[data-theme='light'] .fi-body.fi-panel-admin .fi-topbar * ,
-    html[data-theme='light'] .fi-body.fi-panel-seller .fi-topbar * {
+    html[data-theme='light'] .fi-body.fi-panel-admin .fi-topbar .fi-icon-btn,
+    html[data-theme='light'] .fi-body.fi-panel-seller .fi-topbar .fi-icon-btn {
         color: #171717 !important;
     }
 
@@ -755,5 +771,35 @@
         background: #fff !important;
         border-color: #d4d4d4 !important;
         color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body:is(.fi-panel-admin, .fi-panel-seller) :is(.fi-wi-stats-overview-stat-value, .fi-sidebar-group-label, .fi-ta-record, .fi-pagination),
+    html[data-theme='light'] .connectify-dashboard-metric strong,
+    html[data-theme='light'] .connectify-panel-btn-ghost {
+        color: #171717 !important;
+    }
+
+    html[data-theme='light'] .fi-body:is(.fi-panel-admin, .fi-panel-seller) :is(.fi-wi-stats-overview-stat-label, .fi-wi-stats-overview-stat-description),
+    html[data-theme='light'] .connectify-panel-kpi__label {
+        color: #525252 !important;
+    }
+
+    html[data-theme='light'] .connectify-panel-btn-secondary {
+        background: #e5e5e5;
+        border-color: #bdbdbd;
+        color: #171717;
+    }
+
+    html[data-theme='light'] .fi-body:is(.fi-panel-admin, .fi-panel-seller) :is(.fi-section, .fi-ta-ctn, .fi-wi-stats-overview-stat),
+    html[data-theme='light'] :is(.connectify-panel-hero, .connectify-dashboard-card) {
+        background: #ededed !important;
+    }
+
+    html[data-theme='light'] :is(.connectify-panel-kpi, .connectify-dashboard-metric, .connectify-dashboard-note) {
+        background: #e5e5e5 !important;
+    }
+
+    html[data-theme='light'] .fi-body:is(.fi-panel-admin, .fi-panel-seller) .fi-wi-stats-overview-stat::before {
+        background: #737373 !important;
     }
 </style>

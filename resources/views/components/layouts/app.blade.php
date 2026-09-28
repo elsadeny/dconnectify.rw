@@ -290,14 +290,12 @@
                         <p class="footer-title">Contact us</p>
                         <div class="mt-4 space-y-3">
                             @foreach ([
-                                ['label' => 'General support', 'phone' => '+250 788 881 400', 'number' => '250788881400'],
-                                ['label' => 'Customer care', 'phone' => '+250 788 888 209', 'number' => '250788888209'],
-                                ['label' => 'Seller support', 'phone' => '+250 788 888 204', 'number' => '250788888204'],
+                                ['phone' => '+250 788 881 400', 'number' => '250788881400'],
+                                ['phone' => '+250 788 888 209', 'number' => '250788888209'],
+                                ['phone' => '+250 788 888 204', 'number' => '250788888204'],
                             ] as $contact)
-                            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
-                                <span class="text-white/60">{{ $contact['label'] }}</span>
-                                <a href="tel:{{ $contact['number'] }}" class="footer-link whitespace-nowrap">{{ $contact['phone'] }}</a>
-                            </div>
+                            <a href="https://wa.me/{{ $contact['number'] }}" target="_blank" rel="noopener noreferrer"
+                                aria-label="WhatsApp {{ $contact['phone'] }}" class="footer-link block whitespace-nowrap">{{ $contact['phone'] }}</a>
                             @endforeach
                             <div class="space-y-2 pt-2">
                                 <a href="mailto:supports@connectify.rw" class="footer-link block break-words">supports@connectify.rw</a>

@@ -289,15 +289,11 @@
                         <p class="mt-5 max-w-sm text-sm leading-7 text-white/60">connectify is a modern East African
                             marketplace for vehicles, property, jobs, rentals and services, helping people discover
                             trusted listings and connect with sellers faster.</p>
-                        <div class="mt-5 flex flex-wrap gap-3 text-sm">
-                            <a href="https://wa.me/250788881400" target="_blank" rel="noreferrer"
-                                class="footer-link">WhatsApp</a>
-                            <a href="https://www.facebook.com/haruna.nyamushanja/" target="_blank" rel="noreferrer"
-                                class="footer-link">Facebook</a>
-                            <a href="https://www.instagram.com/connectify.rw/" target="_blank" rel="noreferrer"
-                                class="footer-link">Instagram</a>
-                            <a href="https://x.com/CarconnectRw" target="_blank" rel="noreferrer"
-                                class="footer-link">X</a>
+                        <div class="mt-5 flex flex-wrap gap-2">
+                            <x-social-icon href="https://wa.me/250788881400" label="WhatsApp" icon="whatsapp" />
+                            <x-social-icon href="https://www.facebook.com/haruna.nyamushanja/" label="Facebook" icon="facebook" />
+                            <x-social-icon href="https://www.instagram.com/connectify.rw/" label="Instagram" icon="instagram" />
+                            <x-social-icon href="https://x.com/CarconnectRw" label="X" icon="x" />
                         </div>
                     </div>
 
@@ -364,8 +360,7 @@
                     <div class="flex flex-wrap items-center gap-4">
                         <a href="/seller" class="footer-link">Seller Sign In</a>
                         <a href="/seller/register" class="footer-link">Seller Sign Up</a>
-                        <a href="https://www.instagram.com/connectify.rw/" target="_blank" rel="noreferrer"
-                            class="footer-link">Instagram</a>
+                        <x-social-icon href="https://www.instagram.com/connectify.rw/" label="Instagram" icon="instagram" />
                         <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
                             rel="noreferrer" class="footer-link">Contact</a>
                         <div class="flex flex-wrap items-center gap-2">

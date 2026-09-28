@@ -104,7 +104,7 @@
                         @foreach($countries->take(6) as $countryName => $countryLabel)
                         <a href="{{ route('home', array_merge($filters, ['country' => $countryName])) }}"
                             data-async-link data-async-target="#home-content" data-async-push-state="true"
-                            class="flex flex-col items-center justify-center rounded-2xl bg-white p-5 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group dark:border dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                            class="flex flex-col items-center justify-center rounded-2xl bg-white p-5 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group dark:border dark:border-white/10 dark:bg-[#111]">
                             <div
                                 class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition group-hover:bg-[var(--color-ocean)] group-hover:text-white">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@
                         @foreach($citiesToDisplay as $cityValue => $cityLabel)
                         <a href="{{ route('home', array_merge($filters, ['city' => $cityValue])) }}"
                             data-async-link data-async-target="#home-content" data-async-push-state="true"
-                            class="flex flex-col items-center justify-center rounded-2xl bg-white p-4 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group dark:border dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                            class="flex flex-col items-center justify-center rounded-2xl bg-white p-4 text-center shadow-lg ring-1 ring-black/5 transition hover:-translate-y-1 active:scale-95 group dark:border dark:border-white/10 dark:bg-[#111]">
                             <div
                                 class="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition group-hover:bg-[var(--color-ocean)] group-hover:text-white">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,7 +321,7 @@
             <section id="featured" class="mx-auto hidden w-full max-w-7xl px-4 pt-4 sm:px-6 lg:block lg:px-8">
                 <div class="mb-5">
                     <p class="section-heading">Featured listings</p>
-                    <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">High-intent listings worth viewing first</h2>
+                    <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-white">High-intent listings worth viewing first</h2>
                 </div>
                 @if ($featuredCars->isNotEmpty())
                 <div class="grid grid-cols-3 gap-5">
@@ -368,9 +368,9 @@
         <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
             @foreach ($types as $type)
             <a href="{{ route('category.show', $type->value) }}"
-                class="surface-card group flex h-full flex-col rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                class="surface-card group flex h-full flex-col rounded-[1.5rem] p-4 text-[var(--color-ink)] shadow-[0_20px_50px_-30px_rgba(8,20,33,0.35)] transition hover:-translate-y-1 hover:border-[var(--color-ocean)] sm:rounded-[1.75rem] sm:p-6 dark:border-white/10 dark:bg-[#111] dark:text-white">
                 <p class="section-heading dark:text-slate-400">{{ $type->value }}</p>
-                <h3 class="mt-3 font-display text-xl font-bold sm:text-2xl dark:text-[#eaf2ff]">{{ $type->label() }}</h3>
+                <h3 class="mt-3 font-display text-xl font-bold sm:text-2xl dark:text-white">{{ $type->label() }}</h3>
                 <p class="mt-3 hidden text-sm leading-6 text-slate-600 dark:text-slate-300 sm:block">{{ match($type->value) {
                     'vehicle' => 'Sell and discover cars ready for city roads and cross-border travel.',
                     'property' => 'Browse homes, rentals and commercial spaces in prime neighborhoods.',
@@ -378,7 +378,7 @@
                     default => 'List trusted services, rentals and specialist business offerings.',
                     } }}</p>
                 <div class="mt-auto flex items-center justify-between pt-4 sm:pt-6">
-                    <span class="inline-flex text-sm font-semibold text-[var(--color-ocean)] dark:text-[#7eb7ff]">Browse now</span>
+                    <span class="inline-flex text-sm font-semibold text-[var(--color-ocean)] dark:text-white">Browse now</span>
                     <span class="text-lg text-[var(--color-clay)] dark:text-slate-400">{{ number_format($categoryCounts[$type->value] ?? 0) }}</span>
                 </div>
             </a>
@@ -387,7 +387,7 @@
     </section>
 
     <section id="why-connectify" class="mx-auto hidden max-w-7xl px-4 py-10 sm:px-6 lg:block lg:px-8">
-        <div class="hero-panel rounded-[2rem] px-6 py-8 md:px-8 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+        <div class="hero-panel rounded-[2rem] px-6 py-8 md:px-8 dark:bg-[#111]">
             <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                 <div>
                     <p class="gold-chip">Why connectify?</p>
@@ -395,17 +395,17 @@
                     <p class="mt-4 max-w-lg text-sm leading-7 text-white/72">Browse cars, property, jobs and services across East Africa.</p>
                 </div>
                 <div class="grid gap-4 md:grid-cols-3">
-                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[#111]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">01</p>
                         <h3 class="mt-4 font-display text-xl font-bold text-white">Verified sellers</h3>
                         <p class="mt-3 text-sm leading-6 text-white/72">Verified listings identify sellers reviewed by connectify.</p>
                     </div>
-                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[#111]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">02</p>
                         <h3 class="mt-4 font-display text-xl font-bold text-white">Search by location</h3>
                         <p class="mt-3 text-sm leading-6 text-white/72">Browse available listings by country and city.</p>
                     </div>
-                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                    <div class="rounded-[1.5rem] border border-white/8 bg-white/6 p-5 dark:border-white/10 dark:bg-[#111]">
                         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)]">03</p>
                         <h3 class="mt-4 font-display text-xl font-bold text-white">Direct contact</h3>
                         <p class="mt-3 text-sm leading-6 text-white/72">Open WhatsApp from a listing to contact the seller.</p>
@@ -416,11 +416,11 @@
     </section>
 
     <section id="latest" class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" data-async-container>
-        <div class="surface-card rounded-[2rem] p-6 text-[var(--color-ink)] md:p-8 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+        <div class="surface-card rounded-[2rem] p-6 text-[var(--color-ink)] md:p-8 dark:border-white/10 dark:bg-[#111] dark:text-white">
             <div class="flex flex-col gap-3 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between dark:border-white/10">
                 <div>
                     <p class="section-heading">Latest listings</p>
-                    <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Fresh from the marketplace</h2>
+                    <h2 class="mt-2 font-display text-3xl font-bold text-[var(--color-ink)] dark:text-white">Fresh from the marketplace</h2>
                 </div>
                 <p class="max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">New stock, rentals, job posts and service
                     offers appear here first, giving buyers and applicants a current view of what is available in
@@ -430,7 +430,7 @@
             <div class="mt-6 grid gap-4 lg:grid-cols-3">
                 @forelse ($listings as $listing)
                 <article
-                    class="surface-card-soft group relative flex h-full flex-col rounded-[1.5rem] p-4 transition hover:-translate-y-1 hover:border-[var(--color-ocean)] hover:shadow-lg dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                    class="surface-card-soft group relative flex h-full flex-col rounded-[1.5rem] p-4 transition hover:-translate-y-1 hover:border-[var(--color-ocean)] hover:shadow-lg dark:border-white/10 dark:bg-[#111] dark:text-white">
                     @auth
                     @php $isSaved = auth()->user()->savedListings->contains($listing->id); @endphp
                     <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $listing) }}"
@@ -457,25 +457,25 @@
                             $listing->type->label() }}</span>
                         <span class="text-xs text-slate-500 dark:text-slate-300">{{ $listing->area ?? $listing->city }}</span>
                     </div>
-                    <h3 class="mt-3 font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]"><a href="{{ route('listings.show', $listing) }}">{{
+                    <h3 class="mt-3 font-display text-xl font-bold text-[var(--color-ink)] dark:text-white"><a href="{{ route('listings.show', $listing) }}">{{
                             $listing->title }}</a></h3>
                     <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">{{ $listing->city }}, {{ $listing->country }}</p>
                     <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{
                         \Illuminate\Support\Str::limit($listing->description, 100) }}</p>
                     <div class="mt-auto flex items-center justify-between gap-3 pt-4">
                         <div class="min-w-0">
-                            <p class="truncate text-lg font-extrabold text-[var(--color-ink)] dark:text-[#eaf2ff]">{{ $listing->formattedPrimaryValue }}</p>
+                            <p class="truncate text-lg font-extrabold text-[var(--color-ink)] dark:text-white">{{ $listing->formattedPrimaryValue }}</p>
                             <p class="truncate text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300">{{
                                 $listing->seller?->company_name ?? $listing->seller?->name }}</p>
                         </div>
                         <a href="{{ route('listings.show', $listing) }}"
-                            class="shrink-0 rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">View</a>
+                            class="shrink-0 rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] dark:border-white/10 dark:bg-[#111] dark:text-white">View</a>
                     </div>
                 </article>
                 @empty
                 <div class="lg:col-span-3">
-                <div class="surface-card-soft rounded-[1.5rem] border-dashed px-6 py-12 text-center dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
-                        <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">No listings match your filters</h3>
+                <div class="surface-card-soft rounded-[1.5rem] border-dashed px-6 py-12 text-center dark:border-white/10 dark:bg-[#111]">
+                        <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-white">No listings match your filters</h3>
                         <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Try a different country or city, broaden your
                             category, or publish a new listing from the seller panel to start building local
                             inventory.</p>

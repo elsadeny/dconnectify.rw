@@ -9,10 +9,7 @@
         height: 100dvh;
         display: flex;
         flex-direction: column;
-        background:
-            radial-gradient(circle at 12% 12%, rgba(29, 143, 255, 0.24), transparent 22%),
-            radial-gradient(circle at 88% 10%, rgba(103, 184, 255, 0.18), transparent 20%),
-            linear-gradient(180deg, #040914 0%, #0d1b2e 34%, #16314f 100%);
+        background: #000;
         overflow: hidden;
     }
 
@@ -44,11 +41,11 @@
         max-height: calc(100dvh - 11.25rem);
         overflow: auto;
         border-radius: 2rem !important;
-        border: 1px solid rgba(143, 208, 255, 0.22);
-        background: linear-gradient(180deg, rgba(9, 23, 40, 0.96), rgba(6, 16, 30, 0.94)) !important;
+        border: 1px solid #2a2a2a;
+        background: #111 !important;
         box-shadow: 0 40px 100px -48px rgba(0, 0, 0, 0.9);
         padding: 1.6rem 1.35rem !important;
-        color: #d9e8f6;
+        color: #fff;
         scrollbar-width: thin;
         scrollbar-color: rgba(143, 208, 255, 0.35) transparent;
     }
@@ -80,7 +77,7 @@
     .fi-simple-main [class*="fi-fo-field-wrp-label"] *,
     .fi-simple-main label *,
     .fi-simple-main legend {
-        color: #d3e3f5 !important;
+        color: #e5e5e5 !important;
         font-weight: 600;
     }
 
@@ -90,13 +87,13 @@
 
     .fi-simple-main [class*="fi-fo-field-wrp-hint"],
     .fi-simple-main [class*="fi-fo-field-wrp-helper-text"] {
-        color: #9bb4cf !important;
+        color: #a3a3a3 !important;
     }
 
     .fi-simple-main .fi-input-wrp {
         border-radius: 1rem;
-        border-color: rgba(143, 208, 255, 0.28);
-        background: rgba(18, 39, 62, 0.9);
+        border-color: #333;
+        background: #171717;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
@@ -115,15 +112,15 @@
     }
 
     .fi-simple-main .fi-input-wrp:focus-within {
-        border-color: #1d8fff;
-        box-shadow: 0 0 0 4px rgba(29, 143, 255, 0.14);
+        border-color: #e5e5e5;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
     }
 
     .fi-simple-main .fi-btn.fi-color-primary {
         border-radius: 9999px;
-        background: linear-gradient(135deg, #1d8fff, #8fd0ff) !important;
-        color: #07111f !important;
-        box-shadow: 0 22px 40px -22px rgba(29, 143, 255, 0.8);
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none;
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -135,29 +132,29 @@
 
     .fi-simple-main .fi-link,
     .fi-simple-main a {
-        color: #7ec4ff;
+        color: #fff;
     }
 
     .fi-simple-main .fi-link:hover,
     .fi-simple-main a:hover {
-        color: #b9e1ff;
+        color: #d4d4d4;
     }
 
     .fi-simple-main [type='checkbox'] {
-        border-color: rgba(143, 208, 255, 0.42);
-        background-color: rgba(13, 31, 49, 0.92);
+        border-color: #525252;
+        background-color: #171717;
     }
 
     .fi-simple-main [type='checkbox']:checked {
-        border-color: #1d8fff;
-        background-color: #1d8fff;
+        border-color: #fff;
+        background-color: #fff;
     }
 
     .connectify-auth-intro {
         margin-bottom: 1rem;
         border-radius: 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background: linear-gradient(180deg, rgba(17, 29, 46, 0.96), rgba(7, 17, 31, 0.95));
+        background: #171717;
         padding: 1rem;
         color: white;
         box-shadow: 0 28px 70px -42px rgba(0, 0, 0, 0.75);

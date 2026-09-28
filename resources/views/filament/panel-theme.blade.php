@@ -515,4 +515,97 @@
             grid-template-columns: 1fr;
         }
     }
+
+    .fi-body.fi-panel-admin,
+    .fi-body.fi-panel-seller {
+        background: #000 !important;
+        color: #fff;
+    }
+
+    .fi-body.fi-panel-admin .fi-sidebar,
+    .fi-body.fi-panel-seller .fi-sidebar {
+        background: #080808 !important;
+        border-color: #262626;
+    }
+
+    .fi-body.fi-panel-admin .fi-topbar,
+    .fi-body.fi-panel-seller .fi-topbar {
+        background: #0a0a0a !important;
+        border-color: #262626;
+        backdrop-filter: none;
+    }
+
+    .fi-body.fi-panel-admin .fi-section,
+    .fi-body.fi-panel-seller .fi-section,
+    .fi-body.fi-panel-admin .fi-ta-ctn,
+    .fi-body.fi-panel-seller .fi-ta-ctn,
+    .fi-body.fi-panel-admin .fi-wi-stats-overview-stat,
+    .fi-body.fi-panel-seller .fi-wi-stats-overview-stat,
+    .connectify-panel-hero,
+    .connectify-dashboard-card,
+    .connectify-panel-kpi,
+    .connectify-dashboard-metric,
+    .connectify-dashboard-note {
+        background: #111 !important;
+        border-color: #2a2a2a !important;
+        box-shadow: none !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-input-wrp,
+    .fi-body.fi-panel-seller .fi-input-wrp,
+    .fi-body.fi-panel-admin .fi-select-input,
+    .fi-body.fi-panel-seller .fi-select-input {
+        background: #171717 !important;
+        border-color: #333 !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-header-heading,
+    .fi-body.fi-panel-seller .fi-header-heading,
+    .fi-body.fi-panel-admin .fi-section-header-heading,
+    .fi-body.fi-panel-seller .fi-section-header-heading,
+    .connectify-panel-hero__title,
+    .connectify-dashboard-card__title,
+    .connectify-panel-kpi__value {
+        color: #fff !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-header-subheading,
+    .fi-body.fi-panel-seller .fi-header-subheading,
+    .fi-body.fi-panel-admin .fi-section-header-description,
+    .fi-body.fi-panel-seller .fi-section-header-description,
+    .connectify-panel-hero__copy,
+    .connectify-dashboard-note p,
+    .connectify-dashboard-metric span {
+        color: #a3a3a3 !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-btn.fi-color-primary,
+    .fi-body.fi-panel-seller .fi-btn.fi-color-primary,
+    .fi-body.fi-panel-admin .fi-btn-color-primary,
+    .fi-body.fi-panel-seller .fi-btn-color-primary,
+    .connectify-panel-btn-primary {
+        background: #fff !important;
+        color: #000 !important;
+        border-color: #fff !important;
+        box-shadow: none !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-wi-stats-overview-stat::before,
+    .fi-body.fi-panel-seller .fi-wi-stats-overview-stat::before {
+        background: #fff !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
+    .fi-body.fi-panel-seller .fi-sidebar-item.fi-active .fi-sidebar-item-btn {
+        background: #1f1f1f !important;
+        box-shadow: inset 0 0 0 1px #333 !important;
+    }
+
+    .fi-body.fi-panel-admin .fi-sidebar-item-icon,
+    .fi-body.fi-panel-seller .fi-sidebar-item-icon,
+    .connectify-panel-hero__eyebrow,
+    .connectify-dashboard-card__eyebrow,
+    .connectify-inline-link {
+        color: #d4d4d4 !important;
+    }
 </style>

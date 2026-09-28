@@ -1,9 +1,9 @@
 <x-layouts.app :title="$type->label() . ' | Connectify Marketplace'">
-    <div class="relative min-h-screen bg-[var(--color-paper-strong)] dark:bg-[linear-gradient(180deg,#040914_0%,#07111f_24%,#0b1626_66%,#040914_100%)]">
+    <div class="relative min-h-screen bg-[var(--color-paper-strong)] dark:bg-black">
         <!-- Original Navbar -->
         <header class="fixed inset-x-0 top-0 z-50 px-4 pt-6 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
-                <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[#111]">
                     <a href="{{ route('home') }}" class="flex items-center gap-3">
                         <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
                             class="h-11 w-11 shrink-0 rounded-full object-cover">
@@ -24,7 +24,7 @@
                     </nav>
                     <div class="hidden items-center gap-2 md:flex">
                         <a href="/seller/login"
-                            class="rounded-full border border-white/15 bg-white/95 px-5 py-2.5 text-sm font-bold text-[var(--color-ink)] transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                            class="rounded-full border border-white/15 bg-white/95 px-5 py-2.5 text-sm font-bold text-[var(--color-ink)] transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[#111] dark:text-white">
                             Seller Panel</a>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
 
         <!-- Immersive Hero -->
         <section
-            class="relative overflow-hidden bg-[#040914] bg-gradient-to-b from-[#040914] via-[var(--color-night)] to-[var(--color-deep)] pb-40 pt-32 text-white md:pb-48 md:pt-44 dark:bg-[linear-gradient(180deg,#040914_0%,#07111f_24%,#0b1626_66%,#040914_100%)]">
+            class="relative overflow-hidden bg-[#040914] bg-gradient-to-b from-[#040914] via-[var(--color-night)] to-[var(--color-deep)] pb-40 pt-32 text-white md:pb-48 md:pt-44 dark:bg-black">
             <!-- Decorative orbs for premium feel -->
             <div
                 class="absolute left-[10%] top-[20%] h-64 w-64 rounded-full bg-[var(--color-ocean)]/20 blur-[100px] pointer-events-none">
@@ -70,7 +70,7 @@
 
         <!-- Horizontal Quick Filter Bar -->
         <section class="relative z-20 -mt-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="glass-panel overflow-hidden rounded-[2.5rem] p-2 shadow-2xl dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+            <div class="glass-panel overflow-hidden rounded-[2.5rem] p-2 shadow-2xl dark:bg-[#111]">
                 <form action="{{ route('category.show', $type->value) }}" method="GET" data-async-form
                     data-async-target="#category-results" data-async-push-state="true"
                     class="flex flex-col gap-2 md:flex-row md:items-center">
@@ -151,7 +151,7 @@
                         <div class="mt-4 flex flex-wrap gap-2">
                             @foreach($activeFilters as $key => $val)
                             <span
-                                class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold shadow-sm border border-slate-100 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                                class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold shadow-sm border border-slate-100 dark:border-white/10 dark:bg-[#111] dark:text-white">
                                 {{ ucfirst(str_replace('_', ' ', $val)) }}
                                 <a href="{{ route('category.show', [$type->value] + collect($filters)->except($key)->filter()->all()) }}"
                                     data-async-link data-async-target="#category-results" data-async-push-state="true"
@@ -168,8 +168,8 @@
                     @endif
 
                     <!-- Price Range Card -->
-                    <div class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
-                        <h3 class="font-display text-lg font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Price Range</h3>
+                    <div class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white dark:border-white/10 dark:bg-[#111]">
+                        <h3 class="font-display text-lg font-bold text-[var(--color-ink)] dark:text-white">Price Range</h3>
                         <form action="{{ route('category.show', $type->value) }}" method="GET"
                             class="mt-6 space-y-4" data-async-form data-async-target="#category-results"
                             data-async-push-state="true">
@@ -202,9 +202,9 @@
 
                     <!-- Verified Only Switch -->
                     <div
-                        class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white flex items-center justify-between dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                        class="surface-card rounded-[2.5rem] p-6 shadow-sm border border-slate-100/50 bg-white flex items-center justify-between dark:border-white/10 dark:bg-[#111]">
                         <div>
-                            <h3 class="text-sm font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Verified Only</h3>
+                            <h3 class="text-sm font-bold text-[var(--color-ink)] dark:text-white">Verified Only</h3>
                             <p class="text-[10px] font-medium text-[#6f8da9] mt-0.5 dark:text-slate-400">Show trusted sellers</p>
                         </div>
                         <button class="h-6 w-11 rounded-full bg-slate-200 p-1 transition-colors hover:bg-slate-300">
@@ -220,15 +220,15 @@
                         <div>
                             <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-clay)] mb-2 dark:text-slate-400">
                                 Category</p>
-                            <h2 class="font-display text-3xl font-extrabold text-[var(--color-ink)] dark:text-[#eaf2ff]">Showing Result</h2>
+                            <h2 class="font-display text-3xl font-extrabold text-[var(--color-ink)] dark:text-white">Showing Result</h2>
                             <p class="text-sm text-[#6f8da9] mt-1 font-medium dark:text-slate-400">Discover <span
-                                    class="font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">{{ $listings->total() }}</span> available
+                                    class="font-bold text-[var(--color-ink)] dark:text-white">{{ $listings->total() }}</span> available
                                 listings in {{ $type->label() }}</p>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="relative">
                                 <select
-                                    class="connectify-select-light rounded-full border border-slate-200 bg-white px-6 py-2.5 pr-10 text-xs font-bold text-[var(--color-ink)] shadow-sm focus:border-[var(--color-ocean)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)] transition dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                                    class="connectify-select-light rounded-full border border-slate-200 bg-white px-6 py-2.5 pr-10 text-xs font-bold text-[var(--color-ink)] shadow-sm focus:border-[var(--color-ocean)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ocean)] transition dark:border-white/10 dark:bg-[#111] dark:text-white">
                                     <option>Newest First</option>
                                     <option>Price: Low to High</option>
                                     <option>Price: High to Low</option>
@@ -241,7 +241,7 @@
                     <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                         @forelse ($listings as $listing)
                         <article
-                            class="surface-card group overflow-hidden rounded-[2.5rem] p-3 transition hover:-translate-y-1 hover:shadow-xl relative dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                            class="surface-card group overflow-hidden rounded-[2.5rem] p-3 transition hover:-translate-y-1 hover:shadow-xl relative dark:border-white/10 dark:bg-[#111]">
                             <!-- Image Container -->
                             <div class="relative h-64 overflow-hidden rounded-[2rem]">
                                 <img src="{{ $listing->cover_image }}" alt="{{ $listing->title }}"
@@ -290,14 +290,14 @@
                                         $listing->transaction_type === 'hire' ? 'Employment' :
                                         $listing->transaction_type }}</span>
                                 </div>
-                                <h3 class="mt-3 font-display text-lg font-bold leading-6 text-[var(--color-ink)] dark:text-[#eaf2ff]">
+                                <h3 class="mt-3 font-display text-lg font-bold leading-6 text-[var(--color-ink)] dark:text-white">
                                     <a href="{{ route('listings.show', $listing) }}"
                                         class="hover:text-[var(--color-ocean)] transition line-clamp-1">{{
                                         $listing->title }}</a>
                                 </h3>
                                 <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-white/10">
                                     <div>
-                                        <p class="text-lg font-black text-[var(--color-ink)] dark:text-[#eaf2ff]">{{
+                                        <p class="text-lg font-black text-[var(--color-ink)] dark:text-white">{{
                                             $listing->formattedPrimaryValue }}</p>
                                         <p class="text-[10px] font-medium text-slate-400 dark:text-slate-300">{{ $listing->city }}, {{
                                             $listing->country }}</p>
@@ -318,7 +318,7 @@
                         @empty
                         <div class="sm:col-span-2 xl:col-span-3">
                             <div
-                                class="flex flex-col items-center justify-center rounded-[3rem] border-2 border-dashed border-slate-200 bg-white/50 px-6 py-20 text-center dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
+                                class="flex flex-col items-center justify-center rounded-[3rem] border-2 border-dashed border-slate-200 bg-white/50 px-6 py-20 text-center dark:border-white/10 dark:bg-[#111]">
                                 <div
                                     class="flex h-20 w-20 items-center justify-center rounded-full bg-slate-100 text-slate-400 dark:bg-white/5 dark:text-slate-300">
                                     <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -326,7 +326,7 @@
                                             d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                     </svg>
                                 </div>
-                                <h3 class="mt-6 font-display text-2xl font-bold text-slate-800 dark:text-[#eaf2ff]">No matching listings
+                                <h3 class="mt-6 font-display text-2xl font-bold text-slate-800 dark:text-white">No matching listings
                                 </h3>
                                 <p class="mt-2 text-slate-500 dark:text-slate-300">Try adjusting your filters or search keywords to see
                                     more
@@ -348,7 +348,7 @@
         </main>
 
         <!-- Dynamic FAQ / Trust Section -->
-        <section class="bg-white/40 py-20 dark:bg-[linear-gradient(180deg,rgba(4,9,20,1),rgba(7,17,31,1))]">
+        <section class="bg-white/40 py-20 dark:bg-[#0a0a0a]">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-12 lg:grid-cols-3">
                     <div class="flex gap-6">
@@ -360,7 +360,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Verified Transactions</h3>
+                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-white">Verified Transactions</h3>
                             <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-300">Every pro seller on Connectify is
                                 vetted to ensure that images and descriptions match the real-world item.</p>
                         </div>
@@ -374,7 +374,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Direct Messaging</h3>
+                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-white">Direct Messaging</h3>
                             <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-300">Connect instantly with sellers
                                 via
                                 WhatsApp. No middlemen, no hidden fees, just direct peer-to-peer conversation.</p>
@@ -389,7 +389,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-[#eaf2ff]">Email Support</h3>
+                            <h3 class="font-display text-xl font-bold text-[var(--color-ink)] dark:text-white">Email Support</h3>
                             <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-300">Need help? Our dedicated support team
                                 is available via email to assist you with any questions or concerns.</p>
                         </div>

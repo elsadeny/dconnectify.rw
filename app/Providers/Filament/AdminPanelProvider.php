@@ -28,7 +28,10 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('connectify Admin')
+            ->brandName('connectify.rw Admin')
+            ->brandLogo(asset('images/connectify-logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('images/connectify-logo.png'))
             ->login()
             ->passwordReset()
             ->colors([

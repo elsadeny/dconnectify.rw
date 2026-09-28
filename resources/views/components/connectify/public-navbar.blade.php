@@ -18,11 +18,10 @@
     <div class="mx-auto max-w-7xl">
         <div class="connectify-public-navbar__shell">
             <a href="{{ $homeHref }}" class="connectify-public-navbar__brand">
-                <div class="connectify-public-navbar__logo">
-                    C
-                </div>
+                <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
+                    class="connectify-public-navbar__logo">
                 <div class="connectify-public-navbar__copy">
-                    <p class="connectify-public-navbar__name">connectify</p>
+                    <p class="connectify-public-navbar__name">connectify.rw</p>
                     <p class="connectify-public-navbar__tag connectify-public-navbar__tag--desktop">Premium marketplace across East Africa</p>
                     <p class="connectify-public-navbar__tag connectify-public-navbar__tag--mobile">East Africa Marketplace</p>
                 </div>

@@ -7,6 +7,7 @@
     <title>{{ $title ?? 'connectify Marketplace' }}</title>
     <meta name="description"
         content="connectify is a modern East African marketplace for cars, jobs, rentals, services and real estate.">
+    <link rel="icon" type="image/png" href="{{ asset('images/connectify-logo.png') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=space-grotesk:400,500,700|plus-jakarta-sans:400,500,600,700,800"
         rel="stylesheet" />
@@ -284,11 +285,10 @@
                 <div class="grid gap-8 border-b border-white/8 pb-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
                     <div>
                         <div class="flex items-center gap-3">
-                            <div
-                                class="flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)] shadow-[0_14px_35px_-16px_rgba(29,143,255,0.8)]">
-                                C</div>
+                            <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
+                                class="h-12 w-12 shrink-0 rounded-full object-cover shadow-[0_14px_35px_-16px_rgba(29,143,255,0.8)]">
                             <div>
-                                <p class="font-display text-xl font-bold text-white">connectify</p>
+                                <p class="font-display text-xl font-bold text-white">connectify.rw</p>
                                 <p class="text-xs uppercase tracking-[0.24em] text-white/50">East Africa marketplace</p>
                             </div>
                         </div>

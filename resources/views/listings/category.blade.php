@@ -5,11 +5,10 @@
             <div class="mx-auto max-w-7xl">
                 <div class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))]">
                     <a href="{{ route('home') }}" class="flex items-center gap-3">
-                        <div
-                            class="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-ocean),#8fd0ff)] text-lg font-black text-[var(--color-ink)]">
-                            C</div>
+                        <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
+                            class="h-11 w-11 shrink-0 rounded-full object-cover">
                         <div>
-                            <p class="font-display text-lg font-bold tracking-tight text-white">connectify</p>
+                            <p class="font-display text-lg font-bold tracking-tight text-white">connectify.rw</p>
                             <p class="text-xs uppercase tracking-[0.24em] text-white/60">Premium marketplace across
                                 East Africa</p>
                         </div>

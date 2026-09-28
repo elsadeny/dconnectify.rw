@@ -27,7 +27,10 @@ class SellerPanelProvider extends PanelProvider
         return $panel
             ->id('seller')
             ->path('seller')
-            ->brandName('connectify Seller')
+            ->brandName('connectify.rw Seller')
+            ->brandLogo(asset('images/connectify-logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('images/connectify-logo.png'))
             ->login()
             ->registration(\App\Filament\Seller\Auth\Register::class)
             ->passwordReset()

@@ -629,16 +629,11 @@
     }
 
     .connectify-public-navbar__logo {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
         width: 2.75rem;
         height: 2.75rem;
         border-radius: 9999px;
-        background: linear-gradient(135deg, var(--color-ocean), #8fd0ff);
-        color: var(--color-ink);
-        font-size: 1.125rem;
-        font-weight: 900;
+        object-fit: cover;
         flex-shrink: 0;
     }
 

@@ -14,11 +14,11 @@
     <script>
         (() => {
             const storageKey = 'connectify-theme';
-            const theme = localStorage.getItem(storageKey) || 'auto';
+            const theme = localStorage.getItem(storageKey) || 'system';
             const hour = new Date().getHours();
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const isNight = hour >= 18 || hour < 7;
-            const resolvedTheme = theme === 'light' ? 'light' : theme === 'dark' ? 'dark' : theme === 'system' ? (prefersDark ? 'dark' : 'light') : (isNight ? 'dark' : 'light');
+            const resolvedTheme = theme === 'light' ? 'light' : theme === 'dark' ? 'dark' : theme === 'auto' ? (isNight ? 'dark' : 'light') : (prefersDark ? 'dark' : 'light');
 
             document.documentElement.dataset.theme = resolvedTheme;
             document.documentElement.dataset.themePreference = theme;
@@ -356,26 +356,30 @@
                 <div
                     class="flex flex-col gap-3 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
                     <p>&copy; {{ now()->year }} connectify marketplace. All rights reserved.</p>
-                    <div class="flex items-center gap-2">
-                            <button type="button" data-theme-choice="auto"
-                                class="theme-pill">Auto</button>
-                            <button type="button" data-theme-choice="system"
-                                class="theme-pill">System</button>
-                            <button type="button" data-theme-choice="light" class="theme-pill theme-pill--icon"
-                                aria-label="Use light theme" title="Light theme">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    class="h-4 w-4" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="3.5" />
-                                    <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
-                                </svg>
-                            </button>
-                            <button type="button" data-theme-choice="dark" class="theme-pill theme-pill--icon"
-                                aria-label="Use dark theme" title="Dark theme">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    class="h-4 w-4" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
-                                </svg>
-                            </button>
+                    <div class="theme-switch" role="group" aria-label="Color theme">
+                        <button type="button" data-theme-choice="system" class="theme-switch__option"
+                            aria-label="Use system theme" title="System theme">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                class="h-4 w-4" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="13" rx="2" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4" />
+                            </svg>
+                        </button>
+                        <button type="button" data-theme-choice="light" class="theme-switch__option"
+                            aria-label="Use light theme" title="Light theme">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                class="h-4 w-4" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3.5" />
+                                <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+                            </svg>
+                        </button>
+                        <button type="button" data-theme-choice="dark" class="theme-switch__option"
+                            aria-label="Use dark theme" title="Dark theme">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                class="h-4 w-4" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -768,29 +768,66 @@
         @apply text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sand)];
     }
 
-    .theme-pill {
-        @apply rounded-full border border-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70 transition hover:bg-white/8 hover:text-white;
+    .theme-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.125rem;
+        padding: 0.25rem;
+        border: 1px solid #d4d4d4;
+        border-radius: 9999px;
+        background: #f0f0f0;
     }
 
-    .theme-pill--icon {
+    .theme-switch__option {
         display: inline-flex;
-        width: 2rem;
+        width: 2.25rem;
         height: 2rem;
         align-items: center;
         justify-content: center;
-        padding: 0;
+        border: 0;
+        border-radius: 9999px;
+        background: transparent;
+        color: #737373;
+        cursor: pointer;
+        transition: background-color 0.18s ease, color 0.18s ease;
     }
 
-    html[data-theme='light'] .theme-pill {
-        border-color: #c7c7c7 !important;
-        background: #e5e5e5 !important;
-        color: #525252 !important;
-        box-shadow: 0 12px 28px -24px rgba(0, 0, 0, 0.32) !important;
+    .theme-switch__option:hover {
+        background: #e5e5e5;
+        color: #171717;
     }
 
-    html[data-theme='light'] .theme-pill:hover {
-        background: #d4d4d4 !important;
-        color: #000 !important;
+    .theme-switch__option[aria-pressed='true'] {
+        background: #d4d4d4;
+        color: #171717;
+    }
+
+    .theme-switch__option:focus-visible {
+        outline: 2px solid #737373;
+        outline-offset: 2px;
+    }
+
+    html[data-theme='dark'] .theme-switch {
+        border-color: #333;
+        background: #171717;
+    }
+
+    html[data-theme='dark'] .theme-switch__option {
+        color: #a3a3a3;
+    }
+
+    html[data-theme='dark'] .theme-switch__option:hover {
+        background: #262626;
+        color: #fff;
+    }
+
+    html[data-theme='dark'] .theme-switch__option[aria-pressed='true'] {
+        background: #404040;
+        color: #fff;
+    }
+
+    html[data-theme='dark'] .theme-switch__option:focus-visible {
+        outline-color: #a3a3a3;
     }
 
     .connectify-public-navbar {

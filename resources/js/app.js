@@ -27,14 +27,11 @@ const applyThemePreference = (themePreference) => {
 		const isActive = button.dataset.themeChoice === themePreference;
 
 		button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-		button.classList.toggle('bg-white/15', isActive);
-		button.classList.toggle('text-white', isActive);
-		button.classList.toggle('border-white/30', isActive);
 	});
 };
 
 const initializeThemeControls = () => {
-	const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'auto';
+	const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'system';
 	applyThemePreference(savedTheme);
 
 	document.querySelectorAll('[data-theme-choice]').forEach((button) => {

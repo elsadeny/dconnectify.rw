@@ -257,39 +257,16 @@
         <footer id="site-footer"
             class="mt-12 hidden border-t border-white/8 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(4,9,20,1))] md:block">
             <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <div class="mb-8 rounded-[2rem] border border-white/8 bg-white/5 p-5 md:p-6">
-                    <div class="mb-5">
-                        <p class="footer-title">Contact us</p>
-                        <h2 class="mt-2 font-display text-2xl font-bold text-white">Choose the right contact for your question.</h2>
-                    </div>
-                    <div class="grid gap-4 md:grid-cols-3">
-                        @foreach ([
-                            ['label' => 'General support', 'phone' => '+250 788 881 400', 'number' => '250788881400', 'email' => 'supports@connectify.rw'],
-                            ['label' => 'Customer care', 'phone' => '+250 788 888 209', 'number' => '250788888209', 'email' => 'customers@connectify.rw'],
-                            ['label' => 'Seller support', 'phone' => '+250 788 888 204', 'number' => '250788888204', 'email' => 'supports@connectify.rw'],
-                        ] as $contact)
-                        <div class="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4">
-                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-sand)]">{{ $contact['label'] }}</p>
-                            <a href="tel:{{ $contact['number'] }}" class="mt-3 block text-lg font-bold text-white hover:text-[var(--color-sand)]">{{ $contact['phone'] }}</a>
-                            <a href="mailto:{{ $contact['email'] }}" class="mt-1 block truncate text-sm text-white/58 hover:text-white">{{ $contact['email'] }}</a>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="grid gap-8 border-b border-white/8 pb-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
+                <div class="grid gap-8 border-b border-white/8 pb-8 md:grid-cols-2 lg:grid-cols-[1fr_0.7fr_1fr]">
                     <div>
                         <div class="flex items-center gap-3">
                             <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
                                 class="h-12 w-12 shrink-0 rounded-full object-cover shadow-[0_14px_35px_-16px_rgba(0,0,0,0.55)]">
                             <div>
                                 <p class="font-display text-xl font-bold text-white">connectify.rw</p>
-                                <p class="text-xs uppercase tracking-[0.24em] text-white/50">East Africa marketplace</p>
+                                <p class="text-sm text-white/50">East Africa marketplace</p>
                             </div>
                         </div>
-                        <p class="mt-5 max-w-sm text-sm leading-7 text-white/60">connectify is a modern East African
-                            marketplace for vehicles, property, jobs, rentals and services, helping people discover
-                            trusted listings and connect with sellers faster.</p>
                         <div class="mt-5 flex flex-wrap gap-2">
                             <x-social-icon href="https://wa.me/250788881400" label="WhatsApp" icon="whatsapp" />
                             <x-social-icon href="https://www.facebook.com/haruna.nyamushanja/" label="Facebook" icon="facebook" />
@@ -299,65 +276,43 @@
                     </div>
 
                     <div>
-                        <p class="footer-title">Company</p>
-                        <div class="mt-4 space-y-3">
-                            <a href="{{ route('home') }}#why-connectify" class="footer-link block">About connectify</a>
-                            <a href="{{ route('home') }}#featured" class="footer-link block">Featured listings</a>
-                            <a href="{{ route('home') }}#latest" class="footer-link block">Latest listings</a>
-                            <a href="/seller" class="footer-link block">Seller Panel</a>
-                            <a href="/seller/register" class="footer-link block">Become a seller</a>
-                            <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20support" target="_blank"
-                                rel="noreferrer" class="footer-link block">Contact support</a>
-                        </div>
-                    </div>
-
-                    <div>
                         <p class="footer-title">Marketplace</p>
-                        <div class="mt-4 space-y-3">
-                            <a href="{{ route('home') }}" class="footer-link block">Browse marketplace</a>
-                            <a href="{{ route('home', ['transaction_type' => 'sale']) }}" class="footer-link block">Buy
-                                and sell</a>
-                            <a href="{{ route('home', ['transaction_type' => 'rent']) }}"
-                                class="footer-link block">Rentals</a>
-                            <a href="{{ route('home', ['transaction_type' => 'hire']) }}" class="footer-link block">Jobs
-                                and hiring</a>
-                            <a href="/seller/register" class="footer-link block">Post a listing</a>
-                            <a href="/admin" class="footer-link block">Admin access</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="footer-title">Popular categories</p>
                         <div class="mt-4 space-y-3">
                             <a href="{{ route('home', ['type' => 'vehicle']) }}" class="footer-link block">Vehicles</a>
                             <a href="{{ route('home', ['type' => 'property']) }}" class="footer-link block">Property</a>
                             <a href="{{ route('home', ['type' => 'job']) }}" class="footer-link block">Jobs</a>
                             <a href="{{ route('home', ['type' => 'service']) }}" class="footer-link block">Services</a>
-                            <a href="{{ route('home', ['country' => 'Rwanda']) }}" class="footer-link block">Rwanda
-                                listings</a>
-                            <a href="{{ route('home', ['country' => 'Kenya']) }}" class="footer-link block">Kenya
-                                listings</a>
+                            <a href="/seller" class="footer-link block">Seller portal</a>
                         </div>
                     </div>
 
                     <div>
-                        <p class="footer-title">Marketplace help</p>
+                        <p class="footer-title">Contact us</p>
                         <div class="mt-4 space-y-3">
-                            <a href="{{ route('home') }}#categories" class="footer-link block">Browse categories</a>
-                            <a href="{{ route('home') }}#why-connectify" class="footer-link block">Why connectify?</a>
-                            <a href="{{ route('home') }}#featured" class="footer-link block">Featured picks</a>
-                            <a href="{{ route('home') }}#latest" class="footer-link block">Fresh listings</a>
-                            <a href="https://wa.me/250788881400?text=Hi%2C%20I%20need%20help%20using%20connectify"
-                                target="_blank" rel="noreferrer" class="footer-link block">Using the platform</a>
-                            <a href="https://wa.me/250788888204?text=Hello%2C%20I%20want%20to%20list%20on%20connectify"
-                                target="_blank" rel="noreferrer" class="footer-link block">Listing assistance</a>
+                            @foreach ([
+                                ['label' => 'General support', 'phone' => '+250 788 881 400', 'number' => '250788881400'],
+                                ['label' => 'Customer care', 'phone' => '+250 788 888 209', 'number' => '250788888209'],
+                                ['label' => 'Seller support', 'phone' => '+250 788 888 204', 'number' => '250788888204'],
+                            ] as $contact)
+                            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
+                                <span class="text-white/60">{{ $contact['label'] }}</span>
+                                <a href="tel:{{ $contact['number'] }}" class="footer-link whitespace-nowrap">{{ $contact['phone'] }}</a>
+                            </div>
+                            @endforeach
+                            <div class="space-y-2 pt-2">
+                                <a href="mailto:supports@connectify.rw" class="footer-link block break-words">supports@connectify.rw</a>
+                                <a href="mailto:customers@connectify.rw" class="footer-link block break-words">customers@connectify.rw</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div
                     class="flex flex-col gap-3 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-                    <p>&copy; {{ now()->year }} connectify marketplace. All rights reserved.</p>
+                    <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                        <p>&copy; {{ now()->year }} connectify.rw</p>
+                        <p class="text-xs">Powered by <a href="https://aphezis.com" class="hover:underline focus-visible:underline">ApheZis</a></p>
+                    </div>
                     <div class="theme-switch" role="group" aria-label="Color theme">
                         <button type="button" data-theme-choice="system" class="theme-switch__option"
                             aria-label="Use system theme" title="System theme">

@@ -430,7 +430,7 @@
             <div class="mt-6 grid gap-4 lg:grid-cols-3">
                 @forelse ($listings as $listing)
                 <article
-                    class="surface-card-soft rounded-[1.5rem] p-4 transition hover:-translate-y-1 hover:border-[var(--color-ocean)] hover:shadow-lg relative group dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
+                    class="surface-card-soft group relative flex h-full flex-col rounded-[1.5rem] p-4 transition hover:-translate-y-1 hover:border-[var(--color-ocean)] hover:shadow-lg dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">
                     @auth
                     @php $isSaved = auth()->user()->savedListings->contains($listing->id); @endphp
                     <form method="POST" action="{{ route($isSaved ? 'saved.destroy' : 'saved.store', $listing) }}"
@@ -462,14 +462,14 @@
                     <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">{{ $listing->city }}, {{ $listing->country }}</p>
                     <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{{
                         \Illuminate\Support\Str::limit($listing->description, 100) }}</p>
-                    <div class="mt-4 flex items-center justify-between gap-3">
-                        <div>
-                            <p class="text-lg font-extrabold text-[var(--color-ink)] dark:text-[#eaf2ff]">{{ $listing->formattedPrimaryValue }}</p>
-                            <p class="text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300">{{
+                    <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+                        <div class="min-w-0">
+                            <p class="truncate text-lg font-extrabold text-[var(--color-ink)] dark:text-[#eaf2ff]">{{ $listing->formattedPrimaryValue }}</p>
+                            <p class="truncate text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300">{{
                                 $listing->seller?->company_name ?? $listing->seller?->name }}</p>
                         </div>
                         <a href="{{ route('listings.show', $listing) }}"
-                            class="rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">View</a>
+                            class="shrink-0 rounded-full border border-[var(--color-sand)] bg-white/70 px-4 py-2 text-sm font-semibold shadow-[0_12px_24px_-18px_rgba(8,20,33,0.4)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(6,12,22,0.98),rgba(11,20,33,0.96))] dark:text-[#eaf2ff]">View</a>
                     </div>
                 </article>
                 @empty

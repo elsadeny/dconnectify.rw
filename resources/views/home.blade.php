@@ -259,14 +259,14 @@
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Min
                                     Price</span>
                                 <input type="number" name="min_price" value="{{ $filters['min_price'] ?? '' }}"
-                                    placeholder="0" class="connectify-input">
+                                    placeholder="0" class="connectify-input marketplace-price-input">
                             </label>
                             <label class="space-y-2">
                                 <span
                                     class="block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/58">Max
                                     Price</span>
                                 <input type="number" name="max_price" value="{{ $filters['max_price'] ?? '' }}"
-                                    placeholder="Any" class="connectify-input">
+                                    placeholder="Any" class="connectify-input marketplace-price-input">
                             </label>
                         </div>
 

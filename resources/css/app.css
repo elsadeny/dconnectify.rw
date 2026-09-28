@@ -525,6 +525,17 @@
         @apply w-full rounded-2xl border border-[#d6e6f6] px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[var(--color-ocean)] focus:ring-4 focus:ring-sky-100;
     }
 
+    .marketplace-price-input {
+        appearance: textfield;
+        -moz-appearance: textfield;
+    }
+
+    .marketplace-price-input::-webkit-inner-spin-button,
+    .marketplace-price-input::-webkit-outer-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+    }
+
     select.connectify-input {
         appearance: none;
         -webkit-appearance: none;

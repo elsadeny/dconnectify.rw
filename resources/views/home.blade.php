@@ -183,10 +183,8 @@
                     <span class="gold-chip shadow-[0_18px_40px_-26px_rgba(0,0,0,0.7)]">Cars, homes, jobs and
                         services</span>
                     <h1
-                        class="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white">
-                        <span class="block">connectify helps East Africa</span>
-                        <span class="block">buy, rent, hire and sell with speed.</span>
-                    </h1>
+                        class="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+                        connectify helps East Africa buy, rent, hire and sell with speed.</h1>
                     <p class="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg">From vehicles and homes to
                         jobs
                         and everyday services, connectify brings trusted local listings, location-first discovery and

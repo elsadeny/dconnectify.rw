@@ -394,17 +394,32 @@
         <div
             class="group fixed bottom-[calc(6.75rem+env(safe-area-inset-bottom))] right-4 z-40 md:bottom-6 md:right-6">
             <div
-                class="invisible absolute bottom-full right-0 hidden w-60 pb-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 md:block">
-                <div class="overflow-hidden rounded-lg border border-slate-200 bg-white p-2 text-sm text-slate-800 shadow-xl">
-                    <p class="px-3 py-2 text-xs font-semibold text-slate-500">Start a WhatsApp chat</p>
+                class="invisible absolute bottom-full right-0 hidden w-72 translate-y-1 pb-3 opacity-0 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 md:block">
+                <div class="overflow-hidden rounded-lg border border-white/10 bg-[#07111f] text-white shadow-[0_20px_50px_-18px_rgba(0,0,0,0.75)]">
+                    <div class="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                        <div>
+                            <p class="text-sm font-semibold">WhatsApp support</p>
+                            <p class="mt-0.5 text-xs text-white/55">Choose a topic to start</p>
+                        </div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-medium text-[#58df8b]">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#25d366]"></span>
+                            Direct chat
+                        </span>
+                    </div>
                     @foreach ([
-                        'General help' => 'Hi, I need help using connectify',
-                        'Cars' => 'Hi, I need help with cars on connectify',
-                        'Property' => 'Hi, I need help with property on connectify',
-                        'Jobs' => 'Hi, I need help with jobs on connectify',
-                    ] as $label => $message)
-                    <a href="https://wa.me/250788881400?text={{ urlencode($message) }}" target="_blank" rel="noreferrer"
-                        class="block rounded-md px-3 py-2 font-medium transition hover:bg-emerald-50 hover:text-emerald-700">{{ $label }}</a>
+                        ['label' => 'General help', 'description' => 'Questions about using connectify', 'message' => 'Hi, I need help using connectify'],
+                        ['label' => 'Cars', 'description' => 'Buying or listing a vehicle', 'message' => 'Hi, I need help with cars on connectify'],
+                        ['label' => 'Property', 'description' => 'Buying, renting or listing property', 'message' => 'Hi, I need help with property on connectify'],
+                        ['label' => 'Jobs', 'description' => 'Job listings and applications', 'message' => 'Hi, I need help with jobs on connectify'],
+                    ] as $option)
+                    <a href="https://wa.me/250788881400?text={{ urlencode($option['message']) }}" target="_blank" rel="noreferrer"
+                        class="group/option flex items-center gap-3 border-b border-white/8 px-4 py-3 transition last:border-b-0 hover:bg-white/6 focus:bg-white/6 focus:outline-none">
+                        <span class="h-2 w-2 shrink-0 rounded-full border border-[#58df8b] transition group-hover/option:bg-[#25d366]"></span>
+                        <span class="min-w-0">
+                            <span class="block text-sm font-semibold text-white">{{ $option['label'] }}</span>
+                            <span class="mt-0.5 block truncate text-xs text-white/55">{{ $option['description'] }}</span>
+                        </span>
+                    </a>
                     @endforeach
                 </div>
             </div>

@@ -184,7 +184,7 @@
         margin: 0 auto;
         padding: 0.75rem 1rem;
         border-radius: 9999px;
-        background: linear-gradient(180deg, rgba(7, 17, 31, 0.92), rgba(4, 9, 20, 0.88));
+        background: #000;
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 24px 80px -40px rgba(0, 0, 0, 0.55);
         backdrop-filter: blur(24px);

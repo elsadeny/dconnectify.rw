@@ -13,11 +13,15 @@
 
     .fi-simple-layout {
         position: relative;
-        height: 100dvh;
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         background: #000;
-        overflow: hidden;
+        overflow: visible;
+    }
+
+    .fi-body:is(.fi-panel-admin, .fi-panel-seller):has(.fi-simple-layout) {
+        overflow-y: auto;
     }
 
     .fi-simple-layout::before {
@@ -35,26 +39,24 @@
     .fi-simple-main-ctn {
         position: relative;
         z-index: 1;
-        flex: 1;
+        flex: 1 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 0;
-        padding: 6.75rem 1rem 4.5rem;
+        padding: 6.75rem 1rem 1.5rem;
     }
 
     .fi-simple-main {
         width: 100%;
-        max-height: calc(100dvh - 11.25rem);
-        overflow: auto;
+        max-height: none;
+        overflow: visible;
         border-radius: 2rem !important;
         border: 1px solid #2a2a2a;
         background: #111 !important;
         box-shadow: 0 40px 100px -48px rgba(0, 0, 0, 0.9);
         padding: 1.6rem 1.35rem !important;
         color: #fff;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(143, 208, 255, 0.35) transparent;
     }
 
     @media (min-width: 640px) {
@@ -315,7 +317,7 @@
     }
 
     .connectify-auth-footer {
-        position: fixed;
+        position: relative;
         inset-inline: 0;
         bottom: 0;
         z-index: 2;

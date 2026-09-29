@@ -18,7 +18,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="connectify-public-navbar__shell">
             <a href="{{ $homeHref }}" class="connectify-public-navbar__brand">
-                <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
+                <img src="{{ asset('images/connectify-mark.png') }}" alt="Connectify logo"
                     class="connectify-public-navbar__logo">
                 <div class="connectify-public-navbar__copy">
                     <p class="connectify-public-navbar__name">connectify.rw</p>

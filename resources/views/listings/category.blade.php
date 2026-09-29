@@ -5,7 +5,7 @@
             <div class="mx-auto max-w-7xl">
                 <div data-public-navbar-shell class="glass-panel flex items-center justify-between rounded-full px-4 py-3 md:px-6 dark:bg-[#111]">
                     <a href="{{ route('home') }}" class="flex items-center gap-3">
-                        <img src="{{ asset('images/connectify-logo.png') }}" alt="Connectify logo"
+                        <img src="{{ asset('images/connectify-mark.png') }}" alt="Connectify logo"
                             class="h-11 w-11 shrink-0 rounded-full object-cover">
                         <div>
                             <p class="font-display text-lg font-bold tracking-tight text-white">connectify.rw</p>
